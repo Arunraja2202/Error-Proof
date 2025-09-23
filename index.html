@@ -23,11 +23,9 @@
     a.bookmarklet-link:hover {
       background: #0056b3;
     }
-    textarea {
-      width: 100%;
-      height: 100px;
-      font-family: monospace;
-      margin-top: 10px;
+    /* Hide the textarea */
+    #bookmarklet-code {
+      display: none;
     }
   </style>
 </head>
@@ -36,17 +34,21 @@
   <p>This tool helps validate store data entries in OGRDS with real-time error detection, tooltips, and suggestions.</p>
   <p><strong>To install:</strong></p>
   <ol>
-    <li>Drag the button below into your browser's bookmarks bar:</li>
-    <li>Or, if dragging isn't possible, copy the code from the “Bookmarklet code” box below, then create a new bookmark, name it as you like, and paste the code into the bookmark’s URL field.</li>
+    <li>Drag the button below into your browser's bookmarks bar.</li>
+    <li>Then go to <code>https://ogrds-locations.nielseniq.com/OGRDS/</code> and click your bookmark to run it.</li>
   </ol>
+  
+  <!-- Visible button for drag-and-drop -->
   <a class="bookmarklet-link"
      href="javascript:(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://cdn.jsdelivr.net/gh/Arunraja2202/Error-Proof@main/style.css?t='+Date.now();document.head.appendChild(l);var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/gh/Arunraja2202/Error-Proof@main/content.js?t='+Date.now();s.onload=function(){console.log('Error Proof Validator loaded ✅');};s.onerror=function(){alert('Failed to load content.js');};document.body.appendChild(s);})();">
-    Install Error Proof Validator
+    🛠️ Install Error Proof Validator
   </a>
-  <p>Bookmarklet code:</p>
-  <textarea readonly>
+  
+  <!-- Hidden code (optional, only for backup) -->
+  <textarea id="bookmarklet-code" readonly>
 javascript:(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://cdn.jsdelivr.net/gh/Arunraja2202/Error-Proof@main/style.css?t='+Date.now();document.head.appendChild(l);var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/gh/Arunraja2202/Error-Proof@main/content.js?t='+Date.now();s.onload=function(){console.log('Error Proof Validator loaded ✅');};s.onerror=function(){alert('Failed to load content.js');};document.body.appendChild(s);})();
   </textarea>
-  <p><em>After installing, go to <code>ogrds-locations.nielseniq.com/OGRDS/</code> and click your “Error Proof Validator” bookmark to run it.</em></p>
+
+  <p><em>Just drag the button above to your bookmarks bar and click it on the target site.</em></p>
 </body>
 </html>
