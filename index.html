@@ -23,10 +23,6 @@
     a.bookmarklet-link:hover {
       background: #0056b3;
     }
-    /* Hide the textarea */
-    #bookmarklet-code {
-      display: none;
-    }
   </style>
 </head>
 <body>
@@ -38,16 +34,14 @@
     <li>Then go to <code>https://ogrds-locations.nielseniq.com/OGRDS/</code> and click your bookmark to run it.</li>
   </ol>
   
-  <!-- Visible button for drag-and-drop -->
-  <a class="bookmarklet-link"
-     href="javascript:(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://cdn.jsdelivr.net/gh/Arunraja2202/Error-Proof@main/style.css?t='+Date.now();document.head.appendChild(l);var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/gh/Arunraja2202/Error-Proof@main/content.js?t='+Date.now();s.onload=function(){console.log('Error Proof Validator loaded ✅');};s.onerror=function(){alert('Failed to load content.js');};document.body.appendChild(s);})();">
-    🛠️ Install Error Proof Validator
-  </a>
-  
-  <!-- Hidden code (optional, only for backup) -->
-  <textarea id="bookmarklet-code" readonly>
-javascript:(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://cdn.jsdelivr.net/gh/Arunraja2202/Error-Proof@main/style.css?t='+Date.now();document.head.appendChild(l);var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/gh/Arunraja2202/Error-Proof@main/content.js?t='+Date.now();s.onload=function(){console.log('Error Proof Validator loaded ✅');};s.onerror=function(){alert('Failed to load content.js');};document.body.appendChild(s);})();
-  </textarea>
+  <!-- Drag-and-drop button -->
+  <a class="bookmarklet-link" id="installBtn">🛠️ Install Error Proof Validator</a>
+
+  <script>
+    // JavaScript to set bookmarklet URL dynamically
+    const installBtn = document.getElementById('installBtn');
+    installBtn.href = "javascript:(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://cdn.jsdelivr.net/gh/Arunraja2202/Error-Proof@main/style.css?t='+Date.now();document.head.appendChild(l);var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/gh/Arunraja2202/Error-Proof@main/content.js?t='+Date.now();s.onload=function(){console.log('Error Proof Validator loaded ✅');};s.onerror=function(){alert('Failed to load content.js');};document.body.appendChild(s);})();";
+  </script>
 
   <p><em>Just drag the button above to your bookmarks bar and click it on the target site.</em></p>
 </body>
