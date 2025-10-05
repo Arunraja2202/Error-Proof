@@ -1,1 +1,2306 @@
-const _0x22dc81=_0x2a2e;(function(_0x1bbe64,_0x5e22b4){const _0x49e0f5=_0x2a2e,_0x5c9b25=_0x1bbe64();while(!![]){try{const _0x51107b=-parseInt(_0x49e0f5(0x236))/0x1+parseInt(_0x49e0f5(0x1fd))/0x2*(-parseInt(_0x49e0f5(0x1e2))/0x3)+-parseInt(_0x49e0f5(0x244))/0x4*(-parseInt(_0x49e0f5(0x1f7))/0x5)+parseInt(_0x49e0f5(0x13b))/0x6*(parseInt(_0x49e0f5(0x220))/0x7)+-parseInt(_0x49e0f5(0x16c))/0x8+-parseInt(_0x49e0f5(0x116))/0x9+parseInt(_0x49e0f5(0x136))/0xa*(parseInt(_0x49e0f5(0x121))/0xb);if(_0x51107b===_0x5e22b4)break;else _0x5c9b25['push'](_0x5c9b25['shift']());}catch(_0x508d7d){_0x5c9b25['push'](_0x5c9b25['shift']());}}}(_0x41ec,0x910cd));const VALIDATION_INTERVAL=0x7d0;let validationInterval=null,activeErrors=new Set(),lastKnownTradeChannel=null;console[_0x22dc81(0x152)](_0x22dc81(0x204)),createChatbot();const addressKeywords=['Avenue',_0x22dc81(0x20f),_0x22dc81(0x161),_0x22dc81(0x21d),_0x22dc81(0x1e0),_0x22dc81(0x1c4),_0x22dc81(0x190),'Circle',_0x22dc81(0x143),_0x22dc81(0xf7),_0x22dc81(0x191),_0x22dc81(0x134),'Extension',_0x22dc81(0x157),_0x22dc81(0x210),_0x22dc81(0x192),_0x22dc81(0x207),_0x22dc81(0x199),'Lane','Mount','Park','Parkway',_0x22dc81(0x1ad),_0x22dc81(0x174),_0x22dc81(0x243),_0x22dc81(0x13a),_0x22dc81(0x196),_0x22dc81(0x13f),'Route','Rural\x20route',_0x22dc81(0x188),'State\x20Highway','Street',_0x22dc81(0x1a0),_0x22dc81(0x197),_0x22dc81(0x12a),_0x22dc81(0x1ae),'US\x20Highway',_0x22dc81(0x211)],tradeChannelsRequiringReportTo=[_0x22dc81(0x15e),_0x22dc81(0x22d),_0x22dc81(0x1b3)],tradeChannelsNoFutureOpening=[_0x22dc81(0x138),'[09]Unknown\x20Retailers'],GAS_FUEL_TRADE_CHANNEL=_0x22dc81(0xe6),restrictedPetStoreNames=[_0x22dc81(0x172),_0x22dc81(0x1cf),_0x22dc81(0x1d1),_0x22dc81(0x16e),'Spa',_0x22dc81(0x201),'Pet\x20Resort',_0x22dc81(0x1fc)],restrictedVetClinicStoreNames=[_0x22dc81(0x11b),_0x22dc81(0x198),_0x22dc81(0x139),_0x22dc81(0x16d),_0x22dc81(0x168),_0x22dc81(0x1c7),_0x22dc81(0x1a3),_0x22dc81(0x129),'Mobile','mobile',_0x22dc81(0x151),'dental'],restrictedFarmFeedStoreNames=[_0x22dc81(0x145),_0x22dc81(0x120),_0x22dc81(0x165),_0x22dc81(0x114),'Equipment','equipment'],restrictedVapeStoreNames=['Pipe',_0x22dc81(0x137),_0x22dc81(0x11c),_0x22dc81(0x15f),_0x22dc81(0x254),_0x22dc81(0x1ca),_0x22dc81(0x212),_0x22dc81(0x215),_0x22dc81(0x239),_0x22dc81(0x1fe),_0x22dc81(0x240),_0x22dc81(0xf6)],Pet_superstore=['petco',_0x22dc81(0xee),'Petsmart',_0x22dc81(0x1a8)];function createChatbot(){const _0x466ab5=_0x22dc81,_0x47e9fd=document['getElementById'](_0x466ab5(0x216));if(_0x47e9fd)_0x47e9fd[_0x466ab5(0x144)]();const _0x3221a5=document[_0x466ab5(0xef)](_0x466ab5(0x1da));_0x3221a5['id']=_0x466ab5(0x216),_0x3221a5[_0x466ab5(0x1e4)][_0x466ab5(0x21c)]=_0x466ab5(0x1b6),_0x3221a5[_0x466ab5(0x1e4)][_0x466ab5(0x154)]='20px',_0x3221a5[_0x466ab5(0x1e4)]['right']=_0x466ab5(0x1f5),_0x3221a5[_0x466ab5(0x1e4)]['width']=_0x466ab5(0x175),_0x3221a5[_0x466ab5(0x1e4)][_0x466ab5(0xe3)]=_0x466ab5(0x182),_0x3221a5[_0x466ab5(0x1e4)][_0x466ab5(0x22f)]=_0x466ab5(0x185),_0x3221a5['style'][_0x466ab5(0x119)]='8px',_0x3221a5[_0x466ab5(0x1e4)][_0x466ab5(0x19b)]=_0x466ab5(0x1c8),_0x3221a5[_0x466ab5(0x1e4)]['zIndex']=_0x466ab5(0x113),_0x3221a5[_0x466ab5(0x1e4)][_0x466ab5(0x142)]=_0x466ab5(0x249),_0x3221a5[_0x466ab5(0x1e4)][_0x466ab5(0x1b5)]=_0x466ab5(0xf5),_0x3221a5['style'][_0x466ab5(0x173)]=_0x466ab5(0x259),_0x3221a5['style'][_0x466ab5(0x1ea)]=_0x466ab5(0x108),_0x3221a5[_0x466ab5(0x1e4)][_0x466ab5(0x217)]='all\x200.3s\x20ease,\x20opacity\x200.3s\x20ease',_0x3221a5[_0x466ab5(0x20d)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22ai-bot-header\x22\x20style=\x22padding:\x2012px;\x20background:\x20#11d8f2;\x20color:\x20white;\x20border-radius:\x208px\x208px\x200\x200;\x20display:\x20flex;\x20justify-content:\x20space-between;\x20align-items:\x20center;\x20cursor:\x20move;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-weight:\x20bold;\x20font-size:\x2014px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22error-count\x22\x20style=\x22background:\x20#ff4757;\x20padding:\x202px\x206px;\x20border-radius:\x2010px;\x20margin-right:\x208px;\x22>0</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Error\x20Proof\x20Validator\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22bot-minimize\x22\x20style=\x22cursor:\x20pointer;\x20width:\x2024px;\x20height:\x2024px;\x20display:\x20flex;\x20align-items:\x20center;\x20justify-content:\x20center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20width=\x2220\x22\x20height=\x2220\x22\x20viewBox=\x220\x200\x2024\x2024\x22\x20fill=\x22none\x22\x20xmlns=\x22http://www.w3.org/2000/svg\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<path\x20d=\x22M20\x2014H4V10H20V14Z\x22\x20fill=\x22white\x22/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22ai-bot-content\x22\x20style=\x22flex:\x201;\x20display:\x20flex;\x20flex-direction:\x20column;\x20transition:\x20all\x200.3s\x20ease;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22ai-bot-messages\x22\x20style=\x22flex:\x201;\x20padding:\x2010px;\x20max-height:\x20300px;\x20overflow-y:\x20auto;\x20background:\x20white;\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22padding:\x208px;\x20text-align:\x20center;\x20background:\x20#f5f5f5;\x20border-top:\x201px\x20solid\x20#ddd;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20id=\x22refresh-errors\x22\x20style=\x22padding:\x206px\x2012px;\x20cursor:\x20pointer;\x20background:\x20#11d8f2;\x20color:\x20white;\x20border:\x20none;\x20border-radius:\x204px;\x22>Refresh</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20';const _0x5ed435=document[_0x466ab5(0xef)]('div');_0x5ed435['id']=_0x466ab5(0x17d),_0x5ed435[_0x466ab5(0x1e4)][_0x466ab5(0x21c)]='fixed',_0x5ed435[_0x466ab5(0x1e4)][_0x466ab5(0x154)]=_0x466ab5(0x1f5),_0x5ed435[_0x466ab5(0x1e4)][_0x466ab5(0xdc)]='20px',_0x5ed435[_0x466ab5(0x1e4)][_0x466ab5(0x122)]=_0x466ab5(0x1a6),_0x5ed435[_0x466ab5(0x1e4)][_0x466ab5(0x1f1)]=_0x466ab5(0x1a6),_0x5ed435['style'][_0x466ab5(0x119)]=_0x466ab5(0x251),_0x5ed435[_0x466ab5(0x1e4)][_0x466ab5(0xe3)]='#11d8f2',_0x5ed435['style']['display']=_0x466ab5(0xf0),_0x5ed435['style']['justifyContent']=_0x466ab5(0x140),_0x5ed435['style'][_0x466ab5(0x1ec)]=_0x466ab5(0x140),_0x5ed435['style'][_0x466ab5(0x12d)]=_0x466ab5(0x230),_0x5ed435[_0x466ab5(0x1e4)][_0x466ab5(0x19b)]=_0x466ab5(0x214),_0x5ed435['style'][_0x466ab5(0x14d)]=_0x466ab5(0x113),_0x5ed435[_0x466ab5(0x1e4)][_0x466ab5(0x217)]=_0x466ab5(0x1e9),_0x5ed435[_0x466ab5(0x20d)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22https://cdn-icons-png.flaticon.com/512/4712/4712035.png\x22\x20width=\x2224\x22\x20height=\x2224\x22\x20style=\x22filter:\x20brightness(0)\x20invert(1);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22minimized-error-count\x22\x20style=\x22position:\x20absolute;\x20top:\x20-5px;\x20right:\x20-5px;\x20background:\x20#ff4757;\x20color:\x20white;\x20border-radius:\x2050%;\x20width:\x2018px;\x20height:\x2018px;\x20font-size:\x2010px;\x20display:\x20none;\x20align-items:\x20center;\x20justify-content:\x20center;\x22></div>\x0a\x20\x20\x20\x20',document[_0x466ab5(0xea)][_0x466ab5(0x1c2)](_0x3221a5),document['body']['appendChild'](_0x5ed435),makeDraggable(_0x3221a5);let _0xc8724f=![];document[_0x466ab5(0x1af)](_0x466ab5(0x14c))[_0x466ab5(0x23a)]=()=>{const _0x4e984e=_0x466ab5;_0xc8724f=!![],_0x3221a5[_0x4e984e(0x1e4)]['opacity']='0',_0x3221a5[_0x4e984e(0x1e4)][_0x4e984e(0x12e)]=_0x4e984e(0x20c),_0x3221a5[_0x4e984e(0x1e4)][_0x4e984e(0x18f)]=_0x4e984e(0xf0),setTimeout(()=>{const _0x37e77b=_0x4e984e;_0x3221a5[_0x37e77b(0x1e4)][_0x37e77b(0x173)]=_0x37e77b(0xf0),_0x5ed435['style'][_0x37e77b(0x173)]=_0x37e77b(0x259),_0x5ed435[_0x37e77b(0x1e4)][_0x37e77b(0x12e)]=_0x37e77b(0x1ef),setTimeout(()=>{const _0x185597=_0x37e77b;_0x5ed435[_0x185597(0x1e4)]['transform']=_0x185597(0x208);},0xa);},0x12c);},_0x5ed435[_0x466ab5(0x23a)]=()=>{const _0x58cc88=_0x466ab5;_0xc8724f=![],_0x5ed435[_0x58cc88(0x1e4)][_0x58cc88(0x12e)]=_0x58cc88(0x1ef),setTimeout(()=>{const _0x3ea70a=_0x58cc88;_0x5ed435['style'][_0x3ea70a(0x173)]=_0x3ea70a(0xf0),_0x3221a5[_0x3ea70a(0x1e4)][_0x3ea70a(0x173)]='flex',_0x3221a5[_0x3ea70a(0x1e4)][_0x3ea70a(0x10e)]='0',_0x3221a5[_0x3ea70a(0x1e4)][_0x3ea70a(0x12e)]='scale(0.8)',setTimeout(()=>{const _0x1e26eb=_0x3ea70a;_0x3221a5[_0x1e26eb(0x1e4)][_0x1e26eb(0x10e)]='1',_0x3221a5[_0x1e26eb(0x1e4)]['transform']=_0x1e26eb(0x208),_0x3221a5[_0x1e26eb(0x1e4)][_0x1e26eb(0x18f)]='auto';},0xa);},0x12c);},document[_0x466ab5(0x1af)]('refresh-errors')[_0x466ab5(0x23a)]=()=>{validateAllFields();};const _0x216a45=document[_0x466ab5(0xef)]('style');_0x216a45[_0x466ab5(0x24d)]=_0x466ab5(0x160),document['head'][_0x466ab5(0x1c2)](_0x216a45);}function addToChatbot(_0x362e42,_0x58dadf='error'){const _0x2a873a=_0x22dc81,_0x839a69=document[_0x2a873a(0x1af)](_0x2a873a(0x169));if(!_0x839a69)return;const _0xd11aae=document[_0x2a873a(0xef)](_0x2a873a(0x1da));_0xd11aae[_0x2a873a(0x158)]='bot-message\x20'+_0x58dadf,_0xd11aae[_0x2a873a(0x20d)]=_0x362e42;const _0x14c7f3=document[_0x2a873a(0xef)](_0x2a873a(0x1da));_0x14c7f3[_0x2a873a(0x158)]=_0x2a873a(0x176),_0x14c7f3[_0x2a873a(0x24d)]=new Date()[_0x2a873a(0x1d0)](),_0xd11aae[_0x2a873a(0x1c2)](_0x14c7f3),_0x839a69[_0x2a873a(0x1c2)](_0xd11aae),_0x839a69[_0x2a873a(0x23c)]=_0x839a69['scrollHeight'];}function makeDraggable(_0x102498){const _0x27a2c4=_0x22dc81,_0x369d5b=_0x102498[_0x27a2c4(0x224)]('#ai-bot-header');let _0x469819=![],_0x17a139,_0x4bc24b;_0x369d5b['addEventListener']('mousedown',_0x183878=>{const _0x40e6be=_0x27a2c4;_0x469819=!![],_0x17a139=_0x183878[_0x40e6be(0x153)]-_0x102498[_0x40e6be(0x17b)]()[_0x40e6be(0xe7)],_0x4bc24b=_0x183878[_0x40e6be(0x24b)]-_0x102498['getBoundingClientRect']()[_0x40e6be(0xed)],_0x102498['style'][_0x40e6be(0x12d)]=_0x40e6be(0x21e);}),document[_0x27a2c4(0x1b9)](_0x27a2c4(0x11d),_0xd605eb=>{const _0x4bf24a=_0x27a2c4;if(!_0x469819)return;const _0xcde1a0=_0xd605eb[_0x4bf24a(0x153)]-_0x17a139,_0x43d106=_0xd605eb[_0x4bf24a(0x24b)]-_0x4bc24b,_0x499adb=window[_0x4bf24a(0xe9)]-_0x102498[_0x4bf24a(0x225)],_0x41886c=window[_0x4bf24a(0x16b)]-_0x102498['offsetHeight'];_0x102498[_0x4bf24a(0x1e4)][_0x4bf24a(0xe7)]=Math[_0x4bf24a(0xe0)](Math[_0x4bf24a(0x209)](0x0,_0xcde1a0),_0x499adb)+'px',_0x102498[_0x4bf24a(0x1e4)][_0x4bf24a(0xed)]=Math[_0x4bf24a(0xe0)](Math[_0x4bf24a(0x209)](0x0,_0x43d106),_0x41886c)+'px';}),document[_0x27a2c4(0x1b9)]('mouseup',()=>{const _0x55ee96=_0x27a2c4;_0x469819=![],_0x102498['style'][_0x55ee96(0x12d)]='';});}function updateErrorCount(){const _0x2fa396=_0x22dc81,_0x7babeb=activeErrors[_0x2fa396(0x233)],_0x6f1de9=document['getElementById'](_0x2fa396(0x195)),_0x3b2365=document[_0x2fa396(0x1af)]('minimized-error-count');_0x6f1de9&&(_0x6f1de9['textContent']=_0x7babeb,_0x6f1de9['style'][_0x2fa396(0x173)]=_0x7babeb>0x0?_0x2fa396(0x1c0):'none'),_0x3b2365&&(_0x3b2365[_0x2fa396(0x24d)]=_0x7babeb,_0x3b2365[_0x2fa396(0x1e4)][_0x2fa396(0x173)]=_0x7babeb>0x0?_0x2fa396(0x259):_0x2fa396(0xf0));}const correctedErrors=new Set();function createTooltip(_0x11da7b,_0x132e48,_0x4ae64d){const _0x414086=_0x22dc81;removeExistingTooltip(_0x11da7b);const _0x3dbf23=(_0x11da7b['id']||_0x11da7b[_0x414086(0x1bc)])+'-'+_0x132e48;if(correctedErrors[_0x414086(0xfc)](_0x3dbf23)&&!_0x4ae64d)return null;const _0x5958de=document[_0x414086(0xef)](_0x414086(0x1da));_0x5958de['className']=_0x414086(0x1d4),_0x5958de[_0x414086(0x117)]['for']=_0x11da7b['id']||_0x11da7b[_0x414086(0x1bc)]||'',_0x5958de[_0x414086(0x20d)]=_0x414086(0x130)+(_0x4ae64d?'✅':'⚠️')+_0x414086(0x18e)+_0x132e48+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:\x20flex;\x20justify-content:\x20space-between;\x20font-size:\x2011px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22mark-correct\x22\x20style=\x22color:\x20#4CAF50;\x20cursor:\x20pointer;\x20padding:\x202px\x205px;\x20border-radius:\x203px;\x20background:\x20rgba(255,255,255,0.2);\x22>✓\x20Correct</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22dismiss-tooltip\x22\x20style=\x22color:\x20#2196F3;\x20cursor:\x20pointer;\x20padding:\x202px\x205px;\x20border-radius:\x203px;\x20background:\x20rgba(255,255,255,0.2);\x22>✕\x20Dismiss</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20',_0x5958de[_0x414086(0x1e4)][_0x414086(0x21c)]=_0x414086(0x14b),_0x5958de[_0x414086(0x1e4)][_0x414086(0x247)]=_0x414086(0x164),_0x5958de[_0x414086(0x1e4)][_0x414086(0x119)]=_0x414086(0x202),_0x5958de[_0x414086(0x1e4)][_0x414086(0x115)]=_0x414086(0x14f),_0x5958de['style'][_0x414086(0x14d)]=_0x414086(0x113),_0x5958de[_0x414086(0x1e4)][_0x414086(0x19b)]=_0x414086(0x214),_0x5958de['style'][_0x414086(0xe3)]=_0x4ae64d?'#4CAF50':'#ff4757',_0x5958de[_0x414086(0x1e4)][_0x414086(0xfb)]=_0x414086(0x24f),_0x5958de[_0x414086(0x1e4)][_0x414086(0x1a5)]=_0x414086(0x1d8),_0x5958de[_0x414086(0x1e4)]['lineHeight']='1.4',_0x5958de[_0x414086(0x1e4)][_0x414086(0x135)]=_0x414086(0x1db),_0x5958de[_0x414086(0x1e4)][_0x414086(0x238)]=_0x414086(0xdf),_0x5958de[_0x414086(0x1e4)][_0x414086(0x10e)]='0',_0x5958de['style'][_0x414086(0x12e)]='translateY(10px)',_0x5958de[_0x414086(0x1e4)][_0x414086(0x217)]='all\x200.2s\x20ease',document[_0x414086(0xea)][_0x414086(0x1c2)](_0x5958de),setTimeout(()=>{const _0x204dbc=_0x414086;_0x5958de[_0x204dbc(0x1e4)]['opacity']='1',_0x5958de[_0x204dbc(0x1e4)][_0x204dbc(0x12e)]=_0x204dbc(0x102);},0xa),positionTooltip(_0x11da7b,_0x5958de),_0x5958de[_0x414086(0x224)]('#dismiss-tooltip')[_0x414086(0x1b9)](_0x414086(0x1df),_0x49dd1a=>{const _0x3298ae=_0x414086;_0x49dd1a[_0x3298ae(0x237)](),_0x5958de[_0x3298ae(0x1e4)][_0x3298ae(0x10e)]='0',_0x5958de['style'][_0x3298ae(0x12e)]=_0x3298ae(0x252),setTimeout(()=>{const _0x3f7aa4=_0x3298ae;_0x5958de[_0x3f7aa4(0x144)](),_0x11da7b['style'][_0x3f7aa4(0x19b)]='';},0xc8);}),_0x5958de[_0x414086(0x224)](_0x414086(0x258))[_0x414086(0x1b9)](_0x414086(0x1df),_0x80e8b2=>{const _0x35c10e=_0x414086;_0x80e8b2[_0x35c10e(0x237)](),correctedErrors[_0x35c10e(0x104)](_0x3dbf23),_0x5958de[_0x35c10e(0x1e4)][_0x35c10e(0x10e)]='0',_0x5958de[_0x35c10e(0x1e4)][_0x35c10e(0x12e)]='translateY(10px)',setTimeout(()=>{const _0x4ba3d3=_0x35c10e;_0x5958de[_0x4ba3d3(0x144)](),_0x11da7b[_0x4ba3d3(0x1e4)][_0x4ba3d3(0x19b)]='';},0xc8);});const _0x9ac325=setTimeout(()=>{const _0x49d2b0=_0x414086;_0x5958de['style']['opacity']='0',_0x5958de['style'][_0x49d2b0(0x12e)]=_0x49d2b0(0x252),setTimeout(()=>{const _0x5f36d1=_0x49d2b0;_0x5958de[_0x5f36d1(0x17a)]&&(_0x5958de[_0x5f36d1(0x144)](),_0x11da7b[_0x5f36d1(0x1e4)]['boxShadow']='');},0xc8);},0x2710);return _0x5958de[_0x414086(0x1b9)](_0x414086(0xeb),()=>{clearTimeout(_0x9ac325);}),_0x5958de[_0x414086(0x1b9)](_0x414086(0x1f4),()=>{setTimeout(()=>{const _0x1995a8=_0x2a2e;_0x5958de[_0x1995a8(0x1e4)][_0x1995a8(0x10e)]='0',_0x5958de[_0x1995a8(0x1e4)][_0x1995a8(0x12e)]='translateY(10px)',setTimeout(()=>{const _0x157974=_0x1995a8;_0x5958de[_0x157974(0x17a)]&&(_0x5958de[_0x157974(0x144)](),_0x11da7b[_0x157974(0x1e4)][_0x157974(0x19b)]='');},0xc8);},0x7d0);}),!_0x4ae64d&&(_0x11da7b[_0x414086(0x1e4)]['boxShadow']=_0x414086(0xf8),_0x11da7b[_0x414086(0x1e4)]['borderRadius']=_0x414086(0xe1),_0x11da7b[_0x414086(0x1e4)][_0x414086(0x217)]=_0x414086(0x1b2)),_0x5958de;}function positionTooltip(_0x318752,_0x3cd77b){const _0x5eba2c=_0x22dc81,_0x564fde=_0x318752[_0x5eba2c(0x17b)](),_0x1554ca=_0x3cd77b[_0x5eba2c(0x17b)](),_0x3fa554=window[_0x5eba2c(0x170)],_0x3340c2=window[_0x5eba2c(0x17f)];let _0x5bd31e=_0x3fa554+_0x564fde[_0x5eba2c(0xed)]-_0x1554ca[_0x5eba2c(0x1f1)]-0xa,_0xdf2b82=_0x3340c2+_0x564fde[_0x5eba2c(0xe7)]+_0x564fde[_0x5eba2c(0x122)]/0x2-_0x1554ca[_0x5eba2c(0x122)]/0x2;_0x5bd31e<_0x3fa554&&(_0x5bd31e=_0x3fa554+_0x564fde[_0x5eba2c(0x154)]+0xa),_0xdf2b82=Math[_0x5eba2c(0x209)](_0x3340c2,Math['min'](_0xdf2b82,_0x3340c2+window[_0x5eba2c(0xe9)]-_0x1554ca[_0x5eba2c(0x122)])),_0x5bd31e=Math[_0x5eba2c(0x209)](_0x3fa554,Math[_0x5eba2c(0xe0)](_0x5bd31e,_0x3fa554+window[_0x5eba2c(0x16b)]-_0x1554ca[_0x5eba2c(0x1f1)])),_0x3cd77b[_0x5eba2c(0x1e4)][_0x5eba2c(0xed)]=_0x5bd31e+'px',_0x3cd77b['style'][_0x5eba2c(0xe7)]=_0xdf2b82+'px';}function removeExistingTooltip(_0x4ee7c4){const _0x6f2bf1=_0x22dc81,_0x18088f=_0x4ee7c4['id']||_0x4ee7c4['name']||'';document[_0x6f2bf1(0x19c)]('.ai-tooltip')[_0x6f2bf1(0xfe)](_0x5d4fb4=>{const _0x3d2b36=_0x6f2bf1;_0x5d4fb4[_0x3d2b36(0x117)][_0x3d2b36(0x11e)]===_0x18088f&&(_0x5d4fb4[_0x3d2b36(0x1e4)][_0x3d2b36(0x10e)]='0',_0x5d4fb4[_0x3d2b36(0x1e4)][_0x3d2b36(0x12e)]=_0x3d2b36(0x252),setTimeout(()=>_0x5d4fb4[_0x3d2b36(0x144)](),0xc8));}),_0x4ee7c4[_0x6f2bf1(0x1e4)][_0x6f2bf1(0x19b)]='';}function validateAllFields(){const _0x2d6108=_0x22dc81;document[_0x2d6108(0x19c)](_0x2d6108(0x180))[_0x2d6108(0xfe)](_0x2af837=>{const _0x15ff01=_0x2d6108;_0x2af837[_0x15ff01(0x1e4)]['opacity']='0',_0x2af837['style'][_0x15ff01(0x12e)]=_0x15ff01(0x252),setTimeout(()=>_0x2af837[_0x15ff01(0x144)](),0xc8);});const _0x4a9d09=document[_0x2d6108(0x1af)]('ai-bot-messages');if(_0x4a9d09)_0x4a9d09[_0x2d6108(0x20d)]='';activeErrors['clear']();const _0x4722ed=[validateStoreName({'target':findStoreNameInput()}),validateLine1Address({'target':findLine1Input()}),validateStoreNameAndTradeChannel(),validateTradeChannelAndStoreStatus(),validateExceptionCodeAndStoreStatus(),validateDuplicateStoreStatusAndExceptionCode(),validateStoreStatusAndVSS(),validateMarketingGroupAndStoreName(),validateGasForGroceryStores(),validateSpecialEventRequirements(),validateHighVolCig(),validateMedicalCannabisRequirement(),validateFoodTypeRequirements(),validateStoreOpenDate(),validateVerifiedStoreStatusDate(),validatePharmacyForRestrictedChannels(),validateAlcoholForRestrictedChannels(),validateCannabisForRestrictedStates(),validatePharmacyForDrugStores(),validatePetTradeChannelAndStoreName(),validateVetClinicSubChannelAndStoreName(),validateFarmFeedSubChannelAndStoreName(),validateVapeStoreSubChannelAndStoreName(),validatePetSuperStoreName(),validateAlcoholStoreName()];_0x4722ed[_0x2d6108(0xfe)](_0x122b89=>{const _0x473227=_0x2d6108;if(Array['isArray'](_0x122b89))_0x122b89[_0x473227(0xfe)](_0x530440=>{_0x530440&&(addToChatbot(_0x530440),activeErrors['add'](_0x530440));});else _0x122b89&&(addToChatbot(_0x122b89),activeErrors['add'](_0x122b89));}),Object[_0x2d6108(0x1eb)](UNVERIFIABLE_REQUIREMENTS)[_0x2d6108(0xfe)](([_0x430da5,_0x1acdf7])=>{const _0xdcbe90=_0x2d6108,_0x5eebdc=validateUnverifiableField(_0x430da5,_0x1acdf7),_0x3371c6=_0x5eebdc();_0x3371c6&&(addToChatbot(_0x3371c6),activeErrors[_0xdcbe90(0x104)](_0x3371c6));}),activeErrors[_0x2d6108(0x233)]===0x0&&_0x4a9d09&&addToChatbot('✅\x20All\x20validations\x20passed!',_0x2d6108(0x21b)),updateErrorCount();}function findLine1Input(){const _0x2e0647=_0x22dc81;let _0x10331a=document[_0x2e0647(0x19c)]('label,\x20span');for(let _0x3f9e81 of _0x10331a){if(_0x3f9e81[_0x2e0647(0x181)]['trim']()===_0x2e0647(0x1cc)){let _0x1e8613=_0x3f9e81[_0x2e0647(0x22a)](_0x2e0647(0x1da))?.[_0x2e0647(0x224)](_0x2e0647(0x1c5));if(_0x1e8613)return console['log'](_0x2e0647(0x16a)),_0x1e8613;}}return console['error'](_0x2e0647(0x167)),null;}function validateVerifiedStoreStatusDate(){const _0x4dd43d=_0x22dc81,_0x794ce9=document['querySelector'](_0x4dd43d(0x255));if(!_0x794ce9)return console[_0x4dd43d(0x22e)](_0x4dd43d(0x218)),null;const _0x53651f=_0x794ce9[_0x4dd43d(0x1cb)][_0x4dd43d(0x1bb)]();if(_0x53651f==='')return removeExistingTooltip(_0x794ce9),null;const _0x3b101c=new Date(),_0x51116a=String(_0x3b101c[_0x4dd43d(0x23b)]()+0x1)[_0x4dd43d(0x131)](0x2,'0')+'/'+String(_0x3b101c[_0x4dd43d(0x21a)]())[_0x4dd43d(0x131)](0x2,'0')+'/'+_0x3b101c['getFullYear']();if(_0x53651f!==_0x51116a){const _0x31c21a=_0x4dd43d(0x150)+_0x51116a+')';return createTooltip(_0x794ce9,_0x31c21a,![]),_0x31c21a;}return removeExistingTooltip(_0x794ce9),null;}function validateStoreOpenDate(){const _0x27cdee=_0x22dc81,_0xfcd2bd=findExtJSComboBox(_0x27cdee(0x14a)),_0x3ecb9e=document[_0x27cdee(0x224)](_0x27cdee(0x147));if(!_0xfcd2bd||!_0x3ecb9e)return console['error']('Store\x20Status\x20or\x20Store\x20Open\x20Date\x20field\x20not\x20found'),null;const _0x4cd4ab=_0xfcd2bd[_0x27cdee(0x1cb)]||_0xfcd2bd[_0x27cdee(0x24e)]('data-value')||'',_0x587a15=_0x3ecb9e[_0x27cdee(0x1cb)]||'';if(!_0x4cd4ab[_0x27cdee(0x1f9)](_0x27cdee(0x234))){if(_0x587a15['trim']()!==''){const _0x5b6073='❌\x20Store\x20Open\x20Date\x20should\x20only\x20be\x20filled\x20when\x20Store\x20Status\x20is\x20[FO]\x20Future\x20Opening';return createTooltip(_0x3ecb9e,_0x5b6073,![]),_0x5b6073;}}else{if(_0x587a15[_0x27cdee(0x1bb)]()===''){const _0xe22244=_0x27cdee(0x11a);return createTooltip(_0x3ecb9e,_0xe22244,![]),_0xe22244;}}return removeExistingTooltip(_0x3ecb9e),null;}function validateSpecialEventRequirements(){const _0x3808fe=_0x22dc81,_0x99b817=findExtJSComboBox(_0x3808fe(0x24a)),_0x2d637e=findExtJSComboBox(_0x3808fe(0x14a)),_0x494c6a=findExtJSComboBox(_0x3808fe(0x18a)),_0x4fb4c4=findExtJSComboBox(_0x3808fe(0x1ab));if(!_0x99b817||!_0x2d637e||!_0x494c6a||!_0x4fb4c4)return console[_0x3808fe(0x22e)](_0x3808fe(0x17e)),null;const _0x2d1f5f=_0x99b817[_0x3808fe(0x1cb)]||_0x99b817[_0x3808fe(0x24e)](_0x3808fe(0x13e))||'',_0x4f8f95=_0x2d637e[_0x3808fe(0x1cb)]||_0x2d637e['getAttribute'](_0x3808fe(0x13e))||'',_0x5c1ae5=_0x494c6a[_0x3808fe(0x1cb)]||_0x494c6a['getAttribute']('data-value')||'',_0x2c4eb0=_0x4fb4c4[_0x3808fe(0x1cb)]||_0x4fb4c4['getAttribute']('data-value')||'',_0x284d7a=_0x2d1f5f[_0x3808fe(0x1f9)](_0x3808fe(0x1ed))||_0x2d1f5f[_0x3808fe(0x1f9)](_0x3808fe(0x229));if(!_0x284d7a)return null;let _0x478da8=[];!_0x4f8f95[_0x3808fe(0x1f9)](_0x3808fe(0xdd))&&(_0x478da8['push']('❌\x20Special\x20Event/Client\x20Internal\x20stores\x20must\x20have\x20Store\x20Status:\x20[NA]\x20Inactive/Not\x20Verified'),createTooltip(_0x2d637e,_0x478da8[_0x478da8['length']-0x1],![]));!_0x5c1ae5[_0x3808fe(0x1f9)](_0x3808fe(0x155))&&(_0x478da8[_0x3808fe(0x10c)]('❌\x20Special\x20Event/Client\x20Internal\x20stores\x20must\x20have\x20VSS:\x20[34]\x20Special\x20Projects'),createTooltip(_0x494c6a,_0x478da8[_0x478da8[_0x3808fe(0x222)]-0x1],![]));!_0x2c4eb0[_0x3808fe(0x1f9)]('777798Z')&&(_0x478da8[_0x3808fe(0x10c)](_0x3808fe(0x226)),createTooltip(_0x4fb4c4,_0x478da8[_0x478da8[_0x3808fe(0x222)]-0x1],![]));if(_0x478da8[_0x3808fe(0x222)]>0x0)return _0x478da8['forEach'](_0xfb23bb=>addToChatbot(_0xfb23bb)),_0x478da8;return null;}function validatePetSuperStoreName(){const _0x5baaf2=_0x22dc81;let _0x199c93=findExtJSComboBox(_0x5baaf2(0x24a)),_0x4e9780=findStoreNameInput();if(!_0x199c93||!_0x4e9780){console['error'](_0x5baaf2(0xde));return;}let _0xfc6187=_0x199c93[_0x5baaf2(0x1cb)]||_0x199c93[_0x5baaf2(0x24e)](_0x5baaf2(0x13e))||'',_0x3e1c7b=_0x4e9780[_0x5baaf2(0x1cb)]||_0x4e9780[_0x5baaf2(0x24e)]('data-value')||'';if(_0xfc6187[_0x5baaf2(0x1f9)](_0x5baaf2(0x10b))||_0xfc6187[_0x5baaf2(0x1f9)](_0x5baaf2(0x227))){const _0x43cb0b=Pet_superstore['some'](_0xe6e267=>_0x3e1c7b[_0x5baaf2(0x178)]()[_0x5baaf2(0x1f9)](_0xe6e267[_0x5baaf2(0x178)]()));if(!_0x43cb0b){const _0x56a502=_0x5baaf2(0xe4);return createTooltip(_0x4e9780,_0x56a502,![]),_0x56a502;}}return null;}function findInputByText(_0x28bee){const _0x155387=_0x22dc81;let _0x144790=document[_0x155387(0x19c)](_0x155387(0x256));for(let _0x2734ac of _0x144790){if(_0x2734ac['innerText'][_0x155387(0x1bb)]()===_0x28bee){let _0x1813d3=_0x2734ac['closest']('div')?.['querySelector'](_0x155387(0x1c5));if(_0x1813d3)return console['log']('✅\x20Found\x20input\x20for:\x20'+_0x28bee),_0x1813d3;}}return console[_0x155387(0x22e)]('❌\x20Input\x20not\x20found\x20for:\x20'+_0x28bee),null;}function validateVapeStoreSubChannelAndStoreName(){const _0x3f0f07=_0x22dc81;let _0x2b24eb=findExtJSComboBox('Sub\x20Channel:'),_0x59e340=findStoreNameInput();if(!_0x2b24eb||!_0x59e340){console[_0x3f0f07(0x22e)](_0x3f0f07(0xde));return;}let _0x22817d=_0x2b24eb[_0x3f0f07(0x1cb)]||_0x2b24eb[_0x3f0f07(0x24e)](_0x3f0f07(0x13e))||'',_0x132d84=_0x59e340['value']||_0x59e340[_0x3f0f07(0x24e)](_0x3f0f07(0x13e))||'';console[_0x3f0f07(0x152)](_0x3f0f07(0x24a),_0x22817d),console['log'](_0x3f0f07(0x146),_0x132d84);if(_0x22817d['includes'](_0x3f0f07(0x141))){const _0x4ecd7b=restrictedVapeStoreNames[_0x3f0f07(0x123)](_0x190eb9=>_0x132d84['includes'](_0x190eb9));if(_0x4ecd7b){const _0x3d6a9c=_0x3f0f07(0x189);return createTooltip(_0x59e340,_0x3d6a9c,![]),_0x3d6a9c;}}return null;}function validateFarmFeedSubChannelAndStoreName(){const _0x589026=_0x22dc81;let _0x2caeed=findExtJSComboBox('Sub\x20Channel:'),_0x115b7a=findStoreNameInput();if(!_0x2caeed||!_0x115b7a){console['error'](_0x589026(0xde));return;}let _0x18ed68=_0x2caeed[_0x589026(0x1cb)]||_0x2caeed[_0x589026(0x24e)]('data-value')||'',_0x4eb0f5=_0x115b7a['value']||_0x115b7a[_0x589026(0x24e)](_0x589026(0x13e))||'';console[_0x589026(0x152)](_0x589026(0x24a),_0x18ed68),console[_0x589026(0x152)](_0x589026(0x146),_0x4eb0f5);if(_0x18ed68['includes'](_0x589026(0x1f6))){const _0x6b8ed1=restrictedFarmFeedStoreNames['some'](_0x5cf404=>_0x4eb0f5[_0x589026(0x1f9)](_0x5cf404));if(_0x6b8ed1){const _0x543567='❌\x20Invalid\x20Store\x20Name:\x20FarmNFeed\x20stores\x20cannot\x20contain\x20grain\x20elevator/agricultural/equipment\x20keywords!';return createTooltip(_0x115b7a,_0x543567,![]),_0x543567;}}return null;}function validateVetClinicSubChannelAndStoreName(){const _0x54bf41=_0x22dc81;let _0x582023=findExtJSComboBox(_0x54bf41(0x24a)),_0x2ac9b0=findStoreNameInput();if(!_0x582023||!_0x2ac9b0){console[_0x54bf41(0x22e)](_0x54bf41(0xde));return;}let _0x45f179=_0x582023[_0x54bf41(0x1cb)]||_0x582023['getAttribute'](_0x54bf41(0x13e))||'',_0x1de400=_0x2ac9b0[_0x54bf41(0x1cb)]||_0x2ac9b0[_0x54bf41(0x24e)](_0x54bf41(0x13e))||'';console[_0x54bf41(0x152)](_0x54bf41(0x24a),_0x45f179),console['log'](_0x54bf41(0x146),_0x1de400);if(_0x45f179[_0x54bf41(0x1f9)]('[3]Vet\x20Clinic')){const _0x223907=restrictedVetClinicStoreNames[_0x54bf41(0x123)](_0x162546=>_0x1de400[_0x54bf41(0x1f9)](_0x162546));if(_0x223907){const _0x56ce5b=_0x54bf41(0x15a);return createTooltip(_0x2ac9b0,_0x56ce5b,![]),_0x56ce5b;}}return null;}function validatePetTradeChannelAndStoreName(){const _0x2cb699=_0x22dc81;let _0x9f7f77=findExtJSComboBox(_0x2cb699(0x166)),_0x2bad98=findStoreNameInput();if(!_0x9f7f77||!_0x2bad98){console['error'](_0x2cb699(0x1d7));return;}let _0x595f12=_0x9f7f77[_0x2cb699(0x1cb)]||_0x9f7f77[_0x2cb699(0x24e)](_0x2cb699(0x13e))||'',_0x42bad4=_0x2bad98[_0x2cb699(0x1cb)]||_0x2bad98[_0x2cb699(0x24e)]('data-value')||'';console[_0x2cb699(0x152)](_0x2cb699(0x166),_0x595f12),console[_0x2cb699(0x152)](_0x2cb699(0x146),_0x42bad4);if(_0x595f12[_0x2cb699(0x1f9)](_0x2cb699(0x18c))){const _0x48c738=restrictedPetStoreNames[_0x2cb699(0x123)](_0x230842=>_0x42bad4[_0x2cb699(0x1f9)](_0x230842));if(_0x48c738){const _0x15e6fa=_0x2cb699(0x221);return createTooltip(_0x2bad98,_0x15e6fa,![]),_0x15e6fa;}}return null;}function validateStoreNameAndTradeChannel(){const _0x2b84d8=_0x22dc81;let _0x59c290=findStoreNameInput(),_0x3a15b9=findExtJSComboBox(_0x2b84d8(0x166));if(!_0x59c290||!_0x3a15b9){console[_0x2b84d8(0x22e)](_0x2b84d8(0x1e8));return;}let _0x42b83e=_0x59c290[_0x2b84d8(0x1cb)]||_0x59c290[_0x2b84d8(0x24e)](_0x2b84d8(0x13e))||'',_0x33894e=_0x3a15b9[_0x2b84d8(0x1cb)]||_0x3a15b9[_0x2b84d8(0x24e)](_0x2b84d8(0x13e))||'';console[_0x2b84d8(0x152)](_0x2b84d8(0x146),_0x42b83e),console[_0x2b84d8(0x152)](_0x2b84d8(0x166),_0x33894e);if(_0x42b83e[_0x2b84d8(0x223)](/Gas|Fuel/i)){if(!_0x33894e[_0x2b84d8(0x1f9)](GAS_FUEL_TRADE_CHANNEL)){const _0x3e96a5=_0x2b84d8(0x179)+GAS_FUEL_TRADE_CHANNEL+'!';return createTooltip(_0x3a15b9,_0x3e96a5,![]),_0x3e96a5;}}return null;}function validateTradeChannelAndStoreStatus(){const _0x23d82b=_0x22dc81;let _0x281224=findExtJSComboBox(_0x23d82b(0x166)),_0x2bcc2e=findExtJSComboBox(_0x23d82b(0x14a));if(!_0x281224||!_0x2bcc2e){console[_0x23d82b(0x22e)]('❌\x20Trade\x20Channel\x20or\x20Store\x20Status\x20input\x20not\x20found.');return;}let _0x3f125f=_0x281224['value']||_0x281224[_0x23d82b(0x24e)]('data-value')||'',_0x3d3973=_0x2bcc2e[_0x23d82b(0x1cb)]||_0x2bcc2e[_0x23d82b(0x24e)](_0x23d82b(0x13e))||'';console['log']('Trade\x20Channel:',_0x3f125f),console[_0x23d82b(0x152)](_0x23d82b(0x14a),_0x3d3973);if(tradeChannelsNoFutureOpening[_0x23d82b(0x123)](_0x19c012=>_0x3f125f[_0x23d82b(0x1f9)](_0x19c012))){if(_0x3d3973[_0x23d82b(0x1f9)](_0x23d82b(0x234))){const _0x2fbb3f=_0x23d82b(0x1fb);return createTooltip(_0x2bcc2e,_0x2fbb3f,![]),_0x2fbb3f;}}return null;}function validateExceptionCodeAndStoreStatus(){const _0x2f87aa=_0x22dc81;let _0x5cedcd=findExtJSComboBox(_0x2f87aa(0x1ab)),_0x130950=findExtJSComboBox(_0x2f87aa(0x14a));if(!_0x5cedcd||!_0x130950){console[_0x2f87aa(0x22e)](_0x2f87aa(0x1d6));return;}let _0x5a6be5=_0x5cedcd[_0x2f87aa(0x1cb)]||_0x5cedcd[_0x2f87aa(0x24e)]('data-value')||'',_0x1e3578=_0x130950[_0x2f87aa(0x1cb)]||_0x130950['getAttribute'](_0x2f87aa(0x13e))||'';console[_0x2f87aa(0x152)](_0x2f87aa(0x1ab),_0x5a6be5),console[_0x2f87aa(0x152)](_0x2f87aa(0x14a),_0x1e3578);let _0x2bb698=[];if(_0x5a6be5[_0x2f87aa(0x1f9)](_0x2f87aa(0x21f))){if(!_0x1e3578[_0x2f87aa(0x1f9)](_0x2f87aa(0xf2))){const _0x47307f=_0x2f87aa(0x1f0);createTooltip(_0x130950,_0x47307f,![]),_0x2bb698[_0x2f87aa(0x10c)](_0x47307f);}}if(_0x1e3578['includes']('[UV]\x20Unverifiable')){if(!_0x5a6be5[_0x2f87aa(0x1f9)](_0x2f87aa(0x21f))){const _0x3303ce=_0x2f87aa(0x1de);createTooltip(_0x5cedcd,_0x3303ce,![]),_0x2bb698[_0x2f87aa(0x10c)](_0x3303ce);}}return _0x2bb698['length']>0x0?_0x2bb698:null;}function validateDuplicateStoreStatusAndExceptionCode(){const _0x109d1a=_0x22dc81;let _0x58616c=findExtJSComboBox(_0x109d1a(0x14a)),_0x25a914=findExtJSComboBox(_0x109d1a(0x1ab));if(!_0x58616c||!_0x25a914){console['error'](_0x109d1a(0x1f3));return;}let _0x1376fe=_0x58616c[_0x109d1a(0x1cb)]||_0x58616c['getAttribute']('data-value')||'',_0x2fe58d=_0x25a914[_0x109d1a(0x1cb)]||_0x25a914['getAttribute'](_0x109d1a(0x13e))||'';console['log'](_0x109d1a(0x14a),_0x1376fe),console['log'](_0x109d1a(0x1ab),_0x2fe58d);if(_0x1376fe[_0x109d1a(0x1f9)](_0x109d1a(0x23f))){if(_0x2fe58d[_0x109d1a(0x1bb)]()&&!_0x2fe58d['includes'](_0x109d1a(0x110))){const _0x21bd01=_0x109d1a(0xe8);return createTooltip(_0x25a914,_0x21bd01,![]),_0x21bd01;}}return null;}function validateMarketingGroupAndStoreName(){const _0x17d714=_0x22dc81;let _0xfc8e18=findExtJSComboBox(_0x17d714(0xfa)),_0x207289=findStoreNameInput();if(!_0xfc8e18||!_0x207289){console[_0x17d714(0x22e)]('❌\x20Marketing\x20Group\x20or\x20Store\x20Name\x20input\x20not\x20found.');return;}let _0x4ec81f=_0xfc8e18['value']||_0xfc8e18[_0x17d714(0x24e)]('data-value')||'',_0x2d5f5a=_0x207289[_0x17d714(0x1cb)]||_0x207289['getAttribute'](_0x17d714(0x13e))||'';console['log'](_0x17d714(0xfa),_0x4ec81f),console[_0x17d714(0x152)](_0x17d714(0x146),_0x2d5f5a);if(_0x4ec81f[_0x17d714(0x1bb)]()){const _0x5936e0=_0x4ec81f[_0x17d714(0x1e1)](/[^a-zA-Z\s]/g,'')[_0x17d714(0x1bb)](),_0x1e11a4=_0x2d5f5a['replace'](/[^a-zA-Z\s]/g,'')['trim']();if(_0x5936e0&&!_0x1e11a4[_0x17d714(0x178)]()[_0x17d714(0x1f9)](_0x5936e0[_0x17d714(0x178)]())){const _0x81147f='❌\x20Incorrect\x20Store\x20Name:\x20Must\x20contain\x20the\x20Marketing\x20Group\x20name\x20(excluding\x20numbers/special\x20chars)!';return createTooltip(_0x207289,_0x81147f,![]),_0x81147f;}}return null;}function findMarketingGroupInput(){const _0x595d55=_0x22dc81;let _0x1a5920=document[_0x595d55(0x19c)](_0x595d55(0x256));for(let _0x5795e5 of _0x1a5920){if(_0x5795e5[_0x595d55(0x181)]['trim']()==='Marketing\x20Group:'){let _0x4faaa4=_0x5795e5[_0x595d55(0x22a)](_0x595d55(0x1da))?.[_0x595d55(0x224)](_0x595d55(0x1c5));if(_0x4faaa4)return console[_0x595d55(0x152)](_0x595d55(0x19a)),_0x4faaa4;}}return console[_0x595d55(0x22e)](_0x595d55(0x1be)),null;}function validateStoreStatusAndVSS(){const _0x1adc2f=_0x22dc81;let _0x2eac55=findExtJSComboBox(_0x1adc2f(0x14a)),_0x4e10f2=findExtJSComboBox(_0x1adc2f(0x18a));if(!_0x2eac55||!_0x4e10f2){console[_0x1adc2f(0x22e)](_0x1adc2f(0x1ce));return;}let _0x3133f6=_0x2eac55['value']||_0x2eac55[_0x1adc2f(0x24e)](_0x1adc2f(0x13e))||'',_0x1b59bf=_0x4e10f2[_0x1adc2f(0x1cb)]||_0x4e10f2['getAttribute'](_0x1adc2f(0x13e))||'';console[_0x1adc2f(0x152)](_0x1adc2f(0x14a),_0x3133f6),console[_0x1adc2f(0x152)](_0x1adc2f(0xec),_0x1b59bf);let _0x33043b=[];const _0x20ddaf=[_0x1adc2f(0x1b4),'[33]\x20Telephone,\x20Indirect',_0x1adc2f(0x124),_0x1adc2f(0x127),_0x1adc2f(0x23e),_0x1adc2f(0x213),_0x1adc2f(0x194),'[NA]\x20Screen\x20Scrape','[NA]\x20Retailer\x20Store\x20List',_0x1adc2f(0x1ac)];if(_0x3133f6[_0x1adc2f(0x1f9)](_0x1adc2f(0x1dc))||_0x3133f6[_0x1adc2f(0x1f9)](_0x1adc2f(0x234))){const _0x2d7001=_0x3133f6[_0x1adc2f(0x1f9)](_0x1adc2f(0x1dc))?'[OP]\x20Open,\x20Operating':_0x1adc2f(0x234);console[_0x1adc2f(0x152)](_0x1adc2f(0x1ee)+_0x2d7001+'.');const _0x4d0a91=_0x20ddaf[_0x1adc2f(0x123)](_0x4329b5=>_0x1b59bf[_0x1adc2f(0x1f9)](_0x4329b5));if(!_0x4d0a91){const _0x4f3d94=_0x20ddaf[_0x1adc2f(0x1f8)](_0x1eca47=>_0x1eca47[_0x1adc2f(0x1d5)](']')[0x1])['join'](',\x20'),_0x4498a5='❌\x20Incorrect\x20VSS\x20for\x20the\x20'+_0x2d7001+'\x20Store\x20Status';createTooltip(_0x4e10f2,_0x4498a5,![]),_0x33043b[_0x1adc2f(0x10c)](_0x4498a5);}}else{if(_0x3133f6[_0x1adc2f(0x1f9)]('[NA]\x20Inactive/Not\x20Verified')){console[_0x1adc2f(0x152)](_0x1adc2f(0x1d9));if(!_0x1b59bf[_0x1adc2f(0x1f9)]('[34]\x20Special\x20Projects')){const _0xd161aa=_0x1adc2f(0x19f);createTooltip(_0x4e10f2,_0xd161aa,![]),_0x33043b[_0x1adc2f(0x10c)](_0xd161aa);}}else{if(_0x3133f6['includes'](_0x1adc2f(0xf2))){console[_0x1adc2f(0x152)](_0x1adc2f(0x163));if(!_0x1b59bf['includes']('[NA]\x20Attempted\x20Contact\x20Failed')){const _0x8672f8=_0x1adc2f(0x253);createTooltip(_0x4e10f2,_0x8672f8,![]),_0x33043b[_0x1adc2f(0x10c)](_0x8672f8);}}else{if(_0x3133f6[_0x1adc2f(0x1f9)](_0x1adc2f(0x1b1))){console[_0x1adc2f(0x152)](_0x1adc2f(0x184));if(!(_0x1b59bf[_0x1adc2f(0x1f9)](_0x1adc2f(0x23e))||_0x1b59bf[_0x1adc2f(0x1f9)](_0x1adc2f(0x1b4))||_0x1b59bf[_0x1adc2f(0x1f9)]('[33]\x20Telephone,\x20Indirect')||_0x1b59bf[_0x1adc2f(0x1f9)]('[60]\x20News/Press\x20Release')||_0x1b59bf[_0x1adc2f(0x1f9)](_0x1adc2f(0x194))||_0x1b59bf[_0x1adc2f(0x1f9)]('[NA]\x20Attempted\x20Contact\x20Failed'))){const _0x1bbad2=_0x1adc2f(0x22b);createTooltip(_0x4e10f2,_0x1bbad2,![]),_0x33043b[_0x1adc2f(0x10c)](_0x1bbad2);}}else{if(_0x3133f6['includes'](_0x1adc2f(0x23f))){console['log']('✅\x20Store\x20Status\x20is\x20[DUP]\x20Duplicate.');if(!_0x1b59bf[_0x1adc2f(0x1f9)]('[34]\x20Special\x20Projects')){const _0x578419=_0x1adc2f(0x186);createTooltip(_0x4e10f2,_0x578419,![]),_0x33043b[_0x1adc2f(0x10c)](_0x578419);}}}}}}if(_0x1b59bf[_0x1adc2f(0x1f9)](_0x1adc2f(0x257))){if(_0x3133f6['includes'](_0x1adc2f(0x23f))||_0x3133f6[_0x1adc2f(0x1f9)](_0x1adc2f(0x234))||_0x3133f6[_0x1adc2f(0x1f9)](_0x1adc2f(0xdd))||_0x3133f6[_0x1adc2f(0x1f9)](_0x1adc2f(0x1dc))){const _0x177b11=_0x1adc2f(0x1aa);createTooltip(_0x4e10f2,_0x177b11,![]),_0x33043b['push'](_0x177b11);}}return _0x33043b[_0x1adc2f(0x222)]>0x0?_0x33043b:null;}function findExtJSComboBox(_0x371163){const _0x3fbb54=_0x22dc81;let _0x434716=document['querySelectorAll'](_0x3fbb54(0x256));for(let _0x4c2e5 of _0x434716){if(_0x4c2e5[_0x3fbb54(0x181)][_0x3fbb54(0x1bb)]()===_0x371163){let _0x580f07=_0x4c2e5[_0x3fbb54(0x22a)](_0x3fbb54(0x1da));if(_0x580f07){let _0x5d9703=_0x580f07['querySelector'](_0x3fbb54(0x149));if(_0x5d9703)return console['log']('✅\x20Found\x20ExtJS\x20combobox\x20for:\x20'+_0x371163),_0x5d9703;}}}return console['error']('❌\x20ExtJS\x20combobox\x20not\x20found\x20for:\x20'+_0x371163),null;}function validateAlcoholStoreName(){const _0x408170=_0x22dc81;let _0x33e66a=findStoreNameInput(),_0x32e653=findExtJSComboBox(_0x408170(0x15d)),_0x216c50=findExtJSComboBox(_0x408170(0x133)),_0x5d24a2=findExtJSComboBox(_0x408170(0x1b8));if(!_0x33e66a||!_0x32e653||!_0x216c50||!_0x5d24a2){console[_0x408170(0x22e)](_0x408170(0x1ff));return;}let _0x4123c4=(_0x33e66a[_0x408170(0x1cb)]||_0x33e66a[_0x408170(0x24e)](_0x408170(0x13e))||'')[_0x408170(0x178)](),_0x242a02=(_0x32e653[_0x408170(0x1cb)]||_0x32e653[_0x408170(0x24e)](_0x408170(0x13e))||'')[_0x408170(0x12b)]()[_0x408170(0x178)](),_0x27bf73=(_0x216c50[_0x408170(0x1cb)]||_0x216c50['getAttribute'](_0x408170(0x13e))||'')[_0x408170(0x12b)]()['toLowerCase'](),_0x5e7ace=(_0x5d24a2[_0x408170(0x1cb)]||_0x5d24a2[_0x408170(0x24e)](_0x408170(0x13e))||'')[_0x408170(0x12b)]()['toLowerCase'](),_0x4ac375=[];_0x4123c4['includes'](_0x408170(0x13d))&&(_0x242a02!==_0x408170(0x1c1)&&_0x4ac375[_0x408170(0x10c)](_0x408170(0xf3)));_0x4123c4[_0x408170(0x1f9)](_0x408170(0x193))&&(_0x27bf73!=='yes'&&_0x4ac375[_0x408170(0x10c)](_0x408170(0x19d)));(_0x4123c4[_0x408170(0x1f9)]('liquor')||_0x4123c4[_0x408170(0x1f9)]('spirits')||_0x4123c4[_0x408170(0x1f9)](_0x408170(0xfd)))&&(_0x5e7ace!==_0x408170(0x1c1)&&_0x4ac375[_0x408170(0x10c)]('❌\x20Liquor\x20should\x20be\x20\x27Yes\x27\x20when\x20store\x20name\x20contains\x20\x27Liquor/Spirits/Cocktail\x27'));if(_0x4ac375[_0x408170(0x222)]>0x0)return _0x4ac375[_0x408170(0xfe)](_0x283c62=>{createTooltip(_0x33e66a,_0x283c62,![]);}),_0x4ac375;return null;}function findStoreNameInput(){const _0x594e20=_0x22dc81;let _0x5eafcf=document[_0x594e20(0x19c)](_0x594e20(0x256));for(let _0x42b26f of _0x5eafcf){if(_0x42b26f['innerText']['trim']()===_0x594e20(0x146)){let _0x325b6a=_0x42b26f[_0x594e20(0x22a)]('div')?.['querySelector'](_0x594e20(0x1c5));if(_0x325b6a)return console[_0x594e20(0x152)]('✅\x20Found\x20Store\x20Name\x20input!'),_0x325b6a;}}return console[_0x594e20(0x22e)](_0x594e20(0x128)),null;}const FOOD_TYPE_REQUIRED_CHANNELS=[_0x22dc81(0x12c),_0x22dc81(0x125),_0x22dc81(0x1a9)],FOOD_TYPE_REQUIRED_SUBCHANNELS=['[H]Restaurant\x20NA'];function validateFoodTypeRequirements(){const _0x310ecc=_0x22dc81;if(!lastKnownTradeChannel&&!lastKnownSubChannel)return null;const _0x193a05=FOOD_TYPE_REQUIRED_CHANNELS[_0x310ecc(0x123)](_0xe2ebc=>lastKnownTradeChannel&&lastKnownTradeChannel['includes'](_0xe2ebc)),_0x43f057=FOOD_TYPE_REQUIRED_SUBCHANNELS[_0x310ecc(0x123)](_0x162547=>lastKnownSubChannel&&lastKnownSubChannel[_0x310ecc(0x1f9)](_0x162547));if(!_0x193a05&&!_0x43f057)return null;const _0x3d0a9f=findExtJSComboBox(_0x310ecc(0x17c));if(!_0x3d0a9f)return console['log']('Food\x20Type\x20field\x20not\x20found'),null;const _0x3841e6=_0x3d0a9f[_0x310ecc(0x1cb)]||_0x3d0a9f[_0x310ecc(0x24e)]('data-value')||'';if(!_0x3841e6['trim']()){let _0x5aff64=_0x310ecc(0xff);return _0x193a05&&(_0x5aff64+=_0x310ecc(0x1f2)+lastKnownTradeChannel[_0x310ecc(0x1d5)](']')[0x1]),_0x43f057&&(_0x5aff64+='\x20for\x20Sub\x20Channel:\x20'+lastKnownSubChannel['split'](']')[0x1]),createTooltip(_0x3d0a9f,_0x5aff64,![]),_0x5aff64;}return null;}function trackTradeChannel(){const _0x302434=_0x22dc81,_0xaa18c1=findExtJSComboBox('Trade\x20Channel:');_0xaa18c1&&(lastKnownTradeChannel=_0xaa18c1[_0x302434(0x1cb)]||_0xaa18c1[_0x302434(0x24e)]('data-value')||'',_0xaa18c1[_0x302434(0x1b9)]('change',function(_0x22b7a8){const _0x4fe74f=_0x302434;lastKnownTradeChannel=_0x22b7a8[_0x4fe74f(0x22c)]['value']||_0x22b7a8['target'][_0x4fe74f(0x24e)](_0x4fe74f(0x13e))||'',console['log']('Tracking\x20Trade\x20Channel:',lastKnownTradeChannel),validateFoodTypeRequirements(),validatePharmacyForRestrictedChannels(),validateCannabisForRestrictedStates(),validateMedicalCannabisRequirement();}));}let lastKnownSubChannel=null;function trackSubChannel(){const _0x33e2d4=_0x22dc81,_0x37c536=findExtJSComboBox(_0x33e2d4(0x24a));_0x37c536&&(lastKnownSubChannel=_0x37c536['value']||_0x37c536[_0x33e2d4(0x24e)](_0x33e2d4(0x13e))||'',_0x37c536[_0x33e2d4(0x1b9)](_0x33e2d4(0x111),function(_0x31dcb2){const _0xcbddf2=_0x33e2d4;lastKnownSubChannel=_0x31dcb2[_0xcbddf2(0x22c)][_0xcbddf2(0x1cb)]||_0x31dcb2[_0xcbddf2(0x22c)][_0xcbddf2(0x24e)](_0xcbddf2(0x13e))||'',console[_0xcbddf2(0x152)](_0xcbddf2(0x112),lastKnownSubChannel),validateFoodTypeRequirements(),validateGasForGroceryStores(),validateHighVolCig();}));}const HIGH_VOL_CIG_REQUIRED_SUBCHANNELS=[_0x22dc81(0x183)];function validateHighVolCig(){const _0x21429d=_0x22dc81;if(!lastKnownSubChannel)return null;const _0x31717a=HIGH_VOL_CIG_REQUIRED_SUBCHANNELS[_0x21429d(0x123)](_0xfb7289=>lastKnownSubChannel['includes'](_0xfb7289));if(!_0x31717a)return null;const _0x308a2c=findExtJSComboBox(_0x21429d(0x219));if(!_0x308a2c)return console[_0x21429d(0x152)]('High\x20Vol\x20Cig\x20field\x20not\x20found\x20for\x20'+lastKnownSubChannel),null;const _0x4ddf37=_0x308a2c[_0x21429d(0x1cb)]||_0x308a2c[_0x21429d(0x24e)]('data-value')||'';if(_0x4ddf37[_0x21429d(0x178)]()!==_0x21429d(0x1c1)){const _0x4f3ab3=_0x21429d(0x156);return createTooltip(_0x308a2c,_0x4f3ab3,![]),_0x4f3ab3;}return null;}const GROCERY_STORE_SUBCHANNELS=[_0x22dc81(0x1dd),_0x22dc81(0x107),'[3]Grocery\x20Stores\x20-\x20Warehouse/C&C'];function validateGasForGroceryStores(){const _0x5f1a2f=_0x22dc81;if(!lastKnownSubChannel)return null;const _0x1938f8=GROCERY_STORE_SUBCHANNELS[_0x5f1a2f(0x123)](_0x347d40=>lastKnownSubChannel[_0x5f1a2f(0x1f9)](_0x347d40));if(!_0x1938f8)return null;const _0x3244a8=findExtJSComboBox(_0x5f1a2f(0xf4));if(!_0x3244a8)return console['log'](_0x5f1a2f(0x235)),null;const _0x34bc2f=_0x3244a8['value']||_0x3244a8[_0x5f1a2f(0x24e)](_0x5f1a2f(0x13e))||'';if(_0x34bc2f[_0x5f1a2f(0x1bb)]()[_0x5f1a2f(0x178)]()!=='no'){const _0x2bc2a3=lastKnownSubChannel[_0x5f1a2f(0x1d5)](']')[0x1],_0xd65b28=_0x5f1a2f(0x205)+_0x2bc2a3;return createTooltip(_0x3244a8,_0xd65b28,![]),_0xd65b28;}return null;}const UNVERIFIABLE_REQUIREMENTS={'Trade\x20Type:':'[C]Retail\x20Trade','Trade\x20Channel:':'[09]Unknown\x20Retailers','Sub\x20Channel:':_0x22dc81(0x228),'Exception\x20Code:':_0x22dc81(0x21f)};function validateUnverifiableField(_0x2be0ad,_0x185397){return function(){const _0x5184f8=_0x2a2e;let _0x1bba7b=findExtJSComboBox('Store\x20Status:');if(!_0x1bba7b)return null;let _0x4eb1dc=_0x1bba7b[_0x5184f8(0x1cb)]||_0x1bba7b[_0x5184f8(0x24e)]('data-value')||'';if(!_0x4eb1dc[_0x5184f8(0x1f9)]('[UV]\x20Unverifiable'))return null;let _0x33b631=findExtJSComboBox(_0x2be0ad);if(!_0x33b631)return null;let _0x10221d=_0x33b631[_0x5184f8(0x1cb)]||_0x33b631[_0x5184f8(0x24e)]('data-value')||'';if(!_0x10221d[_0x5184f8(0x1f9)](_0x185397)){const _0x55db9e=_0x5184f8(0x1a2)+_0x2be0ad[_0x5184f8(0x1e1)](':','')+_0x5184f8(0x159)+_0x185397+_0x5184f8(0x187);return createTooltip(_0x33b631,_0x55db9e,![]),_0x55db9e;}return null;};}function validateStoreName(_0x47d6c0){const _0x33ca1f=_0x22dc81;if(!_0x47d6c0||!_0x47d6c0['target'])return null;let _0x48e98c=_0x47d6c0[_0x33ca1f(0x22c)][_0x33ca1f(0x1cb)],_0xf5cb75=[];_0x48e98c[_0x33ca1f(0x1e3)]('\x20')&&_0xf5cb75['push'](_0x33ca1f(0x14e));_0x48e98c['endsWith']('\x20')&&_0xf5cb75[_0x33ca1f(0x10c)]('❌\x20Store\x20Name\x20should\x20not\x20end\x20with\x20a\x20space');_0x48e98c['includes']('\x20\x20')&&_0xf5cb75[_0x33ca1f(0x10c)](_0x33ca1f(0x1d2));_0x48e98c=_0x48e98c[_0x33ca1f(0x1bb)]();const _0x2a0833=['accounting','advertising',_0x33ca1f(0x18b),'co',_0x33ca1f(0x20a),_0x33ca1f(0x1b7),_0x33ca1f(0xf1),_0x33ca1f(0x1a4),_0x33ca1f(0x13c),_0x33ca1f(0x1cd),'enterprises','headquarters','hq',_0x33ca1f(0x118),_0x33ca1f(0x1fa),_0x33ca1f(0x24c),'warehouse','whse'],_0x5c66ee=_0x2a0833[_0x33ca1f(0x123)](_0x37c12a=>{const _0x1d7cad=_0x33ca1f,_0x963d25=new RegExp('\x5cb'+_0x37c12a+'\x5cb','i');return _0x963d25[_0x1d7cad(0x206)](_0x48e98c);});_0x5c66ee&&_0xf5cb75[_0x33ca1f(0x10c)]('❌\x20Store\x20Name\x20contains\x20restricted\x20word\x20-\x20Use\x20proper\x20store\x20name\x20instead\x20of\x20company/office\x20terms');/[^\w\s&'-]/['test'](_0x48e98c)&&_0xf5cb75[_0x33ca1f(0x10c)](_0x33ca1f(0x162));const _0x1e28cf=_0x48e98c[_0x33ca1f(0x1d5)](/\s+/)[_0x33ca1f(0x18d)](_0x5cc9e6=>_0x5cc9e6[_0x33ca1f(0x222)]>0x0);for(let _0x278052 of _0x1e28cf){if(_0x278052[_0x33ca1f(0x1e3)]('&'))continue;const _0x509c5c=_0x278052[_0x33ca1f(0x1e1)](/^['-]+/,'')[0x0];if(!_0x509c5c||_0x509c5c!==_0x509c5c['toUpperCase']()){_0xf5cb75['push'](_0x33ca1f(0x1c6));break;}}if(_0xf5cb75[_0x33ca1f(0x222)]>0x0){const _0x3c2fc9=[...new Set(_0xf5cb75)];return _0x3c2fc9['forEach'](_0x599af6=>{createTooltip(_0x47d6c0['target'],_0x599af6,![]);}),_0x3c2fc9;}return removeExistingTooltip(_0x47d6c0[_0x33ca1f(0x22c)]),null;}function _0x2a2e(_0x157c61,_0x4b5010){const _0x41ec18=_0x41ec();return _0x2a2e=function(_0x2a2e0f,_0x53d857){_0x2a2e0f=_0x2a2e0f-0xdc;let _0x52d85f=_0x41ec18[_0x2a2e0f];return _0x52d85f;},_0x2a2e(_0x157c61,_0x4b5010);}const PHARMACY_REQUIRED_CHANNEL='[03]Drug\x20Stores\x20and\x20Pharmacies',INVALID_PHARMACY_VALUES=['No',''];function validatePharmacyForDrugStores(){const _0x736981=_0x22dc81;if(!lastKnownTradeChannel||!lastKnownTradeChannel[_0x736981(0x1f9)](PHARMACY_REQUIRED_CHANNEL))return null;const _0x196e55=findExtJSComboBox(_0x736981(0x100));if(!_0x196e55)return console[_0x736981(0x152)](_0x736981(0x241)),null;const _0x54b779=_0x196e55['value']||_0x196e55[_0x736981(0x24e)](_0x736981(0x13e))||'';if(INVALID_PHARMACY_VALUES[_0x736981(0x1f9)](_0x54b779)){const _0x2c83c1='❌\x20Pharmacy\x20must\x20be\x20specified\x20for\x20Drug\x20Stores\x20and\x20Pharmacies';return createTooltip(_0x196e55,_0x2c83c1,![]),_0x2c83c1;}return null;}const ALCOHOL_RESTRICTED_CHANNELS=['[06]Category\x20Killers',_0x22dc81(0x18c),_0x22dc81(0x246),_0x22dc81(0x106),_0x22dc81(0x1b3)],ALCOHOL_FIELDS=['Beer:','Wine:','Liquor:'];function validateAlcoholForRestrictedChannels(){const _0x4ac170=_0x22dc81;if(!lastKnownTradeChannel)return null;const _0x4548b6=ALCOHOL_RESTRICTED_CHANNELS[_0x4ac170(0x123)](_0x3e3e27=>lastKnownTradeChannel[_0x4ac170(0x1f9)](_0x3e3e27));if(!_0x4548b6)return null;const _0x47f601=[];return ALCOHOL_FIELDS['forEach'](_0x25c038=>{const _0x1d9280=_0x4ac170,_0x491214=findExtJSComboBox(_0x25c038);if(!_0x491214){console[_0x1d9280(0x152)](_0x25c038+'\x20field\x20not\x20found');return;}const _0x39b4bb=(_0x491214[_0x1d9280(0x1cb)]||_0x491214[_0x1d9280(0x24e)](_0x1d9280(0x13e))||'')[_0x1d9280(0x178)]();if(_0x39b4bb==='yes'||_0x39b4bb===''){const _0x49d8ae='❌\x20'+_0x25c038[_0x1d9280(0x1e1)](':','')+_0x1d9280(0x1e7)+lastKnownTradeChannel['split'](']')[0x1];createTooltip(_0x491214,_0x49d8ae,![]),_0x47f601[_0x1d9280(0x10c)](_0x49d8ae);}}),_0x47f601['length']>0x0?_0x47f601:null;}const PHARMACY_RESTRICTED_CHANNELS=[_0x22dc81(0xe6),_0x22dc81(0x22d),_0x22dc81(0x106)];function validatePharmacyForRestrictedChannels(){const _0x34d350=_0x22dc81;if(!lastKnownTradeChannel)return null;const _0x53cbb3=PHARMACY_RESTRICTED_CHANNELS[_0x34d350(0x123)](_0x2de583=>lastKnownTradeChannel[_0x34d350(0x1f9)](_0x2de583));if(!_0x53cbb3)return null;const _0x45c30e=findExtJSComboBox(_0x34d350(0x100));if(!_0x45c30e)return console[_0x34d350(0x152)](_0x34d350(0x1bf)+lastKnownTradeChannel),null;const _0xace354=_0x45c30e[_0x34d350(0x1cb)]||_0x45c30e[_0x34d350(0x24e)](_0x34d350(0x13e))||'';if(_0xace354[_0x34d350(0x178)]()===_0x34d350(0x1c1)||_0xace354[_0x34d350(0x178)]()===''){const _0x7ed273=_0x34d350(0x101)+lastKnownTradeChannel[_0x34d350(0x1d5)](']')[0x1];return createTooltip(_0x45c30e,_0x7ed273,![]),_0x7ed273;}return null;}function validateLine1Address(_0x141d42){const _0x5d9f25=_0x22dc81;if(!_0x141d42||!_0x141d42[_0x5d9f25(0x22c)])return null;const _0x272131=findExtJSComboBox(_0x5d9f25(0x109));if(!_0x272131)return console[_0x5d9f25(0x22e)](_0x5d9f25(0x11f)),null;const _0x5d717a=_0x272131[_0x5d9f25(0x1cb)]||_0x272131['getAttribute'](_0x5d9f25(0x13e))||'';if(!_0x5d717a[_0x5d9f25(0x1f9)](_0x5d9f25(0x132)))return removeExistingTooltip(_0x141d42[_0x5d9f25(0x22c)]),null;let _0x3a7c99=_0x141d42['target']['value'][_0x5d9f25(0x1bb)](),_0x10324e=[];addressKeywords[_0x5d9f25(0x123)](_0x29e08f=>{const _0x597720=_0x5d9f25,_0x1ee1bf=new RegExp('\x5cb'+_0x29e08f+'\x5cb','i');return _0x1ee1bf[_0x597720(0x206)](_0x3a7c99);})&&_0x10324e['push'](_0x5d9f25(0x20e));if(_0x10324e['length']>0x0)return _0x10324e[_0x5d9f25(0xfe)](_0xeb1e29=>{const _0x493fd3=_0x5d9f25;createTooltip(_0x141d42[_0x493fd3(0x22c)],_0xeb1e29,![]);}),_0x10324e;return removeExistingTooltip(_0x141d42[_0x5d9f25(0x22c)]),null;}const ILLEGAL_CANNABIS_STATES=[_0x22dc81(0x15c),_0x22dc81(0x23d),_0x22dc81(0x1a7),_0x22dc81(0x105),_0x22dc81(0x171),_0x22dc81(0x12f),'Nebraska',_0x22dc81(0x245),_0x22dc81(0x200),_0x22dc81(0x15b),'Wyoming'],CANNABIS_TRADE_CHANNEL='[14]Cannabis';let lastKnownState=null;function trackState(){const _0x2dee13=_0x22dc81,_0x4dabc9=document[_0x2dee13(0x224)](_0x2dee13(0x1ba));_0x4dabc9&&(lastKnownState=_0x4dabc9[_0x2dee13(0x1cb)]||'',_0x4dabc9[_0x2dee13(0x1b9)](_0x2dee13(0x1c5),function(_0x5f0756){const _0x28465e=_0x2dee13;lastKnownState=_0x5f0756[_0x28465e(0x22c)][_0x28465e(0x1cb)]||'',console[_0x28465e(0x152)](_0x28465e(0x242),lastKnownState),validateCannabisForRestrictedStates(),validateMedicalCannabisRequirement();}),_0x4dabc9[_0x2dee13(0x1b9)](_0x2dee13(0xe5),validateCannabisForRestrictedStates),_0x4dabc9['addEventListener'](_0x2dee13(0xe5),function(){validateMedicalCannabisRequirement();}));}function validateCannabisForRestrictedStates(){const _0x1f3565=_0x22dc81;if(!lastKnownTradeChannel||!lastKnownState)return null;const _0x51ea6a=lastKnownTradeChannel[_0x1f3565(0x1f9)](CANNABIS_TRADE_CHANNEL);if(!_0x51ea6a)return null;const _0x3e606a=lastKnownState[_0x1f3565(0x1bb)]()[_0x1f3565(0x1e1)](/^\w/,_0x35038c=>_0x35038c[_0x1f3565(0x10a)]()),_0x2523f0=ILLEGAL_CANNABIS_STATES['includes'](_0x3e606a);if(!_0x2523f0)return null;const _0x128c06=findExtJSComboBox(_0x1f3565(0x166));if(!_0x128c06)return console[_0x1f3565(0x152)](_0x1f3565(0x1b0)),null;const _0x366baa=_0x1f3565(0x1bd)+_0x3e606a;return createTooltip(_0x128c06,_0x366baa,![]),_0x366baa;}const MEDICAL_CANNABIS_STATES=[_0x22dc81(0x19e),'Arkansas',_0x22dc81(0x10f),_0x22dc81(0x10d),_0x22dc81(0x1e6),_0x22dc81(0x250),_0x22dc81(0x126),_0x22dc81(0x16f),_0x22dc81(0x20b),_0x22dc81(0x1c3),'Mississippi',_0x22dc81(0x248),_0x22dc81(0x103),_0x22dc81(0x231),_0x22dc81(0x232),_0x22dc81(0xf9),_0x22dc81(0xe2),'Utah','Virginia','West\x20Virginia'],MEDICAL_CANNABIS_SUBCHANNEL=_0x22dc81(0x1c9);function validateMedicalCannabisRequirement(){const _0x5838f9=_0x22dc81;if(!lastKnownTradeChannel||!lastKnownState||!lastKnownSubChannel)return null;const _0x35520a=lastKnownTradeChannel[_0x5838f9(0x1f9)](CANNABIS_TRADE_CHANNEL);if(!_0x35520a)return null;const _0x4235ba=lastKnownState[_0x5838f9(0x1bb)]()[_0x5838f9(0x1e1)](/\w\S*/g,_0x2bbafc=>_0x2bbafc[_0x5838f9(0x203)](0x0)[_0x5838f9(0x10a)]()+_0x2bbafc[_0x5838f9(0x148)](0x1)[_0x5838f9(0x178)]()),_0x54f5a4=MEDICAL_CANNABIS_STATES[_0x5838f9(0x1f9)](_0x4235ba);if(!_0x54f5a4)return null;const _0x334e07=lastKnownSubChannel[_0x5838f9(0x1f9)](MEDICAL_CANNABIS_SUBCHANNEL);if(!_0x334e07){const _0x50293e=findExtJSComboBox('Sub\x20Channel:');if(!_0x50293e)return console[_0x5838f9(0x152)](_0x5838f9(0x1e5)),null;const _0xc9ab47=_0x5838f9(0x1a1)+MEDICAL_CANNABIS_SUBCHANNEL[_0x5838f9(0x1d5)](']')[0x1]+_0x5838f9(0x25a)+_0x4235ba;return createTooltip(_0x50293e,_0xc9ab47,![]),_0xc9ab47;}const _0x1aca1a=findExtJSComboBox(_0x5838f9(0x24a));if(_0x1aca1a)removeTooltip(_0x1aca1a);return null;}function attachListeners(){const _0x498d7c=_0x22dc81;validationInterval&&clearInterval(validationInterval);validationInterval=setInterval(validateAllFields,VALIDATION_INTERVAL);let _0x51bfe7=findStoreNameInput();_0x51bfe7&&(_0x51bfe7[_0x498d7c(0x177)](_0x498d7c(0x1c5),validateStoreName),_0x51bfe7[_0x498d7c(0x1b9)]('input',validateStoreName),_0x51bfe7[_0x498d7c(0x177)](_0x498d7c(0x1c5),validateStoreNameAndTradeChannel),_0x51bfe7[_0x498d7c(0x1b9)]('input',validateStoreNameAndTradeChannel),_0x51bfe7[_0x498d7c(0x177)](_0x498d7c(0x1c5),validatePetTradeChannelAndStoreName),_0x51bfe7['addEventListener']('input',validatePetTradeChannelAndStoreName),_0x51bfe7[_0x498d7c(0x177)](_0x498d7c(0xe5),validateStoreNameAndTradeChannel),_0x51bfe7['addEventListener']('blur',validateStoreNameAndTradeChannel),_0x51bfe7[_0x498d7c(0x177)](_0x498d7c(0xe5),validatePetTradeChannelAndStoreName),_0x51bfe7['addEventListener'](_0x498d7c(0xe5),validatePetTradeChannelAndStoreName),_0x51bfe7[_0x498d7c(0x177)](_0x498d7c(0x1c5),validateFarmFeedSubChannelAndStoreName),_0x51bfe7[_0x498d7c(0x1b9)](_0x498d7c(0x1c5),validateFarmFeedSubChannelAndStoreName),_0x51bfe7[_0x498d7c(0x177)]('blur',validateFarmFeedSubChannelAndStoreName),_0x51bfe7[_0x498d7c(0x1b9)](_0x498d7c(0xe5),validateFarmFeedSubChannelAndStoreName),_0x51bfe7[_0x498d7c(0x177)](_0x498d7c(0x1c5),validateVapeStoreSubChannelAndStoreName),_0x51bfe7[_0x498d7c(0x1b9)](_0x498d7c(0x1c5),validateVapeStoreSubChannelAndStoreName),_0x51bfe7[_0x498d7c(0x177)](_0x498d7c(0xe5),validateVapeStoreSubChannelAndStoreName),_0x51bfe7[_0x498d7c(0x1b9)](_0x498d7c(0xe5),validateVapeStoreSubChannelAndStoreName),_0x51bfe7[_0x498d7c(0x177)]('input',validateMarketingGroupAndStoreName),_0x51bfe7[_0x498d7c(0x1b9)](_0x498d7c(0x1c5),validateMarketingGroupAndStoreName),_0x51bfe7[_0x498d7c(0x177)](_0x498d7c(0xe5),validateMarketingGroupAndStoreName),_0x51bfe7['addEventListener'](_0x498d7c(0xe5),validateMarketingGroupAndStoreName),_0x51bfe7[_0x498d7c(0x177)](_0x498d7c(0x1c5),validatePetSuperStoreName),_0x51bfe7['addEventListener']('input',validatePetSuperStoreName),_0x51bfe7[_0x498d7c(0x177)](_0x498d7c(0xe5),validatePetSuperStoreName),_0x51bfe7[_0x498d7c(0x1b9)](_0x498d7c(0xe5),validatePetSuperStoreName),_0x51bfe7[_0x498d7c(0x177)](_0x498d7c(0x1c5),validateAlcoholStoreName),_0x51bfe7[_0x498d7c(0x1b9)]('input',validateAlcoholStoreName),_0x51bfe7['removeEventListener'](_0x498d7c(0xe5),validateAlcoholStoreName),_0x51bfe7[_0x498d7c(0x1b9)](_0x498d7c(0xe5),validateAlcoholStoreName));const _0x4e85f0=[_0x498d7c(0x15d),_0x498d7c(0x133),_0x498d7c(0x1b8)];_0x4e85f0[_0x498d7c(0xfe)](_0x2672e8=>{const _0x21175f=_0x498d7c;let _0x970ba1=findExtJSComboBox(_0x2672e8);_0x970ba1&&(_0x970ba1[_0x21175f(0x177)](_0x21175f(0x111),validateAlcoholStoreName),_0x970ba1[_0x21175f(0x1b9)](_0x21175f(0x111),validateAlcoholStoreName),_0x970ba1['removeEventListener']('blur',validateAlcoholStoreName),_0x970ba1['addEventListener'](_0x21175f(0xe5),validateAlcoholStoreName));}),trackTradeChannel(),trackSubChannel(),trackState(),trackPhoneNumber(),trackStoreStatus(),trackFutureChangesNote();const _0x4962f0=findExtJSComboBox(_0x498d7c(0xf4));_0x4962f0&&(_0x4962f0[_0x498d7c(0x1b9)](_0x498d7c(0x111),validateGasForGroceryStores),_0x4962f0[_0x498d7c(0x1b9)](_0x498d7c(0xe5),validateGasForGroceryStores));const _0x525f1a=findExtJSComboBox(_0x498d7c(0x219));_0x525f1a&&(_0x525f1a[_0x498d7c(0x1b9)](_0x498d7c(0x111),validateHighVolCig),_0x525f1a[_0x498d7c(0x1b9)](_0x498d7c(0xe5),validateHighVolCig));const _0x1e521c=findExtJSComboBox(_0x498d7c(0x17c));_0x1e521c&&(_0x1e521c[_0x498d7c(0x1b9)](_0x498d7c(0x111),validateFoodTypeRequirements),_0x1e521c[_0x498d7c(0x1b9)](_0x498d7c(0xe5),validateFoodTypeRequirements));const _0x3f0f8b=findExtJSComboBox(_0x498d7c(0x100));_0x3f0f8b&&(_0x3f0f8b[_0x498d7c(0x1b9)]('change',validatePharmacyForDrugStores),_0x3f0f8b[_0x498d7c(0x1b9)](_0x498d7c(0xe5),validatePharmacyForDrugStores),_0x3f0f8b[_0x498d7c(0x1b9)](_0x498d7c(0x111),validatePharmacyForRestrictedChannels),_0x3f0f8b['addEventListener'](_0x498d7c(0xe5),validatePharmacyForRestrictedChannels));ALCOHOL_FIELDS[_0x498d7c(0xfe)](_0x44a55f=>{const _0x45ab6a=_0x498d7c,_0x41a149=findExtJSComboBox(_0x44a55f);_0x41a149&&(_0x41a149[_0x45ab6a(0x1b9)](_0x45ab6a(0x111),validateAlcoholForRestrictedChannels),_0x41a149['addEventListener'](_0x45ab6a(0xe5),validateAlcoholForRestrictedChannels));});let _0xd2a189=findMarketingGroupInput();_0xd2a189&&(_0xd2a189['removeEventListener']('change',validateMarketingGroupAndStoreName),_0xd2a189['addEventListener'](_0x498d7c(0x111),validateMarketingGroupAndStoreName),_0xd2a189[_0x498d7c(0x177)](_0x498d7c(0xe5),validateMarketingGroupAndStoreName),_0xd2a189[_0x498d7c(0x1b9)](_0x498d7c(0xe5),validateMarketingGroupAndStoreName));Object[_0x498d7c(0x1eb)](UNVERIFIABLE_REQUIREMENTS)[_0x498d7c(0xfe)](([_0x284b5a,_0x5ad45f])=>{const _0x98f886=_0x498d7c;let _0x2ae544=findExtJSComboBox(_0x284b5a);if(_0x2ae544){const _0x19f6f0=validateUnverifiableField(_0x284b5a,_0x5ad45f);_0x2ae544[_0x98f886(0x177)](_0x98f886(0x111),_0x19f6f0),_0x2ae544['removeEventListener'](_0x98f886(0xe5),_0x19f6f0),_0x2ae544['addEventListener'](_0x98f886(0x111),_0x19f6f0),_0x2ae544[_0x98f886(0x1b9)](_0x98f886(0xe5),_0x19f6f0);let _0x42ce6=findExtJSComboBox('Store\x20Status:');_0x42ce6&&(_0x42ce6['removeEventListener'](_0x98f886(0x111),_0x19f6f0),_0x42ce6[_0x98f886(0x1b9)]('change',_0x19f6f0));}});let _0x38ef7d=findLine1Input();_0x38ef7d&&(_0x3ff9cc[_0x498d7c(0x177)](_0x498d7c(0x111),validateStoreStatusAndVSS),_0x3ff9cc[_0x498d7c(0x1b9)]('change',validateStoreStatusAndVSS),_0x38ef7d['removeEventListener'](_0x498d7c(0x1c5),validateLine1Address),_0x38ef7d[_0x498d7c(0x1b9)](_0x498d7c(0x1c5),validateLine1Address));let _0x3ff9cc=findExtJSComboBox(_0x498d7c(0x14a));_0x3ff9cc&&(_0x3ff9cc[_0x498d7c(0x177)](_0x498d7c(0x111),validateExceptionCodeAndStoreStatus),_0x3ff9cc['addEventListener']('change',validateExceptionCodeAndStoreStatus),_0x3ff9cc[_0x498d7c(0x177)](_0x498d7c(0xe5),validateStoreStatusAndVSS),_0x3ff9cc['addEventListener'](_0x498d7c(0xe5),validateStoreStatusAndVSS),_0x3ff9cc[_0x498d7c(0x177)](_0x498d7c(0xe5),validateExceptionCodeAndStoreStatus),_0x3ff9cc[_0x498d7c(0x1b9)](_0x498d7c(0xe5),validateExceptionCodeAndStoreStatus),_0x51bfe7[_0x498d7c(0x177)]('input',validateVetClinicSubChannelAndStoreName),_0x51bfe7[_0x498d7c(0x1b9)](_0x498d7c(0x1c5),validateVetClinicSubChannelAndStoreName),_0x51bfe7[_0x498d7c(0x177)]('blur',validateVetClinicSubChannelAndStoreName),_0x51bfe7[_0x498d7c(0x1b9)](_0x498d7c(0xe5),validateVetClinicSubChannelAndStoreName),_0x3ff9cc[_0x498d7c(0x177)](_0x498d7c(0x111),validateDuplicateStoreStatusAndExceptionCode),_0x3ff9cc[_0x498d7c(0x1b9)](_0x498d7c(0x111),validateDuplicateStoreStatusAndExceptionCode),_0x3ff9cc[_0x498d7c(0x177)]('blur',validateDuplicateStoreStatusAndExceptionCode),_0x3ff9cc[_0x498d7c(0x1b9)](_0x498d7c(0xe5),validateDuplicateStoreStatusAndExceptionCode));let _0x6b09a5=findExtJSComboBox('Verified\x20Store\x20Status\x20Source:');_0x6b09a5&&(_0x6b09a5[_0x498d7c(0x177)](_0x498d7c(0x111),validateStoreStatusAndVSS),_0x6b09a5[_0x498d7c(0x1b9)](_0x498d7c(0x111),validateStoreStatusAndVSS),_0x6b09a5['removeEventListener']('blur',validateStoreStatusAndVSS),_0x6b09a5['addEventListener']('blur',validateStoreStatusAndVSS));let _0x54283e=findExtJSComboBox(_0x498d7c(0x1ab));_0x54283e&&(_0x54283e[_0x498d7c(0x177)](_0x498d7c(0x111),validateExceptionCodeAndStoreStatus),_0x54283e[_0x498d7c(0x1b9)](_0x498d7c(0x111),validateExceptionCodeAndStoreStatus),_0x54283e[_0x498d7c(0x177)](_0x498d7c(0xe5),validateExceptionCodeAndStoreStatus),_0x54283e[_0x498d7c(0x1b9)](_0x498d7c(0xe5),validateExceptionCodeAndStoreStatus),_0x54283e[_0x498d7c(0x177)](_0x498d7c(0x111),validateDuplicateStoreStatusAndExceptionCode),_0x54283e[_0x498d7c(0x1b9)]('change',validateDuplicateStoreStatusAndExceptionCode),_0x54283e['removeEventListener'](_0x498d7c(0xe5),validateDuplicateStoreStatusAndExceptionCode),_0x54283e[_0x498d7c(0x1b9)](_0x498d7c(0xe5),validateDuplicateStoreStatusAndExceptionCode));let _0x36cd07=findExtJSComboBox(_0x498d7c(0x166));_0x36cd07&&(_0x36cd07['removeEventListener']('change',validateTradeChannelAndStoreStatus),_0x36cd07['addEventListener'](_0x498d7c(0x111),validateTradeChannelAndStoreStatus),_0x36cd07[_0x498d7c(0x177)](_0x498d7c(0x111),validateStoreNameAndTradeChannel),_0x36cd07['addEventListener'](_0x498d7c(0x111),validateStoreNameAndTradeChannel),_0x36cd07[_0x498d7c(0x177)](_0x498d7c(0xe5),validateTradeChannelAndStoreStatus),_0x36cd07[_0x498d7c(0x1b9)](_0x498d7c(0xe5),validateTradeChannelAndStoreStatus),_0x36cd07['removeEventListener'](_0x498d7c(0xe5),validateStoreNameAndTradeChannel),_0x36cd07[_0x498d7c(0x1b9)]('blur',validateStoreNameAndTradeChannel),_0x36cd07['removeEventListener']('change',validatePetTradeChannelAndStoreName),_0x36cd07['addEventListener'](_0x498d7c(0x111),validatePetTradeChannelAndStoreName),_0x36cd07[_0x498d7c(0x177)](_0x498d7c(0xe5),validatePetTradeChannelAndStoreName),_0x36cd07[_0x498d7c(0x1b9)](_0x498d7c(0xe5),validatePetTradeChannelAndStoreName),_0x36cd07[_0x498d7c(0x1b9)]('change',validateCannabisForRestrictedStates),_0x36cd07['addEventListener'](_0x498d7c(0xe5),validateCannabisForRestrictedStates));let _0x35ced7=findExtJSComboBox('Sub\x20Channel:');_0x35ced7&&(_0x35ced7[_0x498d7c(0x177)](_0x498d7c(0x111),validateVetClinicSubChannelAndStoreName),_0x35ced7[_0x498d7c(0x1b9)]('change',validateVetClinicSubChannelAndStoreName),_0x35ced7['removeEventListener'](_0x498d7c(0xe5),validateVetClinicSubChannelAndStoreName),_0x35ced7['addEventListener'](_0x498d7c(0xe5),validateVetClinicSubChannelAndStoreName),_0x35ced7[_0x498d7c(0x177)](_0x498d7c(0x111),validateFarmFeedSubChannelAndStoreName),_0x35ced7[_0x498d7c(0x1b9)]('change',validateFarmFeedSubChannelAndStoreName),_0x35ced7[_0x498d7c(0x177)](_0x498d7c(0xe5),validateFarmFeedSubChannelAndStoreName),_0x35ced7['addEventListener']('blur',validateFarmFeedSubChannelAndStoreName),_0x35ced7[_0x498d7c(0x177)]('change',validateVapeStoreSubChannelAndStoreName),_0x35ced7[_0x498d7c(0x1b9)]('change',validateVapeStoreSubChannelAndStoreName),_0x35ced7[_0x498d7c(0x177)]('blur',validateVapeStoreSubChannelAndStoreName),_0x35ced7['addEventListener']('blur',validateVapeStoreSubChannelAndStoreName),_0x35ced7[_0x498d7c(0x177)](_0x498d7c(0x111),validatePetSuperStoreName),_0x35ced7['addEventListener'](_0x498d7c(0x111),validatePetSuperStoreName),_0x35ced7[_0x498d7c(0x177)](_0x498d7c(0xe5),validatePetSuperStoreName),_0x35ced7[_0x498d7c(0x1b9)]('blur',validatePetSuperStoreName));}function startObserver(){const _0x43fd90=_0x22dc81;attachListeners(),trackTradeChannel();const _0xcbad8a=new MutationObserver(()=>{attachListeners(),trackTradeChannel(),trackSubChannel();});_0xcbad8a[_0x43fd90(0x1d3)](document['body'],{'childList':!![],'subtree':!![]});}document[_0x22dc81(0x1b9)]('DOMContentLoaded',startObserver),document['addEventListener'](_0x22dc81(0x1df),attachListeners);function _0x41ec(){const _0x4ed4f7=['Emergency','distribution','fontSize','40px','Indiana','Petco','[55]Caterers','❌If\x20VSS\x20is\x20[NA]\x20Attempted\x20Contact\x20Failed,\x20Store\x20Status\x20cannot\x20be\x20[DUP],\x20[FO],\x20[NA],\x20or\x20[OP]!','Exception\x20Code:','[NA]\x20S.E.C.','Pike','Turnpike','getElementById','Trade\x20Channel\x20field\x20not\x20found','[TC]\x20Closed','box-shadow\x200.2s\x20ease','[08]Mass\x20Merchandise\x20Stores','[32]\x20Telephone,\x20Direct','overflow','fixed','cos','Liquor:','addEventListener','input[name=\x22state\x22],\x20#state,\x20input[data-label=\x22State\x22]','trim','name','❌\x20Cannabis\x20is\x20illegal\x20in\x20','❌\x20Marketing\x20Group\x20input\x20not\x20found.','Pharmacy\x20field\x20not\x20found\x20for\x20','inline-block','yes','appendChild','Minnesota','Causeway','input','❌\x20Store\x20Name\x20Should\x20Be\x20In\x20Proper\x20Case\x20(Each\x20Word\x20Capitalized)','spay','0\x204px\x2012px\x20rgba(0,\x200,\x200,\x200.15)','[1]Medical','cigar','value','Line\x201:','ent','❌\x20Store\x20Status\x20or\x20Verified\x20Store\x20Status\x20Source\x20input\x20not\x20found.','grooming','toLocaleTimeString','Day\x20Care','❌\x20Store\x20Name\x20should\x20not\x20contain\x20double\x20spaces','observe','ai-tooltip','split','❌\x20Exception\x20Code\x20or\x20Store\x20Status\x20input\x20not\x20found.','❌\x20Trade\x20Channel\x20or\x20Store\x20Name\x20input\x20not\x20found.','13px','✅\x20Store\x20Status\x20is\x20[NA]\x20Inactive/Not\x20Verified.','div','normal','[OP]\x20Open,\x20Operating','[1]Grocery\x20Stores\x20-\x20Limited\x20Assortment','❌\x20When\x20Store\x20Status\x20is\x20[UV]\x20Unverifiable,\x20Exception\x20Code\x20must\x20be\x20777793Z!','click','Bypass','replace','183966CXvNNO','startsWith','style','Sub\x20Channel\x20field\x20not\x20found','Florida','\x20must\x20be\x20\x22No\x22\x20for\x20','❌\x20Store\x20Name\x20or\x20Trade\x20Channel\x20input\x20not\x20found.','all\x200.3s\x20ease','flexDirection','entries','alignItems','[N]Special\x20Event','✅\x20Store\x20Status\x20is\x20','scale(0)','❌\x20When\x20Exception\x20Code\x20is\x20777793Z,\x20Store\x20Status\x20must\x20be\x20[UV]\x20Unverifiable!','height','\x20for\x20','❌\x20Store\x20Status\x20or\x20Exception\x20Code\x20input\x20not\x20found.','mouseleave','20px','[U]Farm\x20and\x20Feed','3124285OoYUVJ','map','includes','llc','❌\x20Invalid\x20Status:\x20This\x20Trade\x20Channel\x20cannot\x20have\x20[FO]\x20Future\x20Opening\x20status!','pet\x20resort','10ItctnK','glass','❌\x20One\x20or\x20more\x20alcohol-related\x20inputs\x20not\x20found.','Tennessee','spa','6px','charAt','✅\x20AI\x20Tooltip\x20Validator\x20Loaded!','❌\x20Gas\x20must\x20be\x20\x22No\x22\x20for\x20','test','Interstate\x2095','scale(1)','max','company','Maryland','scale(0.8)','innerHTML','❌\x20Address\x20Rule\x20Violation:\x20\x27Line\x201\x27\x20of\x20Non-Standardized\x20addresses\x20should\x20not\x20contain\x20road\x20types\x20or\x20directions!','Boulevard','Freeway','Way','Bongs','[NA]\x20EM\x20Verified\x20through\x20Research','0\x202px\x2010px\x20rgba(0,0,0,0.2)','bongs','ai-bot','transition','Verified\x20Store\x20Status\x20Date\x20field\x20not\x20found','High\x20Vol\x20Cig:','getDate','success','position','Business\x20Highway','grabbing','777793Z','14jIzTcl','❌\x20Invalid\x20Store\x20Name:\x20Pet\x20stores\x20cannot\x20contain\x20grooming/day\x20care/spa/resort\x20keywords!','length','match','querySelector','offsetWidth','❌\x20Special\x20Event/Client\x20Internal\x20stores\x20must\x20have\x20Exception\x20Code:\x20777798Z','pet\x20super\x20store','[X]Retail\x20Other','[K]Client\x20Internal','closest','❌\x20Incorrect\x20VSS\x20for\x20the\x20Closed\x20Store\x20Status!','target','[06]Category\x20Killers','error','border','pointer','Oklahoma','Pennsylvania','size','[FO]\x20Future\x20Opening','Gas\x20field\x20not\x20found','448770YzhJeI','stopPropagation','wordBreak','Glass','onclick','getMonth','scrollTop','Idaho','[NA]\x20Web\x20Sites,\x20Other','[DUP]\x20Duplicate','Bubblers','Pharmacy\x20field\x20not\x20found','Tracking\x20State:','Plaza','4RyKmEu','South\x20Carolina','[13]Fulfillment','padding','North\x20Dakota','Arial,\x20sans-serif','Sub\x20Channel:','clientY','region','textContent','getAttribute','300px','Hawaii','50%','translateY(10px)','❌\x20Incorrect\x20VSS\x20for\x20the\x20Unverifiable\x20Store\x20Status!','Cigar','input[name=\x22verificationDTTM\x22]','label,\x20span','[NA]\x20Attempted\x20Contact\x20Failed','#mark-correct','flex','\x22\x20subchannel\x20is\x20allowed\x20for\x20Cannabis\x20in\x20','right','[NA]\x20Inactive/Not\x20Verified','❌\x20Sub\x20Channel\x20or\x20Store\x20Name\x20input\x20not\x20found.','break-word','min','3px','Texas','backgroundColor','❌\x20Invalid\x20Store\x20Name:\x20Pet\x20Super\x20Stores\x20must\x20include\x20one\x20of:\x20Petco,\x20Unleashed\x20by\x20petco,\x20or\x20Petsmart!','blur','[07]Convenience\x20Stores','left','❌\x20Invalid\x20Exception\x20Code:\x20When\x20Store\x20Status\x20is\x20[DUP]\x20Duplicate,\x20Exception\x20Code\x20must\x20be\x20empty\x20or\x20777798Z!','innerWidth','body','mouseenter','Verified\x20Status:','top','Unleashed\x20by\x20petco','createElement','none','dist','[UV]\x20Unverifiable','❌\x20Beer\x20should\x20be\x20\x27Yes\x27\x20when\x20store\x20name\x20contains\x20\x27Beer\x27','Gas:','hidden','bubblers','Court','0\x200\x200\x202px\x20#ff4757','South\x20Dakota','Marketing\x20Group:','maxWidth','has','cocktail','forEach','❌\x20Food\x20Type\x20is\x20required','Pharmacy:','❌\x20Pharmacy\x20must\x20be\x20\x22No\x22\x20for\x20','translateY(0)','New\x20Hampshire','add','Kansas','[14]Cannabis','[2]Grocery\x20Stores\x20-\x20Natural/Gourmet\x20Foods','column','Address\x20Quality:','toUpperCase','Pet\x20Super\x20Store','push','Delaware','opacity','District\x20of\x20Columbia','777798Z','change','Tracking\x20Sub\x20Channel:','10000','agricultural','color','6453333bOYdYK','dataset','inc','borderRadius','❌\x20Future\x20Opening\x20stores\x20must\x20have\x20a\x20Store\x20Open\x20Date','Surgical','Pipes','mousemove','for','Address\x20Quality\x20field\x20not\x20found','grain\x20elevator','220363RyKZfR','width','some','[50]\x20Licensing\x20Agencies,\x20Alcohol','[51]Bar/Nightclub','Iowa','[77]\x20Licensing\x20Agencies,\x20Drug','❌\x20Store\x20Name\x20input\x20not\x20found.','emergency','Trail','toString','[50]Dining','cursor','transform','North\x20Carolina','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:\x20flex;\x20flex-direction:\x20column;\x20max-width:\x20300px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:\x20flex;\x20align-items:\x20flex-start;\x20margin-bottom:\x208px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22margin-right:\x206px;\x20flex-shrink:\x200;\x22>','padStart','Non\x20Standardized','Wine:','Expressway','whiteSpace','1040JMqZSH','pipe','[59]Unknown\x20On-Premise','Neuter','Point','520482SVLcpq','distributor','beer','data-value','Road','center','[5]Vape\x20Store','fontFamily','County\x20Road','remove','Grain\x20Elevator','Store\x20Name:','input[name=\x22storeOpenDate\x22]','substr','input.x-form-text','Store\x20Status:','absolute','bot-minimize','zIndex','❌\x20Store\x20Name\x20should\x20not\x20start\x20with\x20a\x20space','white','❌\x20Verified\x20Store\x20Status\x20Date\x20must\x20be\x20today\x27s\x20date\x20(','Dental','log','clientX','bottom','[34]\x20Special\x20Projects','❌\x20High\x20Vol\x20Cig\x20must\x20be\x20\x27Yes\x27\x20for\x20Cigarette\x20Outlets','Farm\x20To\x20Market','className',':\x20Must\x20be\x20','❌\x20Invalid\x20Store\x20Name:\x20Vet\x20Clinic\x20stores\x20cannot\x20contain\x20surgical/neuter/spay/emergency/mobile/dental\x20keywords!','Wisconsin','Georgia','Beer:','[01]Wholesale\x20Clubs','pipes','\x0a\x20\x20\x20\x20\x20\x20\x20\x20.bot-message\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x208px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x205px\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x204px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2013px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20line-height:\x201.4;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20word-wrap:\x20break-word;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.bot-message.error\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#ffebee;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-left:\x203px\x20solid\x20#f44336;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.bot-message.success\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#e8f5e9;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-left:\x203px\x20solid\x20#4caf50;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.bot-timestamp\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2011px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#666;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-top:\x204px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20@keyframes\x20pulse\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x200%\x20{\x20transform:\x20scale(1);\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x2050%\x20{\x20transform:\x20scale(1.1);\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20100%\x20{\x20transform:\x20scale(1);\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.pulse\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20animation:\x20pulse\x201.5s\x20infinite;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20','Building','❌\x20Store\x20Name\x20should\x20only\x20contain\x20letters,\x20numbers,\x20spaces,\x20&,\x20\x27,\x20or\x20-','✅\x20Store\x20Status\x20is\x20[UV]\x20Unverifiable.','10px','Agricultural','Trade\x20Channel:','❌\x20Line\x201\x20input\x20not\x20found.','Spay','ai-bot-messages','✅\x20Found\x20Line\x201\x20input!','innerHeight','6521928ICYoFp','neuter','day\x20care','Louisiana','scrollY','Kentucky','Grooming','display','Place','350px','bot-timestamp','removeEventListener','toLowerCase','❌\x20Invalid\x20Trade\x20Channel:\x20Stores\x20with\x20\x27Gas\x27\x20or\x20\x27Fuel\x27\x20in\x20name\x20must\x20have\x20Trade\x20Channel\x20','parentNode','getBoundingClientRect','Food\x20Type:','ai-bot-minimized','Required\x20fields\x20not\x20found','scrollX','.ai-tooltip','innerText','#fff','[4]Cigarette\x20Outlets\x20-\x20Conventional','✅\x20Store\x20Status\x20is\x20[TC]\x20Closed.','1px\x20solid\x20#ddd','❌\x20Wrong\x20VSS:\x20When\x20Store\x20Status\x20is\x20[DUP],\x20VSS\x20should\x20be\x20[34]\x20Special\x20Projects!','\x20for\x20Unverifiable\x20stores!','Square','❌\x20Invalid\x20Store\x20Name:\x20Vape\x20stores\x20cannot\x20contain\x20pipe/cigar/bongs/glass/bubblers\x20keywords!','Verified\x20Store\x20Status\x20Source:','billing','[11]Pet','filter','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22white-space:\x20normal;\x20word-break:\x20break-word;\x20flex:\x201;\x22>','pointerEvents','Center','Drive','Highway','wine','[NA]\x20Web\x20Lookup','error-count','Port','Terrace','surgical','Lake','✅\x20Found\x20Marketing\x20Group\x20input!','boxShadow','querySelectorAll','❌\x20Wine\x20should\x20be\x20\x27Yes\x27\x20when\x20store\x20name\x20contains\x20\x27Wine\x27','Alabama','❌\x20Incorrect\x20VSS\x20for\x20the\x20[NA]\x20Inactive/Not\x20Verified\x20Store\x20Status!','Suite','❌\x20Only\x20\x22','❌\x20Invalid\x20'];_0x41ec=function(){return _0x4ed4f7;};return _0x41ec();}
+const VALIDATION_INTERVAL = 2000; // 5 seconds
+let validationInterval = null;
+let activeErrors = new Set();
+let lastKnownTradeChannel = null;
+
+// Track active error messages
+
+console.log("✅ AI Tooltip Validator Loaded!");
+
+// Create chatbot on page
+createChatbot();
+
+// List of invalid address keywords for "Line 1"
+const addressKeywords = [
+    "Avenue", "Boulevard", "Building", "Business Highway", "Bypass", "Causeway",
+    "Center", "Circle", "County Road", "Court", "Drive", "Expressway", "Extension",
+    "Farm To Market", "Freeway", "Highway", "Interstate 95", "Lake", "Lane", "Mount",
+    "Park", "Parkway", "Pike", "Place", "Plaza", "Point", "Port", "Road", "Route",
+    "Rural route", "Square", "State Highway", "Street", "Suite", "Terrace", "Trail",
+    "Turnpike", "US Highway", "Way"
+];
+const tradeChannelsRequiringReportTo = [
+    "[01]Wholesale Clubs",
+    "[06]Category Killers",
+    "[08]Mass Merchandise Stores"
+];
+// Trade Channels that cannot have [FO] Future Opening status
+const tradeChannelsNoFutureOpening = [
+    "[59]Unknown On-Premise",
+    "[09]Unknown Retailers"
+];
+// Gas/Fuel related store names must have this trade channel
+const GAS_FUEL_TRADE_CHANNEL = "[07]Convenience Stores";
+
+const restrictedPetStoreNames = [
+    'Grooming', 'grooming',
+    'Day Care', 'day care',
+    'Spa', 'spa',
+    'Pet Resort', 'pet resort'
+];
+
+// Restricted Store Name keywords for Vet Clinic Sub Channel
+const restrictedVetClinicStoreNames = [
+    'Surgical', 'surgical',
+    'Neuter', 'neuter',
+    'Spay', 'spay',
+    'Emergency', 'emergency',
+    'Mobile', 'mobile',
+    'Dental', 'dental'
+];
+
+const restrictedFarmFeedStoreNames = [
+    'Grain Elevator', 'grain elevator',
+    'Agricultural', 'agricultural',
+    'Equipment', 'equipment'
+];
+
+// Restricted Store Name keywords for Vape Store Sub Channel
+const restrictedVapeStoreNames = [
+    'Pipe', 'pipe', 'Pipes', 'pipes',
+    'Cigar', 'cigar',
+    'Bongs', 'bongs',
+    'Glass', 'glass',
+    'Bubblers', 'bubblers'
+];
+
+// Pet Super Store names
+const Pet_superstore = ['petco', 'Unleashed by petco', 'Petsmart', 'Petco'];
+
+// ====================== CHATBOT WITH SMOOTH ANIMATION ======================
+
+function createChatbot() {
+    // Remove existing bot if present
+    const existingBot = document.getElementById('ai-bot');
+    if (existingBot) existingBot.remove();
+    const existingMinimized = document.getElementById('ai-bot-minimized');
+    if (existingMinimized) existingMinimized.remove();
+
+    const botContainer = document.createElement('div');
+    botContainer.id = 'ai-bot';
+    botContainer.style.position = 'fixed';
+    botContainer.style.bottom = '20px';
+    botContainer.style.right = '20px';
+    botContainer.style.width = '380px';
+    botContainer.style.backgroundColor = '#ffffff';
+    botContainer.style.border = '1px solid #e1e5e9';
+    botContainer.style.borderRadius = '12px';
+    botContainer.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.15)';
+    botContainer.style.zIndex = '10000';
+    botContainer.style.fontFamily = 'Segoe UI, Arial, sans-serif';
+    botContainer.style.overflow = 'hidden';
+    botContainer.style.display = 'flex';
+    botContainer.style.flexDirection = 'column';
+
+    // Main chatbot content
+    botContainer.innerHTML = `
+        <div id="ai-bot-header" style="padding: 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px 12px 0 0; display: flex; justify-content: space-between; align-items: center; cursor: move; user-select: none;">
+            <div style="font-weight: 600; font-size: 15px; display: flex; align-items: center;">
+                <span id="error-count" style="background: #ff4757; padding: 4px 8px; border-radius: 12px; margin-right: 10px; font-size: 12px; font-weight: bold; min-width: 20px; text-align: center;">0</span>
+                <span>Error Proof Validator</span>
+            </div>
+            <div id="bot-minimize" style="cursor: pointer; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; transition: background 0.2s ease;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 14H4V10H20V14Z" fill="white"/>
+                </svg>
+            </div>
+        </div>
+        <div id="ai-bot-content" style="flex: 1; display: flex; flex-direction: column;">
+            <div id="ai-bot-messages" style="flex: 1; padding: 0; max-height: 350px; overflow-y: auto; background: #fafbfc;"></div>
+            <div style="padding: 12px; text-align: center; background: #f8f9fa; border-top: 1px solid #e9ecef;">
+                <button id="refresh-errors" style="padding: 8px 16px; cursor: pointer; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 6px; font-weight: 500; font-size: 13px; transition: all 0.2s ease;">
+                    🔄 Refresh Validations
+                </button>
+            </div>
+        </div>
+    `;
+
+    // Minimized state - Robot icon
+    const minimizedBot = document.createElement('div');
+    minimizedBot.id = 'ai-bot-minimized';
+    minimizedBot.style.position = 'fixed';
+    minimizedBot.style.bottom = '20px';
+    minimizedBot.style.right = '20px';
+    minimizedBot.style.width = '50px';
+    minimizedBot.style.height = '50px';
+    minimizedBot.style.borderRadius = '50%';
+    minimizedBot.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+    minimizedBot.style.display = 'none';
+    minimizedBot.style.justifyContent = 'center';
+    minimizedBot.style.alignItems = 'center';
+    minimizedBot.style.cursor = 'pointer';
+    minimizedBot.style.boxShadow = '0 4px 20px rgba(0,0,0,0.25)';
+    minimizedBot.style.zIndex = '10000';
+    minimizedBot.innerHTML = `
+        <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" width="28" height="28" style="filter: brightness(0) invert(1);">
+        <div id="minimized-error-count" style="position: absolute; top: -2px; right: -2px; background: #ff4757; color: white; border-radius: 50%; width: 20px; height: 20px; font-size: 11px; font-weight: bold; display: none; align-items: center; justify-content: center; border: 2px solid white;"></div>
+    `;
+
+    document.body.appendChild(botContainer);
+    document.body.appendChild(minimizedBot);
+
+    // Make chatbot draggable
+    makeDraggable(botContainer);
+
+    // Minimize/maximize functionality
+    let isMinimized = false;
+    const minimizeBtn = document.getElementById('bot-minimize');
+    
+    minimizeBtn.onclick = function() {
+        if (!isMinimized) {
+            isMinimized = true;
+            botContainer.style.display = 'none';
+            minimizedBot.style.display = 'flex';
+        }
+    };
+
+    // Click minimized icon to restore
+    minimizedBot.onclick = function() {
+        if (isMinimized) {
+            isMinimized = false;
+            minimizedBot.style.display = 'none';
+            botContainer.style.display = 'flex';
+        }
+    };
+
+    // Refresh button
+    const refreshBtn = document.getElementById('refresh-errors');
+    refreshBtn.onclick = function() {
+        validateAllFields();
+    };
+
+    // Add enhanced styling
+    const style = document.createElement('style');
+    style.textContent = `
+        .bot-message {
+            padding: 12px 16px;
+            margin: 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 13px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+        .bot-message:hover {
+            background-color: #f8f9fa;
+        }
+        .bot-message.error {
+            background: #fff5f5;
+            border-left: 4px solid #f31528ff;
+        }
+        .bot-message.success {
+            background: #f0fff4;
+            border-left: 4px solid #2ed573;
+        }
+        .bot-timestamp {
+            font-size: 11px;
+            color: #8e9a9d;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+        
+        /* Scrollbar styling */
+        #ai-bot-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        #ai-bot-messages::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        #ai-bot-messages::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+        #ai-bot-messages::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+        
+        .ai-tooltip {
+            position: absolute;
+            padding: 12px;
+            border-radius: 8px;
+            color: white;
+            z-index: 10001;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            background: #f30707ff;
+            max-width: 320px;
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: normal;
+            word-break: break-word;
+            border: 1px solid #ff8787;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    console.log("✅ Chatbot created successfully");
+}
+
+function addToChatbot(message, type = 'error') {
+    const chat = document.getElementById('ai-bot-messages');
+    if (!chat) {
+        console.log("❌ Chatbot messages container not found");
+        return;
+    }
+
+    const chatMessage = document.createElement('div');
+    chatMessage.className = `bot-message ${type}`;
+    
+    const timestamp = document.createElement('div');
+    timestamp.className = 'bot-timestamp';
+    timestamp.textContent = new Date().toLocaleTimeString();
+    
+    chatMessage.innerHTML = message;
+    chatMessage.appendChild(timestamp);
+
+    chat.appendChild(chatMessage);
+    chat.scrollTop = chat.scrollHeight;
+    
+    console.log("✅ Message added to chatbot:", message);
+}
+
+function makeDraggable(element) {
+    const header = element.querySelector('#ai-bot-header');
+    if (!header) {
+        console.log("❌ Chatbot header not found for draggable");
+        return;
+    }
+
+    let isDragging = false;
+    let startX, startY, initialX, initialY;
+
+    header.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        initialX = parseInt(element.style.left || '0');
+        initialY = parseInt(element.style.top || '0');
+        
+        element.style.cursor = 'grabbing';
+        e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        
+        const deltaX = e.clientX - startX;
+        const deltaY = e.clientY - startY;
+        
+        const newX = initialX + deltaX;
+        const newY = initialY + deltaY;
+        
+        // Keep within viewport bounds
+        const maxX = window.innerWidth - element.offsetWidth;
+        const maxY = window.innerHeight - element.offsetHeight;
+        
+        element.style.left = `${Math.max(0, Math.min(newX, maxX))}px`;
+        element.style.top = `${Math.max(0, Math.min(newY, maxY))}px`;
+        element.style.right = 'auto';
+        element.style.bottom = 'auto';
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+        element.style.cursor = '';
+    });
+    
+    console.log("✅ Draggable functionality added to chatbot");
+}
+
+function updateErrorCount() {
+    const count = activeErrors.size;
+    const countElement = document.getElementById('error-count');
+    const minimizedCountElement = document.getElementById('minimized-error-count');
+    
+    if (countElement) {
+        countElement.textContent = count;
+        countElement.style.display = count > 0 ? 'inline-block' : 'none';
+    }
+    
+    if (minimizedCountElement) {
+        minimizedCountElement.textContent = count;
+        minimizedCountElement.style.display = count > 0 ? 'flex' : 'none';
+    }
+    
+    console.log("✅ Error count updated:", count);
+}
+
+// ====================== SIMPLIFIED TOOLTIP SYSTEM ======================
+const correctedErrors = new Set();
+const dismissedErrors = new Map();
+
+function createTooltip(element, message, isCorrect) {
+    // Remove any existing tooltip for this element first
+    removeExistingTooltip(element);
+
+    const errorKey = `${element.id || element.name}-${message}`;
+    
+    // Check if this error was recently dismissed
+    const dismissedTime = dismissedErrors.get(errorKey);
+    if (dismissedTime && (Date.now() - dismissedTime) < 900) {
+        return null;
+    }
+    
+    if (correctedErrors.has(errorKey) && !isCorrect) {
+        return null;
+    }
+
+    const tooltip = document.createElement("div");
+    tooltip.className = "ai-tooltip";
+    tooltip.dataset.for = element.id || element.name || '';
+    tooltip.dataset.errorKey = errorKey;
+    
+    tooltip.innerHTML = `
+        <div style="display: flex; flex-direction: column; max-width: 300px;">
+            <div style="display: flex; align-items: flex-start; margin-bottom: 8px; gap: 8px;">
+                <span style="flex-shrink: 0;">${isCorrect ? '✅' : '⚠️'}</span>
+                <span style="white-space: normal; word-break: break-word; flex: 1;">${message}</span>
+            </div>
+            <div style="display: flex; justify-content: flex-end; font-size: 11px;">
+                <button id="dismiss-tooltip" style="color: white; cursor: pointer; padding: 4px 8px; border-radius: 4px; background: rgba(255,255,255,0.2); border: none; font-size: 11px;">
+                    Dismiss
+                </button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(tooltip);
+
+    // Position tooltip
+    positionTooltip(element, tooltip);
+
+    // Dismiss functionality
+    const dismissBtn = tooltip.querySelector('#dismiss-tooltip');
+    
+    dismissBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
+        // Record dismissal time
+        dismissedErrors.set(errorKey, Date.now());
+        
+        // Remove tooltip
+        tooltip.remove();
+        element.style.boxShadow = '';
+        
+        // Re-show the tooltip after 0.9 seconds if error still exists
+        setTimeout(() => {
+            dismissedErrors.delete(errorKey);
+        }, 900);
+    });
+
+    // Auto-dismiss after 10 seconds
+    setTimeout(() => {
+        if (tooltip.parentNode) {
+            tooltip.remove();
+            element.style.boxShadow = '';
+        }
+    }, 10000);
+
+    if (!isCorrect) {
+        element.style.boxShadow = '0 0 0 2px #f90418ff';
+        element.style.borderRadius = '3px';
+    }
+    
+    console.log("✅ Tooltip created for element:", element);
+    return tooltip;
+}
+
+function positionTooltip(element, tooltip) {
+    const elementRect = element.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
+    const scrollY = window.scrollY;
+    const scrollX = window.scrollX;
+    
+    let top = scrollY + elementRect.top - tooltipRect.height - 10;
+    let left = scrollX + elementRect.left + (elementRect.width / 2) - (tooltipRect.width / 2);
+    
+    if (top < scrollY) {
+        top = scrollY + elementRect.bottom + 10;
+    }
+    
+    left = Math.max(scrollX, Math.min(left, scrollX + window.innerWidth - tooltipRect.width));
+    top = Math.max(scrollY, Math.min(top, scrollY + window.innerHeight - tooltipRect.height));
+    
+    tooltip.style.top = `${top}px`;
+    tooltip.style.left = `${left}px`;
+}
+
+function removeExistingTooltip(element) {
+    const elementId = element.id || element.name || '';
+    document.querySelectorAll('.ai-tooltip').forEach(tooltip => {
+        if (tooltip.dataset.for === elementId) {
+            tooltip.remove();
+        }
+    });
+    element.style.boxShadow = '';
+}
+
+// Initialize the chatbot when the page loads
+console.log("🔄 Initializing chatbot...");
+setTimeout(() => {
+    createChatbot();
+    validateAllFields();
+}, 1000);
+
+// ====================== VALIDATION FUNCTION ENHANCEMENT ======================
+
+function validateAllFields() {
+    document.querySelectorAll('.ai-tooltip').forEach(tooltip => {
+        tooltip.style.opacity = "0";
+        tooltip.style.transform = "translateY(10px)";
+        setTimeout(() => tooltip.remove(), 200);
+    });
+    
+    const chat = document.getElementById('ai-bot-messages');
+    if (chat) chat.innerHTML = "";
+
+    activeErrors.clear();
+
+    const validationResults = [
+        validateStoreName({ target: findStoreNameInput() }),
+        validateLine1Address({ target: findLine1Input() }),
+        validateStoreNameAndTradeChannel(),
+        // validateTradeChannelAndReportTo(),
+        validateTradeChannelAndStoreStatus(),
+        validateExceptionCodeAndStoreStatus(),
+        validateDuplicateStoreStatusAndExceptionCode(),
+        validateStoreStatusAndVSS(),
+        // validateMarketingGroupAndStoreName(),
+        validateGasForGroceryStores(),
+        validateSpecialEventRequirements(),
+        validateHighVolCig(),
+        validateMedicalCannabisRequirement(),
+        validateFoodTypeRequirements(),
+        validateStoreOpenDate(),
+        validateVerifiedStoreStatusDate(),
+        // validatePhoneNumberForOperatingStores(),
+        validatePharmacyForRestrictedChannels(),
+        validateAlcoholForRestrictedChannels(),
+        validateCannabisForRestrictedStates(),
+        validatePharmacyForDrugStores(),
+        // validateReportToAndMarketingGroup(),
+        validatePetTradeChannelAndStoreName(),
+        validateVetClinicSubChannelAndStoreName(),
+        validateFarmFeedSubChannelAndStoreName(),
+        validateVapeStoreSubChannelAndStoreName(),
+        validatePetSuperStoreName(),
+        validateAlcoholStoreName()
+    ];
+
+    validationResults.forEach(result => {
+        if (Array.isArray(result)) {
+            result.forEach(msg => {
+                if (msg) {
+                    addToChatbot(msg);
+                    activeErrors.add(msg);
+                }
+            });
+        } else if (result) {
+            addToChatbot(result);
+            activeErrors.add(result);
+        }
+    });
+
+    Object.entries(UNVERIFIABLE_REQUIREMENTS).forEach(([fieldName, expectedValue]) => {
+        const validationFn = validateUnverifiableField(fieldName, expectedValue);
+        const error = validationFn();
+        if (error) {
+            addToChatbot(error);
+            activeErrors.add(error);
+        }
+    });
+
+    if (activeErrors.size === 0 && chat) {
+        addToChatbot("✅ All validations passed!", "success");
+    }
+
+    updateErrorCount();
+}
+// 🔹 Function to find Line 1 address input field
+function findLine1Input() {
+    let labels = document.querySelectorAll("label, span");
+    for (let label of labels) {
+        if (label.innerText.trim() === "Line 1:") {
+            let input = label.closest("div")?.querySelector("input");
+            if (input) {
+                console.log("✅ Found Line 1 input!");
+                return input;
+            }
+        }
+    }
+    console.error("❌ Line 1 input not found.");
+    return null;
+}
+function validateVerifiedStoreStatusDate() {
+    const verificationDateInput = document.querySelector('input[name="verificationDTTM"]');
+    
+    if (!verificationDateInput) {
+        console.error("Verified Store Status Date field not found");
+        return null;
+    }
+
+    const verificationDate = verificationDateInput.value.trim();
+    
+    // Skip validation if field is empty
+    if (verificationDate === "") {
+        removeExistingTooltip(verificationDateInput);
+        return null;
+    }
+
+    // Get current date in MM/dd/yyyy format
+    const today = new Date();
+    const currentDateFormatted = `${String(today.getMonth() + 1).padStart(2, '0')}/${String(today.getDate()).padStart(2, '0')}/${today.getFullYear()}`;
+    
+    // Compare dates (case sensitive exact match)
+    if (verificationDate !== currentDateFormatted) {
+        const message = `❌ Verified Store Status Date must be today's date (${currentDateFormatted})`;
+        createTooltip(verificationDateInput, message, false);
+        return message;
+    }
+
+    // If validation passes, remove any existing tooltip
+    removeExistingTooltip(verificationDateInput);
+    return null;
+}
+
+// 🔹 Function to find Store Open Date input field
+function findStoreOpenDateInput() {
+    // Try multiple selectors to find the Store Open Date field
+    const selectors = [
+        'input[name="storeOpenDate"]',
+        'input[placeholder*="store open" i]',
+        'input[placeholder*="open date" i]',
+        'input[id*="storeOpen" i]',
+        'input[id*="openDate" i]',
+        'input[name*="openDate" i]',
+        'input[data-fieldname*="storeOpen" i]'
+    ];
+    
+    for (const selector of selectors) {
+        const input = document.querySelector(selector);
+        if (input) {
+            console.log("✅ Found Store Open Date input:", selector);
+            return input;
+        }
+    }
+    
+    // Fallback: look for label and find associated input
+    const labels = document.querySelectorAll("label, span");
+    for (let label of labels) {
+        if (label.innerText.trim().includes("Store Open Date") || 
+            label.innerText.trim().includes("Open Date")) {
+            let input = label.closest("div")?.querySelector("input");
+            if (input) {
+                console.log("✅ Found Store Open Date input via label");
+                return input;
+            }
+        }
+    }
+    
+    console.error("❌ Store Open Date input not found");
+    return null;
+}
+
+// 🔹 Function to validate Store Open Date
+function validateStoreOpenDate() {
+    const storeStatusInput = findExtJSComboBox("Store Status:");
+    const storeOpenDateInput = findStoreOpenDateInput(); // Use the improved finder
+    
+    if (!storeStatusInput) {
+        console.error("Store Status field not found");
+        return null;
+    }
+    
+    if (!storeOpenDateInput) {
+        console.error("Store Open Date field not found");
+        return null;
+    }
+
+const storeStatus = storeStatusInput.value || storeStatusInput.getAttribute('data-value') || '';
+    const storeOpenDate = storeOpenDateInput.value || '';
+
+console.log("Store Status:", storeStatus, "Store Open Date:", storeOpenDate);
+
+// Check if Store Status is [FO] Future Opening
+    if (storeStatus.includes("[FO] Future Opening")) {
+        // For [FO] Future Opening status, ensure date is filled
+        if (storeOpenDate.trim() === "") {
+            const message = "❌ Future Opening stores must have a Store Open Date";
+            createTooltip(storeOpenDateInput, message, false);
+            return message;
+        }
+    } 
+    // Check if Store Status is [OP] Open, Operating
+    else if (storeStatus.includes("[OP] Open, Operating")) {
+        // For [OP] Open, Operating status, Store Open Date should be empty
+        if (storeOpenDate.trim() !== "") {
+            const message = "❌ Store Open Date should be empty for Open, Operating stores";
+            createTooltip(storeOpenDateInput, message, false);
+            return message;
+        }
+    }
+    // For all other statuses ([NA], [UV], [DUP], [TC], etc.)
+    else {
+        // Store Open Date should be empty for non-Future Opening statuses
+        if (storeOpenDate.trim() !== "") {
+            const message = "❌ Store Open Date should only be filled when Store Status is [FO] Future Opening";
+            createTooltip(storeOpenDateInput, message, false);
+            return message;
+        }
+    }
+
+// If validation passes, remove any existing tooltip
+    removeExistingTooltip(storeOpenDateInput);
+    return null;
+}
+function validateSpecialEventRequirements() {
+    const subChannelInput = findExtJSComboBox("Sub Channel:");
+    const storeStatusInput = findExtJSComboBox("Store Status:");
+    const verifiedStatusInput = findExtJSComboBox("Verified Store Status Source:");
+    const exceptionCodeInput = findExtJSComboBox("Exception Code:");
+
+    if (!subChannelInput || !storeStatusInput || !verifiedStatusInput || !exceptionCodeInput) {
+        console.error("Required fields not found");
+        return null;
+    }
+
+    const subChannel = subChannelInput.value || subChannelInput.getAttribute('data-value') || '';
+    const storeStatus = storeStatusInput.value || storeStatusInput.getAttribute('data-value') || '';
+    const verifiedStatus = verifiedStatusInput.value || verifiedStatusInput.getAttribute('data-value') || '';
+    const exceptionCode = exceptionCodeInput.value || exceptionCodeInput.getAttribute('data-value') || '';
+
+    // Check if subchannel is [N]Special Event or [K]Client Internal
+    const isSpecialEvent = subChannel.includes("[N]Special Event") || subChannel.includes("[K]Client Internal");
+    
+    if (!isSpecialEvent) {
+        return null; // Skip validation if not special event/client internal
+    }
+
+    let errorMessages = [];
+
+    // Validate Store Status should be [NA] Inactive/Not Verified
+    if (!storeStatus.includes("[NA] Inactive/Not Verified")) {
+        errorMessages.push("❌ Special Event/Client Internal stores must have Store Status: [NA] Inactive/Not Verified");
+        createTooltip(storeStatusInput, errorMessages[errorMessages.length-1], false);
+    }
+
+    // Validate Verified Store Status Source should be [34] Special Projects
+    if (!verifiedStatus.includes("[34] Special Projects")) {
+        errorMessages.push("❌ Special Event/Client Internal stores must have VSS: [34] Special Projects");
+        createTooltip(verifiedStatusInput, errorMessages[errorMessages.length-1], false);
+    }
+
+    // Validate Exception Code should be 777798Z
+    if (!exceptionCode.includes("777798Z")) {
+        errorMessages.push("❌ Special Event/Client Internal stores must have Exception Code: 777798Z");
+        createTooltip(exceptionCodeInput, errorMessages[errorMessages.length-1], false);
+    }
+
+    // Add all errors to chatbot
+    if (errorMessages.length > 0) {
+        errorMessages.forEach(msg => addToChatbot(msg));
+        return errorMessages;
+    }
+
+    return null;
+}
+// 🔹 Function to validate Pet Super Store names
+function validatePetSuperStoreName() {
+    let subChannelInput = findExtJSComboBox("Sub Channel:");
+    let storeNameInput = findStoreNameInput();
+
+    if (!subChannelInput || !storeNameInput) {
+        console.error("❌ Sub Channel or Store Name input not found.");
+        return;
+    }
+
+    let subChannel = subChannelInput.value || subChannelInput.getAttribute('data-value') || '';
+    let storeName = storeNameInput.value || storeNameInput.getAttribute('data-value') || '';
+
+    // Check if Sub Channel is Pet Super Store
+    if (subChannel.includes("Pet Super Store") || subChannel.includes("pet super store")) {
+        // Check if Store Name contains any of the allowed names (case insensitive)
+        const hasValidName = Pet_superstore.some(name =>
+            storeName.toLowerCase().includes(name.toLowerCase())
+        );
+
+        if (!hasValidName) {
+            const message = "❌ Invalid Store Name: Pet Super Stores must include one of: Petco, Unleashed by petco, or Petsmart!";
+            createTooltip(storeNameInput, message, false);
+            return message;
+        }
+    }
+    return null;
+}
+
+// 🔹 Function to find input fields based on label text
+function findInputByText(text) {
+    let labels = document.querySelectorAll("label, span");
+    for (let label of labels) {
+        if (label.innerText.trim() === text) {
+            let input = label.closest("div")?.querySelector("input");
+            if (input) {
+                console.log(`✅ Found input for: ${text}`);
+                return input;
+            }
+        }
+    }
+    console.error(`❌ Input not found for: ${text}`);
+    return null;
+}
+
+// 🔹 Function to validate Vape Store Sub Channel and Store Name
+function validateVapeStoreSubChannelAndStoreName() {
+    let subChannelInput = findExtJSComboBox("Sub Channel:");
+    let storeNameInput = findStoreNameInput();
+
+    if (!subChannelInput || !storeNameInput) {
+        console.error("❌ Sub Channel or Store Name input not found.");
+        return;
+    }
+
+    let subChannel = subChannelInput.value || subChannelInput.getAttribute('data-value') || '';
+    let storeName = storeNameInput.value || storeNameInput.getAttribute('data-value') || '';
+
+    console.log("Sub Channel:", subChannel);
+    console.log("Store Name:", storeName);
+
+    // Check if Sub Channel is [5]Vape Store
+    if (subChannel.includes("[5]Vape Store")) {
+        // Check if Store Name contains restricted keywords
+        const hasRestrictedKeyword = restrictedVapeStoreNames.some(keyword =>
+            storeName.includes(keyword)
+        );
+
+        if (hasRestrictedKeyword) {
+            const message = "❌ Invalid Store Name: Vape stores cannot contain pipe/cigar/bongs/glass/bubblers keywords!";
+            createTooltip(storeNameInput, message, false);
+            return message;
+        }
+    }
+    return null;
+}
+
+// 🔹 Function to validate Farm and Feed Sub Channel and Store Name
+function validateFarmFeedSubChannelAndStoreName() {
+    let subChannelInput = findExtJSComboBox("Sub Channel:");
+    let storeNameInput = findStoreNameInput();
+
+    if (!subChannelInput || !storeNameInput) {
+        console.error("❌ Sub Channel or Store Name input not found.");
+        return;
+    }
+
+    let subChannel = subChannelInput.value || subChannelInput.getAttribute('data-value') || '';
+    let storeName = storeNameInput.value || storeNameInput.getAttribute('data-value') || '';
+
+    console.log("Sub Channel:", subChannel);
+    console.log("Store Name:", storeName);
+
+    // Check if Sub Channel is [U]Farm and Feed
+    if (subChannel.includes("[U]Farm and Feed")) {
+        // Check if Store Name contains restricted keywords
+        const hasRestrictedKeyword = restrictedFarmFeedStoreNames.some(keyword =>
+            storeName.includes(keyword)
+        );
+
+        if (hasRestrictedKeyword) {
+            const message = "❌ Invalid Store Name: FarmNFeed stores cannot contain grain elevator/agricultural/equipment keywords!";
+            createTooltip(storeNameInput, message, false);
+            return message;
+        }
+    }
+    return null;
+}
+
+// 🔹 Function to validate Vet Clinic Sub Channel and Store Name
+function validateVetClinicSubChannelAndStoreName() {
+    let subChannelInput = findExtJSComboBox("Sub Channel:");
+    let storeNameInput = findStoreNameInput();
+
+    if (!subChannelInput || !storeNameInput) {
+        console.error("❌ Sub Channel or Store Name input not found.");
+        return;
+    }
+
+    let subChannel = subChannelInput.value || subChannelInput.getAttribute('data-value') || '';
+    let storeName = storeNameInput.value || storeNameInput.getAttribute('data-value') || '';
+
+    console.log("Sub Channel:", subChannel);
+    console.log("Store Name:", storeName);
+
+    // Check if Sub Channel is [3]Vet Clinic
+    if (subChannel.includes("[3]Vet Clinic")) {
+        // Check if Store Name contains restricted keywords
+        const hasRestrictedKeyword = restrictedVetClinicStoreNames.some(keyword =>
+            storeName.includes(keyword)
+        );
+
+        if (hasRestrictedKeyword) {
+            const message = "❌ Invalid Store Name: Vet Clinic stores cannot contain surgical/neuter/spay/emergency/mobile/dental keywords!";
+            createTooltip(storeNameInput, message, false);
+            return message;
+        }
+    }
+    return null;
+}
+
+// 🔹 Function to validate Pet Trade Channel and Store Name
+function validatePetTradeChannelAndStoreName() {
+    let tradeChannelInput = findExtJSComboBox("Trade Channel:");
+    let storeNameInput = findStoreNameInput();
+
+    if (!tradeChannelInput || !storeNameInput) {
+        console.error("❌ Trade Channel or Store Name input not found.");
+        return;
+    }
+
+    let tradeChannel = tradeChannelInput.value || tradeChannelInput.getAttribute('data-value') || '';
+    let storeName = storeNameInput.value || storeNameInput.getAttribute('data-value') || '';
+
+    console.log("Trade Channel:", tradeChannel);
+    console.log("Store Name:", storeName);
+
+    // Check if Trade Channel is [11]Pet
+    if (tradeChannel.includes("[11]Pet")) {
+        // Check if Store Name contains restricted keywords
+        const hasRestrictedKeyword = restrictedPetStoreNames.some(keyword =>
+            storeName.includes(keyword)
+        );
+
+        if (hasRestrictedKeyword) {
+            const message = "❌ Invalid Store Name: Pet stores cannot contain grooming/day care/spa/resort keywords!";
+            createTooltip(storeNameInput, message, false);
+            return message;
+        }
+    }
+    return null;
+}
+
+// 🔹 Function to validate Store Name and Trade Channel
+function validateStoreNameAndTradeChannel() {
+    let storeNameInput = findStoreNameInput();
+    let tradeChannelInput = findExtJSComboBox("Trade Channel:");
+
+    if (!storeNameInput || !tradeChannelInput) {
+        console.error("❌ Store Name or Trade Channel input not found.");
+        return;
+    }
+
+    let storeName = storeNameInput.value || storeNameInput.getAttribute('data-value') || '';
+    let tradeChannel = tradeChannelInput.value || tradeChannelInput.getAttribute('data-value') || '';
+
+    console.log("Store Name:", storeName);
+    console.log("Trade Channel:", tradeChannel);
+
+    // Check if Store Name contains Gas or Fuel
+    if (storeName.match(/Gas|Fuel/i)) {
+        // Trade Channel should be [07]Convenience Stores
+        if (!tradeChannel.includes(GAS_FUEL_TRADE_CHANNEL)) {
+            const message = `❌ Invalid Trade Channel: Stores with 'Gas' or 'Fuel' in name must have Trade Channel ${GAS_FUEL_TRADE_CHANNEL}!`;
+            createTooltip(tradeChannelInput, message, false);
+            return message;
+        }
+    }
+    return null;
+}
+
+// 🔹 Function to validate Trade Channel and Store Status
+function validateTradeChannelAndStoreStatus() {
+    let tradeChannelInput = findExtJSComboBox("Trade Channel:");
+    let storeStatusInput = findExtJSComboBox("Store Status:");
+
+    if (!tradeChannelInput || !storeStatusInput) {
+        console.error("❌ Trade Channel or Store Status input not found.");
+        return;
+    }
+
+    let tradeChannel = tradeChannelInput.value || tradeChannelInput.getAttribute('data-value') || '';
+    let storeStatus = storeStatusInput.value || storeStatusInput.getAttribute('data-value') || '';
+
+    console.log("Trade Channel:", tradeChannel);
+    console.log("Store Status:", storeStatus);
+
+    // Rule: If Trade Channel is [59]Unknown On-Premise or [09]Unknown Retailers
+    if (tradeChannelsNoFutureOpening.some(channel => tradeChannel.includes(channel))) {
+        // Store Status should not be [FO] Future Opening
+        if (storeStatus.includes("[FO] Future Opening")) {
+            const message = "❌ Invalid Status: This Trade Channel cannot have [FO] Future Opening status!";
+            createTooltip(storeStatusInput, message, false);
+            return message;
+        }
+    }
+    return null;
+}
+
+// // 🔹 Function to validate Trade Channel and Immediate Report To
+// function validateTradeChannelAndReportTo() {
+//     let tradeChannelInput = findExtJSComboBox("Trade Channel:");
+//     let immediateReportToInput = findExtJSComboBox("Immediate Report To:");
+
+//     if (!tradeChannelInput || !immediateReportToInput) {
+//         console.error("❌ Trade Channel or Immediate Report To input not found.");
+//         return null;
+//     }
+
+//     // More robust value extraction for ExtJS components
+//     let tradeChannel = tradeChannelInput.value || 
+//                       tradeChannelInput.getAttribute('data-value') || 
+//                       tradeChannelInput.textContent || 
+//                       '';
+    
+//     let immediateReportTo = immediateReportToInput.value || 
+//                            immediateReportToInput.getAttribute('data-value') || 
+//                            immediateReportToInput.textContent || 
+//                            '';
+
+//     console.log("Trade Channel:", tradeChannel);
+//     console.log("Immediate Report To:", immediateReportTo);
+
+//     // Check if Trade Channel requires Immediate Report To
+//     const requiresReportTo = tradeChannelsRequiringReportTo.some(channel => 
+//         tradeChannel.includes(channel.replace(/\[\d+\]/, '')) || // Match without prefix
+//         tradeChannel.includes(channel) // Match with prefix
+//     );
+
+//     if (requiresReportTo) {
+//         if (!immediateReportTo.trim()) {
+//             const message = "❌ Immediate Report To is required for this Trade Channel!";
+//             createTooltip(immediateReportToInput, message, false);
+//             return message;
+//         }
+//     }
+    
+//     // Remove tooltip if validation passes
+//     removeExistingTooltip(immediateReportToInput);
+//     return null;
+// }
+
+// 🔹 Function to validate bidirectional rules between Exception Code and Store Status
+function validateExceptionCodeAndStoreStatus() {
+    let exceptionCodeInput = findExtJSComboBox("Exception Code:");
+    let storeStatusInput = findExtJSComboBox("Store Status:");
+
+    if (!exceptionCodeInput || !storeStatusInput) {
+        console.error("❌ Exception Code or Store Status input not found.");
+        return;
+    }
+
+    let exceptionCode = exceptionCodeInput.value || exceptionCodeInput.getAttribute('data-value') || '';
+    let storeStatus = storeStatusInput.value || storeStatusInput.getAttribute('data-value') || '';
+
+    console.log("Exception Code:", exceptionCode);
+    console.log("Store Status:", storeStatus);
+
+    let errorMessages = [];
+
+    // Rule 1: If Exception Code is 777793Z, Store Status must be [UV] Unverifiable
+    if (exceptionCode.includes("777793Z")) {
+        if (!storeStatus.includes("[UV] Unverifiable")) {
+            const message = "❌ When Exception Code is 777793Z, Store Status must be [UV] Unverifiable!";
+            createTooltip(storeStatusInput, message, false);
+            errorMessages.push(message);
+        }
+    }
+
+    // Rule 2: If Store Status is [UV] Unverifiable, Exception Code must be 777793Z
+    if (storeStatus.includes("[UV] Unverifiable")) {
+        if (!exceptionCode.includes("777793Z")) {
+            const message = "❌ When Store Status is [UV] Unverifiable, Exception Code must be 777793Z!";
+            createTooltip(exceptionCodeInput, message, false);
+            errorMessages.push(message);
+        }
+    }
+
+    return errorMessages.length > 0 ? errorMessages : null;
+}
+
+// 🔹 Function to validate Duplicate Store Status and Exception Code
+function validateDuplicateStoreStatusAndExceptionCode() {
+    let storeStatusInput = findExtJSComboBox("Store Status:");
+    let exceptionCodeInput = findExtJSComboBox("Exception Code:");
+
+    if (!storeStatusInput || !exceptionCodeInput) {
+        console.error("❌ Store Status or Exception Code input not found.");
+        return;
+    }
+
+    let storeStatus = storeStatusInput.value || storeStatusInput.getAttribute('data-value') || '';
+    let exceptionCode = exceptionCodeInput.value || exceptionCodeInput.getAttribute('data-value') || '';
+
+    console.log("Store Status:", storeStatus);
+    console.log("Exception Code:", exceptionCode);
+
+    // Check if Store Status is [DUP] Duplicate
+    if (storeStatus.includes("[DUP] Duplicate")) {
+        // Exception Code should be empty or 777798Z
+        if (exceptionCode.trim() && !exceptionCode.includes("777798Z")) {
+            const message = "❌ Invalid Exception Code: When Store Status is [DUP] Duplicate, Exception Code must be empty or 777798Z!";
+            createTooltip(exceptionCodeInput, message, false);
+            return message;
+        }
+    }
+    return null;
+}
+
+// 🔹 Function to validate Marketing Group and Store Name match (words only)
+// function validateMarketingGroupAndStoreName() {
+//     let marketingGroupInput = findExtJSComboBox("Marketing Group:");
+//     let storeNameInput = findStoreNameInput();
+
+//     if (!marketingGroupInput || !storeNameInput) {
+//         console.error("❌ Marketing Group or Store Name input not found.");
+//         return;
+//     }
+
+//     let marketingGroup = marketingGroupInput.value || marketingGroupInput.getAttribute('data-value') || '';
+//     let storeName = storeNameInput.value || storeNameInput.getAttribute('data-value') || '';
+
+//     console.log("Marketing Group:", marketingGroup);
+//     console.log("Store Name:", storeName);
+
+//     // Check if Marketing Group has any value
+//     if (marketingGroup.trim()) {
+//         // Extract only words/letters (remove special characters and numbers)
+//         const cleanMarketingGroup = marketingGroup.replace(/[^a-zA-Z\s]/g, '').trim();
+//         const cleanStoreName = storeName.replace(/[^a-zA-Z\s]/g, '').trim();
+
+//         // Compare only if we have words to compare after cleaning
+//         if (cleanMarketingGroup && !cleanStoreName.toLowerCase().includes(cleanMarketingGroup.toLowerCase())) {
+//             const message = "❌ Incorrect Store Name: Must contain the Marketing Group name (excluding numbers/special chars)!";
+//             createTooltip(storeNameInput, message, false);
+//             return message;
+//         }
+//     }
+//     return null;
+// }
+
+// // 🔹 Function to find Marketing Group input field
+// function findMarketingGroupInput() {
+//     let labels = document.querySelectorAll("label, span");
+//     for (let label of labels) {
+//         if (label.innerText.trim() === "Marketing Group:") {
+//             let input = label.closest("div")?.querySelector("input");
+//             if (input) {
+//                 console.log("✅ Found Marketing Group input!");
+//                 return input;
+//             }
+//         }
+//     }
+//     console.error("❌ Marketing Group input not found.");
+//     return null;
+// }
+
+// // 🔹 Function to validate Immediate Report To and Marketing Group
+// function validateReportToAndMarketingGroup() {
+//     let immediateReportToInput = findExtJSComboBox("Immediate Report To:");
+//     let marketingGroupInput = findExtJSComboBox("Marketing Group:");
+
+//     if (!immediateReportToInput || !marketingGroupInput) {
+//         console.error("❌ Immediate Report To or Marketing Group input not found.");
+//         return null;
+//     }
+
+//     let immediateReportTo = immediateReportToInput.value || 
+//                            immediateReportToInput.getAttribute('data-value') || 
+//                            immediateReportToInput.textContent || 
+//                            '';
+    
+//     let marketingGroup = marketingGroupInput.value || 
+//                         marketingGroupInput.getAttribute('data-value') || 
+//                         marketingGroupInput.textContent || 
+//                         '';
+
+//     console.log("Immediate Report To:", immediateReportTo);
+//     console.log("Marketing Group:", marketingGroup);
+
+//     // Check if Immediate Report To has any value
+//     if (immediateReportTo.trim()) {
+//         // Marketing Group should not be empty
+//         if (!marketingGroup.trim()) {
+//             const message = "❌ Marketing Group cannot be empty when Immediate Report To is filled!";
+//             createTooltip(marketingGroupInput, message, false);
+//             return message;
+//         }
+//     }
+    
+//     // Remove tooltip if validation passes
+//     removeExistingTooltip(marketingGroupInput);
+//     return null;
+// }
+
+// 🔹 Function to validate Store Status and Verified Store Status Source
+function validateStoreStatusAndVSS() {
+    let storeStatusInput = findExtJSComboBox("Store Status:");
+    let verifiedStatusInput = findExtJSComboBox("Verified Store Status Source:");
+
+    if (!storeStatusInput || !verifiedStatusInput) {
+        console.error("❌ Store Status or Verified Store Status Source input not found.");
+        return;
+    }
+
+    let storeStatus = storeStatusInput.value || storeStatusInput.getAttribute('data-value') || '';
+    let verifiedStatus = verifiedStatusInput.value || verifiedStatusInput.getAttribute('data-value') || '';
+
+    console.log("Store Status:", storeStatus);
+    console.log("Verified Status:", verifiedStatus);
+
+    // If Verified Store Status Source is empty, skip validation
+    if (!verifiedStatus.trim()) {
+        console.log("✅ Verified Store Status Source is empty - skipping validation");
+        removeExistingTooltip(verifiedStatusInput);
+        return null;
+    }
+
+    let errorMessages = [];
+    const validOpenOperatingVSS = [
+        "[32] Telephone, Direct",
+        "[33] Telephone, Indirect",
+        "[50] Licensing Agencies, Alcohol",
+        "[77] Licensing Agencies, Drug",
+        "[NA] Web Sites, Other",
+        "[NA] EM Verified through Research",
+        "[NA] Web Lookup",
+        "[NA] Screen Scrape",
+        "[NA] Retailer Store List",
+        "[NA] S.E.C.",
+        "[60] News/Press Release",
+        "[NA] Direct Contact, Highly Reliable"
+    ];
+
+    // Rule 1: If Store Status is [OP] Open, Operating
+    if (storeStatus.includes("[OP] Open, Operating") || storeStatus.includes("[FO] Future Opening")) {
+        const statusType = storeStatus.includes("[OP] Open, Operating") ? "[OP] Open, Operating" : "[FO] Future Opening";
+        console.log(`✅ Store Status is ${statusType}.`);
+
+        // Check if VSS is one of the valid options
+        const isValidVSS = validOpenOperatingVSS.some(validVSS => 
+            verifiedStatus.includes(validVSS)
+        );
+
+        if (!isValidVSS) {
+            const validOptions = validOpenOperatingVSS.map(vss => vss.split(']')[1]).join(', ');
+            const message = `❌ Incorrect VSS for the ${statusType} Store Status`;
+            createTooltip(verifiedStatusInput, message, false);
+            errorMessages.push(message);
+        }
+    }
+    // Rule 2: If Store Status is [NA] Inactive/Not Verified
+    else if (storeStatus.includes("[NA] Inactive/Not Verified")) {
+        console.log("✅ Store Status is [NA] Inactive/Not Verified.");
+
+        // It should be [34] Special Projects
+        if (!verifiedStatus.includes("[34] Special Projects")) {
+            const message = "❌ Incorrect VSS for the [NA] Inactive/Not Verified Store Status!";
+            createTooltip(verifiedStatusInput, message, false);
+            errorMessages.push(message);
+        }
+    }
+    // Rule 3: If Store Status is [UV] Unverifiable
+    else if (storeStatus.includes("[UV] Unverifiable")) {
+        console.log("✅ Store Status is [UV] Unverifiable.");
+
+        // It should be [NA] Attempted Contact Failed
+        if (!verifiedStatus.includes("[NA] Attempted Contact Failed")) {
+            const message = "❌ Incorrect VSS for the Unverifiable Store Status!";
+            createTooltip(verifiedStatusInput, message, false);
+            errorMessages.push(message);
+        }
+    }
+    else if (storeStatus.includes("[TC] Closed")) {
+        console.log("✅ Store Status is [TC] Closed.");
+
+        if (
+            !(
+                verifiedStatus.includes("[NA] Web Sites, Other") ||
+                verifiedStatus.includes("[32] Telephone, Direct") ||
+                verifiedStatus.includes("[33] Telephone, Indirect") ||
+                verifiedStatus.includes("[60] News/Press Release") ||
+                verifiedStatus.includes("[NA] Web Lookup") ||
+                verifiedStatus.includes("[NA] Attempted Contact Failed")
+            )
+        ) {
+            const message = "❌ Incorrect VSS for the Closed Store Status!";
+            createTooltip(verifiedStatusInput, message, false);
+            errorMessages.push(message);
+        }
+    }
+    // Rule 4: If Store Status is [DUP] Duplicate
+    else if (storeStatus.includes("[DUP] Duplicate")) {
+        console.log("✅ Store Status is [DUP] Duplicate.");
+
+        // It should be [34] Special Projects
+        if (!verifiedStatus.includes("[34] Special Projects")) {
+            const message = "❌ Wrong VSS: When Store Status is [DUP], VSS should be [34] Special Projects!";
+            createTooltip(verifiedStatusInput, message, false);
+            errorMessages.push(message);
+        }
+    }
+    // Additional Rule: Restrict certain Store Status values when VSS is [NA] Attempted Contact Failed
+    if (verifiedStatus.includes("[NA] Attempted Contact Failed")) {
+        if (
+            storeStatus.includes("[DUP] Duplicate") ||
+            storeStatus.includes("[FO] Future Opening") ||
+            storeStatus.includes("[NA] Inactive/Not Verified") ||
+            storeStatus.includes("[OP] Open, Operating")
+        ) {
+            const message = "❌If VSS is [NA] Attempted Contact Failed, Store Status cannot be [DUP], [FO], [NA], or [OP]!";
+            createTooltip(verifiedStatusInput, message, false);
+            errorMessages.push(message);
+        }
+    }
+
+    // If no errors, remove any existing tooltip
+    if (errorMessages.length === 0) {
+        removeExistingTooltip(verifiedStatusInput);
+    }
+
+    return errorMessages.length > 0 ? errorMessages : null;
+}
+
+// 🔹 Function to find ExtJS combobox fields based on label text
+function findExtJSComboBox(labelText) {
+    let labels = document.querySelectorAll("label, span");
+    for (let label of labels) {
+        if (label.innerText.trim() === labelText) {
+            // Find the associated input field (ExtJS combobox)
+            let container = label.closest("div");
+            if (container) {
+                let input = container.querySelector("input.x-form-text");
+                if (input) {
+                    console.log(`✅ Found ExtJS combobox for: ${labelText}`);
+                    return input;
+                }
+            }
+        }
+    }
+    console.error(`❌ ExtJS combobox not found for: ${labelText}`);
+    return null;
+}
+
+// 🔹 Function to validate alcohol-related store names against separate dropdowns
+function validateAlcoholStoreName() {
+    let storeNameInput = findStoreNameInput();
+    let beerDropdown = findExtJSComboBox("Beer:");
+    let wineDropdown = findExtJSComboBox("Wine:");
+    let liquorDropdown = findExtJSComboBox("Liquor:");
+
+    if (!storeNameInput || !beerDropdown || !wineDropdown || !liquorDropdown) {
+        console.error("❌ One or more alcohol-related inputs not found.");
+        return;
+    }
+
+    let storeName = (storeNameInput.value || storeNameInput.getAttribute('data-value') || '').toLowerCase();
+    let beerValue = (beerDropdown.value || beerDropdown.getAttribute('data-value') || '').toString().toLowerCase();
+    let wineValue = (wineDropdown.value || wineDropdown.getAttribute('data-value') || '').toString().toLowerCase();
+    let liquorValue = (liquorDropdown.value || liquorDropdown.getAttribute('data-value') || '').toString().toLowerCase();
+
+    let errorMessages = [];
+
+    // Check store name for alcohol-related keywords
+    if (storeName.includes("beer")) {
+        if (beerValue !== "yes") {
+            errorMessages.push("❌ Beer should be 'Yes' when store name contains 'Beer'");
+        }
+    }
+
+    if (storeName.includes("wine")) {
+        if (wineValue !== "yes") {
+            errorMessages.push("❌ Wine should be 'Yes' when store name contains 'Wine'");
+        }
+    }
+
+    if (storeName.includes("liquor") || storeName.includes("spirits") || storeName.includes("cocktail")) {
+        if (liquorValue !== "yes") {
+            errorMessages.push("❌ Liquor should be 'Yes' when store name contains 'Liquor/Spirits/Cocktail'");
+        }
+    }
+
+    if (errorMessages.length > 0) {
+        // Show all errors at once
+        errorMessages.forEach(msg => {
+            createTooltip(storeNameInput, msg, false);
+        });
+        return errorMessages;
+    }
+    return null;
+}
+
+// 🔹 Function to find Store Name input field
+function findStoreNameInput() {
+    let labels = document.querySelectorAll("label, span");
+    for (let label of labels) {
+        if (label.innerText.trim() === "Store Name:") {
+            let input = label.closest("div")?.querySelector("input");
+            if (input) {
+                console.log("✅ Found Store Name input!");
+                return input;
+            }
+        }
+    }
+    console.error("❌ Store Name input not found.");
+    return null;
+}
+// 1. Update the configuration at the top
+const FOOD_TYPE_REQUIRED_CHANNELS = [
+    "[50]Dining",
+    "[51]Bar/Nightclub",
+    "[55]Caterers"
+];
+
+const FOOD_TYPE_REQUIRED_SUBCHANNELS = [
+    "[H]Restaurant NA"
+];
+
+// 2. Enhanced validation function
+function validateFoodTypeRequirements() {
+    // Skip if no channel/subchannel data available
+    if (!lastKnownTradeChannel && !lastKnownSubChannel) return null;
+    
+    // Check Trade Channel requirements
+    const channelRequiresFoodType = FOOD_TYPE_REQUIRED_CHANNELS.some(channel => 
+        lastKnownTradeChannel && lastKnownTradeChannel.includes(channel)
+    );
+    
+    // Check Sub Channel requirements
+    const subChannelRequiresFoodType = FOOD_TYPE_REQUIRED_SUBCHANNELS.some(subChannel => 
+        lastKnownSubChannel && lastKnownSubChannel.includes(subChannel)
+    );
+    
+    // Skip validation if no requirements met
+    if (!channelRequiresFoodType && !subChannelRequiresFoodType) return null;
+
+    const foodTypeInput = findExtJSComboBox("Food Type:");
+    if (!foodTypeInput) {
+        console.log("Food Type field not found");
+        return null;
+    }
+
+    const foodType = foodTypeInput.value || foodTypeInput.getAttribute('data-value') || '';
+    
+    if (!foodType.trim()) {
+        let message = "❌ Food Type is required";
+        if (channelRequiresFoodType) {
+            message += ` for ${lastKnownTradeChannel.split(']')[1]}`;
+        }
+        if (subChannelRequiresFoodType) {
+            message += ` for Sub Channel: ${lastKnownSubChannel.split(']')[1]}`;
+        }
+        
+        createTooltip(foodTypeInput, message, false);
+        return message;
+    }
+    return null;
+}
+
+// 3. Update the tracking function (optional improvement)
+function trackTradeChannel() {
+    const tradeChannelInput = findExtJSComboBox("Trade Channel:");
+    if (tradeChannelInput) {
+        // Immediate update
+        lastKnownTradeChannel = tradeChannelInput.value || tradeChannelInput.getAttribute('data-value') || '';
+
+        // Change listener
+        tradeChannelInput.addEventListener("change", function(e) {
+            lastKnownTradeChannel = e.target.value || e.target.getAttribute('data-value') || '';
+            console.log("Tracking Trade Channel:", lastKnownTradeChannel);
+            validateFoodTypeRequirements();
+            validatePharmacyForRestrictedChannels();
+            validateCannabisForRestrictedStates();
+            validateMedicalCannabisRequirement();
+            // validatePhoneNumberForOperatingStores();
+        });
+    }
+}
+let lastKnownSubChannel = null;
+
+function trackSubChannel() {
+    const subChannelInput = findExtJSComboBox("Sub Channel:");
+    if (subChannelInput) {
+        // Immediate update
+        lastKnownSubChannel = subChannelInput.value || subChannelInput.getAttribute('data-value') || '';
+        
+        // Change listener
+        subChannelInput.addEventListener("change", function(e) {
+            lastKnownSubChannel = e.target.value || e.target.getAttribute('data-value') || '';
+            console.log("Tracking Sub Channel:", lastKnownSubChannel);
+            validateFoodTypeRequirements();
+            validateGasForGroceryStores();
+            validateHighVolCig();
+        });
+    }
+}
+
+// 1. Add to your global variables at the top
+const HIGH_VOL_CIG_REQUIRED_SUBCHANNELS = ["[4]Cigarette Outlets - Conventional"];
+
+
+// 2. Add new validation function
+function validateHighVolCig() {
+    // Skip if no Sub Channel tracked yet
+    if (!lastKnownSubChannel) return null;
+    
+    // Check if current subchannel requires High Vol Cig validation
+    const requiresValidation = HIGH_VOL_CIG_REQUIRED_SUBCHANNELS.some(subChannel => 
+        lastKnownSubChannel.includes(subChannel)
+    );
+    
+    if (!requiresValidation) return null;
+
+    const highVolCigInput = findExtJSComboBox("High Vol Cig:");
+    if (!highVolCigInput) {
+        console.log(`High Vol Cig field not found for ${lastKnownSubChannel}`);
+        return null;
+    }
+
+    const highVolCig = highVolCigInput.value || highVolCigInput.getAttribute('data-value') || '';
+    
+    if (highVolCig.toLowerCase() !== "yes") {
+        const message = "❌ High Vol Cig must be 'Yes' for Cigarette Outlets";
+        createTooltip(highVolCigInput, message, false);
+        return message;
+    }
+    return null;
+}
+
+// Add this with your other constants
+const GROCERY_STORE_SUBCHANNELS = [
+    "[1]Grocery Stores - Limited Assortment",
+    "[2]Grocery Stores - Natural/Gourmet Foods",
+    "[3]Grocery Stores - Warehouse/C&C"
+];
+
+// Add this validation function
+function validateGasForGroceryStores() {
+    if (!lastKnownSubChannel) return null;
+    
+    const isGroceryStore = GROCERY_STORE_SUBCHANNELS.some(subChannel => 
+        lastKnownSubChannel.includes(subChannel)
+    );
+    
+    if (!isGroceryStore) return null;
+
+    const gasInput = findExtJSComboBox("Gas:");
+    if (!gasInput) {
+        console.log("Gas field not found");
+        return null;
+    }
+
+    const gasValue = gasInput.value || gasInput.getAttribute('data-value') || '';
+    
+    if (gasValue.trim().toLowerCase() !== 'no') {
+        const subChannelName = lastKnownSubChannel.split(']')[1];
+        const message = `❌ Gas must be "No" for ${subChannelName}`;
+        
+        createTooltip(gasInput, message, false);
+        return message;
+    }
+    
+    return null;
+}
+
+
+// 🔹 Constants for Unverifiable Store requirements
+const UNVERIFIABLE_REQUIREMENTS = {
+    "Trade Type:": "[C]Retail Trade",
+    "Trade Channel:": "[09]Unknown Retailers",
+    "Sub Channel:": "[X]Retail Other",
+    "Exception Code:": "777793Z"
+};
+
+// 🔹 Function to validate a single field for Unverifiable Store
+function validateUnverifiableField(fieldName, expectedValue) {
+    return function() {
+        let storeStatusInput = findExtJSComboBox("Store Status:");
+        if (!storeStatusInput) return null;
+
+        let storeStatus = storeStatusInput.value || storeStatusInput.getAttribute('data-value') || '';
+        if (!storeStatus.includes("[UV] Unverifiable")) return null;
+
+        let fieldInput = findExtJSComboBox(fieldName);
+        if (!fieldInput) return null;
+
+        let fieldValue = fieldInput.value || fieldInput.getAttribute('data-value') || '';
+        if (!fieldValue.includes(expectedValue)) {
+            const message = `❌ Invalid ${fieldName.replace(':', '')}: Must be ${expectedValue} for Unverifiable stores!`;
+            createTooltip(fieldInput, message, false);
+            return message;
+        }
+        return null;
+    };
+}
+
+// 🔹 Function to validate Store Name field
+function validateStoreName(event) {
+    if (!event || !event.target) return null;
+
+    let text = event.target.value;
+    let errorMessages = [];
+
+    // Check for leading space
+    if (text.startsWith(' ')) {
+        errorMessages.push("❌ Store Name should not start with a space");
+    }
+
+    // Check for trailing space
+    if (text.endsWith(' ')) {
+        errorMessages.push("❌ Store Name should not end with a space");
+    }
+
+    // Check for double spaces
+    if (text.includes('  ')) {
+        errorMessages.push("❌ Store Name should not contain double spaces");
+    }
+
+    // Trim the text for remaining validations
+    text = text.trim();
+
+    // List of restricted words (case insensitive)
+    const restrictedWords = [
+        'accounting', 'advertising', 'billing', 'co', 'company', 'cos', 
+        'dist', 'distribution', 'distributor', 'ent', 'enterprises',
+        'headquarters', 'hq', 'inc', 'llc', 'region', 'warehouse', 'whse'
+    ];
+
+    // Check for restricted words
+    const hasRestrictedWord = restrictedWords.some(word => {
+        const regex = new RegExp(`\\b${word}\\b`, 'i');
+        return regex.test(text);
+    });
+
+    if (hasRestrictedWord) {
+        errorMessages.push("❌ Store Name contains restricted word - Use proper store name instead of company/office terms");
+    }
+
+    // Check for special characters
+    if (/[^\w\s&'-]/.test(text)) {
+        errorMessages.push("❌ Store Name should only contain letters, numbers, spaces, &, ', or -");
+    }
+
+    // Check proper case formatting
+    const words = text.split(/\s+/).filter(word => word.length > 0); // Filter out empty strings from multiple spaces
+    for (let word of words) {
+        // Skip words starting with &
+        if (word.startsWith('&')) continue;
+        
+        // Check if word starts with capital letter (after handling apostrophes/hyphens)
+        const firstLetter = word.replace(/^['-]+/, '')[0];
+        if (!firstLetter || firstLetter !== firstLetter.toUpperCase()) {
+            errorMessages.push("❌ Store Name Should Be In Proper Case (Each Word Capitalized)");
+            break;
+        }
+    }
+
+    // Display errors if any
+    if (errorMessages.length > 0) {
+        // Remove duplicate error messages
+        const uniqueErrors = [...new Set(errorMessages)];
+
+        uniqueErrors.forEach(msg => {
+            createTooltip(event.target, msg, false);
+        });
+        return uniqueErrors;
+    }
+    
+    // If valid, remove any existing tooltips
+    removeExistingTooltip(event.target);
+    return null;
+}
+const PHARMACY_REQUIRED_CHANNEL = "[03]Drug Stores and Pharmacies";
+const INVALID_PHARMACY_VALUES = ["No", ""];
+
+function validatePharmacyForDrugStores() {
+    // Only validate if current Trade Channel is Drug Stores
+    if (!lastKnownTradeChannel || !lastKnownTradeChannel.includes(PHARMACY_REQUIRED_CHANNEL)) {
+        return null;
+    }
+
+    const pharmacyInput = findExtJSComboBox("Pharmacy:");
+    if (!pharmacyInput) {
+        console.log("Pharmacy field not found");
+        return null;
+    }
+
+    const pharmacyValue = pharmacyInput.value || pharmacyInput.getAttribute('data-value') || '';
+    
+    if (INVALID_PHARMACY_VALUES.includes(pharmacyValue)) {
+        const message = "❌ Pharmacy must be specified for Drug Stores and Pharmacies";
+        createTooltip(pharmacyInput, message, false);
+        return message;
+    }
+    return null;
+}
+// 1. Add these constants at the top with other globals
+const ALCOHOL_RESTRICTED_CHANNELS = [
+    "[06]Category Killers",
+    "[11]Pet",
+    "[13]Fulfillment",
+    "[14]Cannabis",
+    "[08]Mass Merchandise Stores"
+];
+
+const ALCOHOL_FIELDS = ["Beer:", "Wine:", "Liquor:"];
+
+// 2. Add this new validation function
+function validateAlcoholForRestrictedChannels() {
+    if (!lastKnownTradeChannel) return null;
+    
+    // Check if current channel restricts alcohol
+    const restrictsAlcohol = ALCOHOL_RESTRICTED_CHANNELS.some(channel => 
+        lastKnownTradeChannel.includes(channel)
+    );
+    
+    if (!restrictsAlcohol) return null;
+
+    const errorMessages = [];
+    
+    ALCOHOL_FIELDS.forEach(fieldName => {
+        const fieldInput = findExtJSComboBox(fieldName);
+        if (!fieldInput) {
+            console.log(`${fieldName} field not found`);
+            return;
+        }
+
+        const fieldValue = (fieldInput.value || fieldInput.getAttribute('data-value') || '').toLowerCase();
+        
+        if (fieldValue === "yes" || fieldValue === "") {
+            const message = `❌ ${fieldName.replace(':', '')} must be "No" for ${lastKnownTradeChannel.split(']')[1]}`;
+            createTooltip(fieldInput, message, false);
+            errorMessages.push(message);
+        }
+    });
+
+    return errorMessages.length > 0 ? errorMessages : null;
+}
+const PHARMACY_RESTRICTED_CHANNELS = [
+    "[07]Convenience Stores",
+    "[06]Category Killers", 
+    "[14]Cannabis"
+];
+function validatePharmacyForRestrictedChannels() {
+    // Skip if no Trade Channel tracked yet
+    if (!lastKnownTradeChannel) return null;
+    
+    // Check if current channel restricts Pharmacy
+    const restrictsPharmacy = PHARMACY_RESTRICTED_CHANNELS.some(channel => 
+        lastKnownTradeChannel.includes(channel)
+    );
+    
+    if (!restrictsPharmacy) return null;
+
+    const pharmacyInput = findExtJSComboBox("Pharmacy:");
+    if (!pharmacyInput) {
+        console.log(`Pharmacy field not found for ${lastKnownTradeChannel}`);
+        return null;
+    }
+
+    const pharmacyValue = pharmacyInput.value || pharmacyInput.getAttribute('data-value') || '';
+    
+    if (pharmacyValue.toLowerCase() === "yes"||pharmacyValue.toLowerCase() === "") {
+        const message = `❌ Pharmacy must be "No" for ${lastKnownTradeChannel.split(']')[1]}`;
+        createTooltip(pharmacyInput, message, false);
+        return message;
+    }
+    return null;
+}
+// 🔹 Function to validate Line 1 address field
+function validateLine1Address(event) {
+    if (!event || !event.target) return null;
+
+    // Find the Address Quality field
+    const addressQualityInput = findExtJSComboBox("Address Quality:");
+    if (!addressQualityInput) {
+        console.error("Address Quality field not found");
+        return null;
+    }
+
+    // Get Address Quality value
+    const addressQuality = addressQualityInput.value || addressQualityInput.getAttribute('data-value') || '';
+    
+    // Only validate if Address Quality is Non Standardized
+    if (!addressQuality.includes("Non Standardized")) {
+        removeExistingTooltip(event.target); // Remove tooltip if exists
+        return null;
+    }
+
+    let text = event.target.value.trim();
+    let errorMessages = [];
+
+    // Check if any invalid keyword exists in the "Line 1" field
+    if (addressKeywords.some(keyword => {
+        // Use regex to match whole words only
+        const regex = new RegExp(`\\b${keyword}\\b`, 'i');
+        return regex.test(text);
+    })) {
+        errorMessages.push("❌ Address Rule Violation: 'Line 1' of Non-Standardized addresses should not contain road types or directions!");
+    }
+
+    if (errorMessages.length > 0) {
+        errorMessages.forEach(msg => {
+            createTooltip(event.target, msg, false);
+        });
+        return errorMessages;
+    }
+    
+    // If valid, remove any existing tooltip
+    removeExistingTooltip(event.target);
+    return null;
+}
+
+const ILLEGAL_CANNABIS_STATES = [
+    'Georgia', 'Idaho', 'Indiana', 'Kansas', 'Kentucky',
+    'North Carolina', 'Nebraska', 'South Carolina', 'Tennessee',
+    'Wisconsin', 'Wyoming'
+];
+
+const CANNABIS_TRADE_CHANNEL = "[14]Cannabis";
+let lastKnownState = null;
+
+function trackState() {
+    // Adjust selector to match your state input field (e.g., by name, ID, or label)
+    const stateInput = document.querySelector('input[name="state"], #state, input[data-label="State"]');
+    
+    if (stateInput) {
+        // Immediate update
+        lastKnownState = stateInput.value || '';
+        
+        // Change listener
+        stateInput.addEventListener("input", function(e) {
+            lastKnownState = e.target.value || '';
+            console.log("Tracking State:", lastKnownState);
+            validateCannabisForRestrictedStates();
+            validateMedicalCannabisRequirement();
+        });
+        
+        // Also validate on blur
+        stateInput.addEventListener("blur", validateCannabisForRestrictedStates);
+        stateInput.addEventListener("blur", function() {
+            validateMedicalCannabisRequirement(); // Add this line
+        });
+    }
+}
+function validateCannabisForRestrictedStates() {
+    // Skip if no trade channel or state data available
+    if (!lastKnownTradeChannel || !lastKnownState) return null;
+    
+    // Check if trade channel is Cannabis
+    const isCannabisChannel = lastKnownTradeChannel.includes(CANNABIS_TRADE_CHANNEL);
+    if (!isCannabisChannel) return null;
+
+    // Normalize state name (trim and capitalize first letter)
+    const normalizedState = lastKnownState.trim().replace(/^\w/, c => c.toUpperCase());
+    
+    // Check if state is in restricted list
+    const isIllegalState = ILLEGAL_CANNABIS_STATES.includes(normalizedState);
+    if (!isIllegalState) return null;
+
+    // Find the Trade Channel input to attach the error
+    const tradeChannelInput = findExtJSComboBox("Trade Channel:");
+    if (!tradeChannelInput) {
+        console.log("Trade Channel field not found");
+        return null;
+    }
+
+    const message = `❌ Cannabis is illegal in ${normalizedState}`;
+    createTooltip(tradeChannelInput, message, false);
+    return message;
+}
+const MEDICAL_CANNABIS_STATES = [
+    'Alabama', 'Arkansas', 'District of Columbia', 'Delaware',
+    'Florida', 'Hawaii', 'Iowa', 'Louisiana', 'Maryland',
+    'Minnesota', 'Mississippi', 'North Dakota', 'New Hampshire',
+    'Oklahoma', 'Pennsylvania', 'South Dakota', 'Texas',
+    'Utah', 'Virginia', 'West Virginia'
+];
+
+const MEDICAL_CANNABIS_SUBCHANNEL = "[1]Medical";
+function validateMedicalCannabisRequirement() {
+    // Skip if no trade channel, state, or subchannel data available
+    if (!lastKnownTradeChannel || !lastKnownState || !lastKnownSubChannel) return null;
+    
+    // Check if trade channel is Cannabis
+    const isCannabisChannel = lastKnownTradeChannel.includes(CANNABIS_TRADE_CHANNEL);
+    if (!isCannabisChannel) return null;
+
+    // Normalize state name (trim and capitalize properly)
+    const normalizedState = lastKnownState.trim()
+        .replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+    
+    // Check if state is in medical-only list
+    const isMedicalOnlyState = MEDICAL_CANNABIS_STATES.includes(normalizedState);
+    if (!isMedicalOnlyState) return null;
+
+    // Check if subchannel is correct
+    const isCorrectSubChannel = lastKnownSubChannel.includes(MEDICAL_CANNABIS_SUBCHANNEL);
+    
+    if (!isCorrectSubChannel) {
+        const subChannelInput = findExtJSComboBox("Sub Channel:");
+        if (!subChannelInput) {
+            console.log("Sub Channel field not found");
+            return null;
+        }
+
+        const message = `❌ Only "${MEDICAL_CANNABIS_SUBCHANNEL.split(']')[1]}" subchannel is allowed for Cannabis in ${normalizedState}`;
+        createTooltip(subChannelInput, message, false);
+        return message;
+    }
+    
+    // Clear any existing error if validation passes
+    const subChannelInput = findExtJSComboBox("Sub Channel:");
+    if (subChannelInput) removeTooltip(subChannelInput);
+    return null;
+}
+
+// const UNKNOWN_RETAILER_CHANNELS = [
+//     "[09]Unknown Retailers",
+//     "[59]Unknown On-Premise"
+// ];
+// const OPERATING_STATUS = "[OP] Open, Operating";
+
+// // Remove the global tracking variables and use real-time value checking instead
+// function validatePhoneNumberForOperatingStores() {
+//     // Get current values in real-time instead of relying on tracked variables
+//     const storeStatusInput = findExtJSComboBox("Store Status:");
+//     const tradeChannelInput = findExtJSComboBox("Trade Channel:");
+//     const phoneNumberInput = document.querySelector('input[name="phoneNumber"], input[type="tel"]');
+//     const futureChangesInput = document.querySelector('input[name="storeNotes"], textarea[name="storeNotes"]');
+
+//     if (!storeStatusInput || !tradeChannelInput || !phoneNumberInput || !futureChangesInput) {
+//         return null;
+//     }
+
+//     // Get current values
+//     const storeStatus = storeStatusInput.value || storeStatusInput.getAttribute('data-value') || '';
+//     const tradeChannel = tradeChannelInput.value || tradeChannelInput.getAttribute('data-value') || '';
+//     const phoneNumber = phoneNumberInput.value || '';
+//     const futureChangesNote = futureChangesInput.value || '';
+
+//     console.log("Phone Validation - Status:", storeStatus, "Channel:", tradeChannel, "Phone:", phoneNumber, "Note:", futureChangesNote);
+
+//     // Check if store is operating
+//     const isOperating = storeStatus.includes(OPERATING_STATUS);
+//     if (!isOperating) {
+//         removeExistingTooltip(futureChangesInput);
+//         return null;
+//     }
+    
+//     // Check if trade channel is NOT unknown type
+//     const isUnknownChannel = UNKNOWN_RETAILER_CHANNELS.some(channel => 
+//         tradeChannel.includes(channel)
+//     );
+//     if (isUnknownChannel) {
+//         removeExistingTooltip(futureChangesInput);
+//         return null;
+//     }
+    
+//     // Check if phone number is empty AND future changes note is also empty
+//     if (phoneNumber.trim() === "" && futureChangesNote.trim() === "") {
+//         const errorMessage = "❌ Null phone number - Need to add explanation in Future Changes Note";
+//         createTooltip(futureChangesInput, errorMessage, false);
+//         return errorMessage;
+//     }
+    
+//     // If either phone number OR future changes note has content, remove any existing tooltip
+//     if (phoneNumber.trim() !== "" || futureChangesNote.trim() !== "") {
+//         removeExistingTooltip(futureChangesInput);
+//     }
+    
+//     return null;
+// }
+
+// // Simplified tracking functions - just trigger validation on changes
+// function trackPhoneNumber() {
+//     const phoneNumberInput = document.querySelector('input[name="phoneNumber"], input[type="tel"]');
+//     if (phoneNumberInput) {
+//         phoneNumberInput.addEventListener("input", validatePhoneNumberForOperatingStores);
+//         phoneNumberInput.addEventListener("change", validatePhoneNumberForOperatingStores);
+//         phoneNumberInput.addEventListener("blur", validatePhoneNumberForOperatingStores);
+//     }
+// }
+
+// function trackStoreStatus() {
+//     const statusInput = findExtJSComboBox("Store Status:");
+//     if (statusInput) {
+//         statusInput.addEventListener("change", validatePhoneNumberForOperatingStores);
+//         statusInput.addEventListener("blur", validatePhoneNumberForOperatingStores);
+//     }
+// }
+
+// function trackFutureChangesNote() {
+//     const futureChangesInput = document.querySelector('input[name="storeNotes"], textarea[name="storeNotes"]');
+//     if (futureChangesInput) {
+//         futureChangesInput.addEventListener("input", validatePhoneNumberForOperatingStores);
+//         futureChangesInput.addEventListener("change", validatePhoneNumberForOperatingStores);
+//         futureChangesInput.addEventListener("blur", validatePhoneNumberForOperatingStores);
+//     }
+// }
+
+// // Enhanced function to find fields with better fallbacks
+// function findPhoneNumberInput() {
+//     // Try multiple selectors
+//     const selectors = [
+//         'input[name="phoneNumber"]',
+//         'input[type="tel"]',
+//         'input[placeholder*="phone" i]',
+//         'input[id*="phone" i]',
+//         'input[name*="phone" i]'
+//     ];
+    
+//     for (const selector of selectors) {
+//         const input = document.querySelector(selector);
+//         if (input) {
+//             console.log("✅ Found phone number input:", selector);
+//             return input;
+//         }
+//     }
+//     console.error("❌ Phone number input not found");
+//     return null;
+// }
+
+// function findFutureChangesInput() {
+//     // Try multiple selectors
+//     const selectors = [
+//         'input[name="storeNotes"]',
+//         'textarea[name="storeNotes"]',
+//         'input[placeholder*="note" i]',
+//         'textarea[placeholder*="note" i]',
+//         'input[id*="note" i]',
+//         'textarea[id*="note" i]',
+//         'input[name*="note" i]',
+//         'textarea[name*="note" i]'
+//     ];
+    
+//     for (const selector of selectors) {
+//         const input = document.querySelector(selector);
+//         if (input) {
+//             console.log("✅ Found future changes input:", selector);
+//             return input;
+//         }
+//     }
+//     console.error("❌ Future changes note input not found");
+//     return null;
+// }
+// 🔹 Attach event listeners to inputs
+function attachListeners() {
+    if (validationInterval) {
+        clearInterval(validationInterval);
+    }
+
+    // Start new interval
+    validationInterval = setInterval(validateAllFields, VALIDATION_INTERVAL);
+
+    let storeNameInput = findStoreNameInput();
+    if (storeNameInput) {
+        storeNameInput.removeEventListener("input", validateStoreName);
+        storeNameInput.addEventListener("input", validateStoreName);
+
+        storeNameInput.removeEventListener("input", validateStoreNameAndTradeChannel);
+        storeNameInput.addEventListener("input", validateStoreNameAndTradeChannel);
+
+        storeNameInput.removeEventListener("input", validatePetTradeChannelAndStoreName);
+        storeNameInput.addEventListener("input", validatePetTradeChannelAndStoreName);
+
+        storeNameInput.removeEventListener("blur", validateStoreNameAndTradeChannel);
+        storeNameInput.addEventListener("blur", validateStoreNameAndTradeChannel);
+
+        storeNameInput.removeEventListener("blur", validatePetTradeChannelAndStoreName);
+        storeNameInput.addEventListener("blur", validatePetTradeChannelAndStoreName);
+
+        storeNameInput.removeEventListener("input", validateFarmFeedSubChannelAndStoreName);
+        storeNameInput.addEventListener("input", validateFarmFeedSubChannelAndStoreName);
+
+        storeNameInput.removeEventListener("blur", validateFarmFeedSubChannelAndStoreName);
+        storeNameInput.addEventListener("blur", validateFarmFeedSubChannelAndStoreName);
+
+        storeNameInput.removeEventListener("input", validateVapeStoreSubChannelAndStoreName);
+        storeNameInput.addEventListener("input", validateVapeStoreSubChannelAndStoreName);
+
+        storeNameInput.removeEventListener("blur", validateVapeStoreSubChannelAndStoreName);
+        storeNameInput.addEventListener("blur", validateVapeStoreSubChannelAndStoreName);
+
+        // storeNameInput.removeEventListener("input", validateMarketingGroupAndStoreName);
+        // storeNameInput.addEventListener("input", validateMarketingGroupAndStoreName);
+
+        // storeNameInput.removeEventListener("blur", validateMarketingGroupAndStoreName);
+        // storeNameInput.addEventListener("blur", validateMarketingGroupAndStoreName);
+
+        storeNameInput.removeEventListener("input", validatePetSuperStoreName);
+        storeNameInput.addEventListener("input", validatePetSuperStoreName);
+
+        storeNameInput.removeEventListener("blur", validatePetSuperStoreName);
+        storeNameInput.addEventListener("blur", validatePetSuperStoreName);
+
+        storeNameInput.removeEventListener("input", validateAlcoholStoreName);
+        storeNameInput.addEventListener("input", validateAlcoholStoreName);
+
+        storeNameInput.removeEventListener("blur", validateAlcoholStoreName);
+        storeNameInput.addEventListener("blur", validateAlcoholStoreName);
+    }
+
+    // Add listeners for each alcohol dropdown
+    const alcoholDropdowns = ["Beer:", "Wine:", "Liquor:"];
+    alcoholDropdowns.forEach(label => {
+        let dropdown = findExtJSComboBox(label);
+        if (dropdown) {
+            dropdown.removeEventListener("change", validateAlcoholStoreName);
+            dropdown.addEventListener("change", validateAlcoholStoreName);
+
+            dropdown.removeEventListener("blur", validateAlcoholStoreName);
+            dropdown.addEventListener("blur", validateAlcoholStoreName);
+        }
+    });
+    trackTradeChannel();
+    trackSubChannel();
+    trackState();
+    // trackPhoneNumber();
+    // trackStoreStatus();
+    // trackFutureChangesNote();
+    const gasInput = findExtJSComboBox("Gas:");
+    if (gasInput) {
+        gasInput.addEventListener("change", validateGasForGroceryStores);
+        gasInput.addEventListener("blur", validateGasForGroceryStores);
+    }
+        const highVolCigInput = findExtJSComboBox("High Vol Cig:");
+    if (highVolCigInput) {
+        highVolCigInput.addEventListener("change", validateHighVolCig);
+        highVolCigInput.addEventListener("blur", validateHighVolCig);
+    }
+    // Set up Food Type validation triggers
+    const foodTypeInput = findExtJSComboBox("Food Type:");
+    if (foodTypeInput) {
+        foodTypeInput.addEventListener("change", validateFoodTypeRequirements);
+        foodTypeInput.addEventListener("blur", validateFoodTypeRequirements);
+    }
+    const pharmacyInput = findExtJSComboBox("Pharmacy:");
+    if (pharmacyInput) {
+        pharmacyInput.addEventListener("change", validatePharmacyForDrugStores);
+        pharmacyInput.addEventListener("blur", validatePharmacyForDrugStores);
+
+        pharmacyInput.addEventListener("change", validatePharmacyForRestrictedChannels);
+        pharmacyInput.addEventListener("blur", validatePharmacyForRestrictedChannels);
+    }
+        ALCOHOL_FIELDS.forEach(fieldName => {
+        const fieldInput = findExtJSComboBox(fieldName);
+        if (fieldInput) {
+            fieldInput.addEventListener("change", validateAlcoholForRestrictedChannels);
+            fieldInput.addEventListener("blur", validateAlcoholForRestrictedChannels);
+        }
+    });
+
+
+let marketingGroupInput = findMarketingGroupInput();
+if (marketingGroupInput) {
+    marketingGroupInput.removeEventListener("change", validateMarketingGroupAndStoreName);
+    marketingGroupInput.addEventListener("change", validateMarketingGroupAndStoreName);
+
+    marketingGroupInput.removeEventListener("blur", validateMarketingGroupAndStoreName);
+    marketingGroupInput.addEventListener("blur", validateMarketingGroupAndStoreName);
+
+    // Add these lines back for Report To validation:
+    marketingGroupInput.removeEventListener("change", validateReportToAndMarketingGroup);
+    marketingGroupInput.addEventListener("change", validateReportToAndMarketingGroup);
+
+    marketingGroupInput.removeEventListener("blur", validateReportToAndMarketingGroup);
+    marketingGroupInput.addEventListener("blur", validateReportToAndMarketingGroup);
+}
+    // Add separate listeners for each Unverifiable Store requirement
+    Object.entries(UNVERIFIABLE_REQUIREMENTS).forEach(([fieldName, expectedValue]) => {
+        let input = findExtJSComboBox(fieldName);
+        if (input) {
+            const validationFn = validateUnverifiableField(fieldName, expectedValue);
+
+            // Remove existing listeners first
+            input.removeEventListener("change", validationFn);
+            input.removeEventListener("blur", validationFn);
+
+            // Add new listeners
+            input.addEventListener("change", validationFn);
+            input.addEventListener("blur", validationFn);
+
+            // Also validate when Store Status changes
+            let storeStatusInput = findExtJSComboBox("Store Status:");
+            if (storeStatusInput) {
+                storeStatusInput.removeEventListener("change", validationFn);
+                storeStatusInput.addEventListener("change", validationFn);
+            }
+        }
+    });
+
+    let line1Input = findLine1Input();
+    if (line1Input) {
+        storeStatusInput.removeEventListener("change", validateStoreStatusAndVSS);
+        storeStatusInput.addEventListener("change", validateStoreStatusAndVSS);
+        line1Input.removeEventListener("input", validateLine1Address);
+        line1Input.addEventListener("input", validateLine1Address);
+    }
+
+    let storeStatusInput = findExtJSComboBox("Store Status:");
+    if (storeStatusInput) {
+
+        storeStatusInput.removeEventListener("change", validateExceptionCodeAndStoreStatus);
+        storeStatusInput.addEventListener("change", validateExceptionCodeAndStoreStatus);
+
+        storeStatusInput.removeEventListener("blur", validateStoreStatusAndVSS);
+        storeStatusInput.addEventListener("blur", validateStoreStatusAndVSS);
+
+        storeStatusInput.removeEventListener("blur", validateExceptionCodeAndStoreStatus);
+        storeStatusInput.addEventListener("blur", validateExceptionCodeAndStoreStatus);
+
+        storeNameInput.removeEventListener("input", validateVetClinicSubChannelAndStoreName);
+        storeNameInput.addEventListener("input", validateVetClinicSubChannelAndStoreName);
+
+        storeNameInput.removeEventListener("blur", validateVetClinicSubChannelAndStoreName);
+        storeNameInput.addEventListener("blur", validateVetClinicSubChannelAndStoreName);
+
+        storeStatusInput.removeEventListener("change", validateDuplicateStoreStatusAndExceptionCode);
+        storeStatusInput.addEventListener("change", validateDuplicateStoreStatusAndExceptionCode);
+
+        storeStatusInput.removeEventListener("blur", validateDuplicateStoreStatusAndExceptionCode);
+        storeStatusInput.addEventListener("blur", validateDuplicateStoreStatusAndExceptionCode);
+
+        storeStatusInput.addEventListener("change", validateStoreOpenDate);
+        storeStatusInput.addEventListener("blur", validateStoreOpenDate);
+        
+    }
+    const storeOpenDateInput = findStoreOpenDateInput();
+    if (storeOpenDateInput) {
+        storeOpenDateInput.addEventListener("input", validateStoreOpenDate);
+        storeOpenDateInput.addEventListener("change", validateStoreOpenDate);
+        storeOpenDateInput.addEventListener("blur", validateStoreOpenDate);
+    }
+    
+
+    let verifiedStatusInput = findExtJSComboBox("Verified Store Status Source:");
+    if (verifiedStatusInput) {
+        verifiedStatusInput.removeEventListener("change", validateStoreStatusAndVSS);
+        verifiedStatusInput.addEventListener("change", validateStoreStatusAndVSS);
+
+        verifiedStatusInput.removeEventListener("blur", validateStoreStatusAndVSS);
+        verifiedStatusInput.addEventListener("blur", validateStoreStatusAndVSS);
+    }
+
+    let exceptionCodeInput = findExtJSComboBox("Exception Code:");
+    if (exceptionCodeInput) {
+        exceptionCodeInput.removeEventListener("change", validateExceptionCodeAndStoreStatus);
+        exceptionCodeInput.addEventListener("change", validateExceptionCodeAndStoreStatus);
+
+        exceptionCodeInput.removeEventListener("blur", validateExceptionCodeAndStoreStatus);
+        exceptionCodeInput.addEventListener("blur", validateExceptionCodeAndStoreStatus);
+
+        exceptionCodeInput.removeEventListener("change", validateDuplicateStoreStatusAndExceptionCode);
+        exceptionCodeInput.addEventListener("change", validateDuplicateStoreStatusAndExceptionCode);
+
+        exceptionCodeInput.removeEventListener("blur", validateDuplicateStoreStatusAndExceptionCode);
+        exceptionCodeInput.addEventListener("blur", validateDuplicateStoreStatusAndExceptionCode);
+    }
+
+    let tradeChannelInput = findExtJSComboBox("Trade Channel:");
+    if (tradeChannelInput) {
+        // tradeChannelInput.removeEventListener("change", validateTradeChannelAndReportTo);
+        // tradeChannelInput.addEventListener("change", validateTradeChannelAndReportTo);
+
+        tradeChannelInput.removeEventListener("change", validateTradeChannelAndStoreStatus);
+        tradeChannelInput.addEventListener("change", validateTradeChannelAndStoreStatus);
+
+        tradeChannelInput.removeEventListener("change", validateStoreNameAndTradeChannel);
+        tradeChannelInput.addEventListener("change", validateStoreNameAndTradeChannel);
+
+        // tradeChannelInput.removeEventListener("blur", validateTradeChannelAndReportTo);
+        // tradeChannelInput.addEventListener("blur", validateTradeChannelAndReportTo);
+
+        tradeChannelInput.removeEventListener("blur", validateTradeChannelAndStoreStatus);
+        tradeChannelInput.addEventListener("blur", validateTradeChannelAndStoreStatus);
+
+        tradeChannelInput.removeEventListener("blur", validateStoreNameAndTradeChannel);
+        tradeChannelInput.addEventListener("blur", validateStoreNameAndTradeChannel);
+
+        tradeChannelInput.removeEventListener("change", validatePetTradeChannelAndStoreName);
+        tradeChannelInput.addEventListener("change", validatePetTradeChannelAndStoreName);
+
+        tradeChannelInput.removeEventListener("blur", validatePetTradeChannelAndStoreName);
+        tradeChannelInput.addEventListener("blur", validatePetTradeChannelAndStoreName);
+
+                tradeChannelInput.addEventListener("change", validateCannabisForRestrictedStates);
+        tradeChannelInput.addEventListener("blur", validateCannabisForRestrictedStates);
+
+
+        // Add change listener for Trade Channel
+
+    }
+    // Add phone number validation listeners
+// const phoneNumberInput = document.querySelector('input[name="phoneNumber"], input[type="tel"]');
+// if (phoneNumberInput) {
+//     phoneNumberInput.addEventListener("change", validatePhoneNumberForOperatingStores);
+//     phoneNumberInput.addEventListener("blur", validatePhoneNumberForOperatingStores);
+// }
+
+// // Add future changes note validation listeners
+// const futureChangesInput = document.querySelector('input[name="storeNotes"], textarea[name="storeNotes"]');
+// if (futureChangesInput) {
+//     futureChangesInput.addEventListener("change", validatePhoneNumberForOperatingStores);
+//     futureChangesInput.addEventListener("blur", validatePhoneNumberForOperatingStores);
+// }
+
+// let immediateReportToInput = findExtJSComboBox("Immediate Report To:");
+// if (immediateReportToInput) {
+//     // Add these lines back for Report To validation:
+//     immediateReportToInput.removeEventListener("change", validateReportToAndMarketingGroup);
+//     immediateReportToInput.addEventListener("change", validateReportToAndMarketingGroup);
+
+//     immediateReportToInput.removeEventListener("blur", validateReportToAndMarketingGroup);
+//     immediateReportToInput.addEventListener("blur", validateReportToAndMarketingGroup);
+    
+//     // Also keep your existing Trade Channel validation if needed:
+//     immediateReportToInput.removeEventListener("change", validateTradeChannelAndReportTo);
+//     immediateReportToInput.addEventListener("change", validateTradeChannelAndReportTo);
+
+//     immediateReportToInput.removeEventListener("blur", validateTradeChannelAndReportTo);
+//     immediateReportToInput.addEventListener("blur", validateTradeChannelAndReportTo);
+// }
+
+    let subChannelInput = findExtJSComboBox("Sub Channel:");
+    if (subChannelInput) {
+        subChannelInput.removeEventListener("change", validateVetClinicSubChannelAndStoreName);
+        subChannelInput.addEventListener("change", validateVetClinicSubChannelAndStoreName);
+
+        subChannelInput.removeEventListener("blur", validateVetClinicSubChannelAndStoreName);
+        subChannelInput.addEventListener("blur", validateVetClinicSubChannelAndStoreName);
+
+        subChannelInput.removeEventListener("change", validateFarmFeedSubChannelAndStoreName);
+        subChannelInput.addEventListener("change", validateFarmFeedSubChannelAndStoreName);
+
+        subChannelInput.removeEventListener("blur", validateFarmFeedSubChannelAndStoreName);
+        subChannelInput.addEventListener("blur", validateFarmFeedSubChannelAndStoreName);
+
+        subChannelInput.removeEventListener("change", validateVapeStoreSubChannelAndStoreName);
+        subChannelInput.addEventListener("change", validateVapeStoreSubChannelAndStoreName);
+
+        subChannelInput.removeEventListener("blur", validateVapeStoreSubChannelAndStoreName);
+        subChannelInput.addEventListener("blur", validateVapeStoreSubChannelAndStoreName);
+
+        subChannelInput.removeEventListener("change", validatePetSuperStoreName);
+        subChannelInput.addEventListener("change", validatePetSuperStoreName);
+
+        subChannelInput.removeEventListener("blur", validatePetSuperStoreName);
+        subChannelInput.addEventListener("blur", validatePetSuperStoreName);
+    }
+    
+
+
+}
+
+// 🔹 Observe dynamic content
+function startObserver() {
+    attachListeners();
+    trackTradeChannel();
+
+    const observer = new MutationObserver(() => {
+        attachListeners();
+        trackTradeChannel();
+        trackSubChannel();
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+}
+
+// Run on page load
+document.addEventListener("DOMContentLoaded", startObserver);
+document.addEventListener("click", attachListeners);
