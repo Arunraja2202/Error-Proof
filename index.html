@@ -2,60 +2,214 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Error Proof Validator</title>
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
 body{
-    font-family: Arial, sans-serif;
-    max-width:600px;
-    margin:50px auto;
-    padding:20px;
-    line-height:1.6;
+font-family:Arial,sans-serif;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:30px;
+
+background:linear-gradient(
+135deg,
+#1a2980,
+#26d0ce
+);
+
+color:#333;
+}
+
+.container{
+width:100%;
+max-width:750px;
+
+background:rgba(255,255,255,.95);
+
+backdrop-filter:blur(10px);
+
+padding:40px;
+
+border-radius:20px;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.2);
+
+animation:fadeIn .5s ease;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+h1{
+font-size:34px;
+margin-bottom:20px;
+text-align:center;
+color:#1a2980;
+}
+
+.description{
+font-size:16px;
+line-height:1.8;
+text-align:center;
+margin-bottom:25px;
+}
+
+.install-box{
+background:#f5f8ff;
+padding:20px;
+border-radius:10px;
+margin:25px 0;
+border-left:5px solid #007bff;
+}
+
+ol{
+margin-left:20px;
+line-height:2;
 }
 
 .bookmarklet-link{
-    display:inline-block;
-    padding:12px 22px;
-    background:#007bff;
-    color:#fff;
-    text-decoration:none;
-    border-radius:6px;
-    margin:20px 0;
-    font-weight:bold;
+display:block;
+width:fit-content;
+margin:30px auto;
+
+padding:14px 30px;
+
+background:linear-gradient(
+90deg,
+#007bff,
+#0056d6
+);
+
+color:white;
+
+text-decoration:none;
+
+border-radius:50px;
+
+font-size:16px;
+font-weight:bold;
+
+transition:all .3s ease;
+
+box-shadow:
+0 6px 18px rgba(0,123,255,.4);
 }
 
 .bookmarklet-link:hover{
-    background:#0056b3;
+
+transform:translateY(-3px);
+
+box-shadow:
+0 10px 25px rgba(0,123,255,.5);
 }
+
+.info{
+text-align:center;
+margin-top:20px;
+font-size:14px;
+color:#666;
+line-height:1.8;
+}
+
+footer{
+margin-top:35px;
+padding-top:20px;
+border-top:1px solid #ddd;
+text-align:center;
+font-size:14px;
+color:#555;
+}
+
+footer a{
+color:#007bff;
+text-decoration:none;
+font-weight:bold;
+}
+
+footer a:hover{
+text-decoration:underline;
+}
+
 </style>
 </head>
 
 <body>
 
+<div class="container">
+
 <h1>🛠️ Error Proof Validator</h1>
 
-<p>
-This tool validates store data entries in GSRS with real-time error detection,
-tooltips, and suggestions.
+<p class="description">
+Validate GSRS store data entries with real-time error detection,
+smart tooltips and validation suggestions.
 </p>
 
-<p><strong>Installation:</strong></p>
+<div class="install-box">
+
+<strong>Installation Steps:</strong>
 
 <ol>
-    <li>Drag the button below into your browser bookmarks bar.</li>
-    <li>Open <code>https://gsrs-prod.azure-gsrs-p.nielsencsp.net/#/</code></li>
-    <li>Click the bookmark whenever you want to run the validator.</li>
+<li>Drag the button below into your browser bookmarks bar.</li>
+
+<li>
+Open
+<code>
+https://gsrs-prod.azure-gsrs-p.nielsencsp.net/#/
+</code>
+</li>
+
+<li>
+Click the bookmark whenever you want to run the validator.
+</li>
+
 </ol>
 
+</div>
+
 <a class="bookmarklet-link" id="installBtn">
-    🛠️ Error Proof Validator
+🛠️ Install Error Proof Validator
 </a>
+
+<p class="info">
+Latest files are always loaded automatically.<br>
+Cached versions will not be reused.
+</p>
+
+<footer>
+If you face any issue please contact <strong>Arun Raja</strong><br><br>
+
+📧
+<a href="mailto:Arun.Raja@nielseniq.com">
+Arun.Raja@nielseniq.com
+</a>
+</footer>
+
+</div>
 
 <script>
 
-const installBtn = document.getElementById("installBtn");
+const installBtn=document.getElementById("installBtn");
 
-installBtn.href =
+installBtn.href=
 `javascript:(function(){
 
 try{
@@ -64,19 +218,12 @@ var ts=Date.now();
 
 console.log("Loading Error Proof Validator...");
 
-/* Remove old CSS if already loaded */
 var oldCss=document.getElementById("EPValidatorCSS");
-if(oldCss){
-oldCss.remove();
-}
+if(oldCss) oldCss.remove();
 
-/* Remove old JS if already loaded */
 var oldScript=document.getElementById("EPValidatorScript");
-if(oldScript){
-oldScript.remove();
-}
+if(oldScript) oldScript.remove();
 
-/* Load fresh CSS */
 var css=document.createElement("link");
 css.id="EPValidatorCSS";
 css.rel="stylesheet";
@@ -84,13 +231,13 @@ css.href="https://cdn.jsdelivr.net/gh/Arunraja2202/Error-Proof@main/style.css?v=
 
 document.head.appendChild(css);
 
-/* Load fresh JS */
 var script=document.createElement("script");
 script.id="EPValidatorScript";
+
 script.src="https://cdn.jsdelivr.net/gh/Arunraja2202/Error-Proof@main/error.js?v="+ts;
 
 script.onload=function(){
-console.log("✅ Error Proof Validator loaded");
+console.log("✅ Error Proof Validator Loaded");
 };
 
 script.onerror=function(){
@@ -100,20 +247,15 @@ alert("❌ Failed to load error.js");
 document.body.appendChild(script);
 
 }catch(e){
+
 console.error(e);
 alert("Error: "+e.message);
+
 }
 
 })();`;
 
 </script>
-
-<p>
-<em>
-Drag the button above into your bookmarks bar and run it on GSRS.
-Latest files are always loaded — cached versions will not be reused.
-</em>
-</p>
 
 </body>
 </html>
