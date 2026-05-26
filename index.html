@@ -1,48 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Error Proof Validator</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-      line-height: 1.6;
-    }
-    a.bookmarklet-link {
-      display: inline-block;
-      padding: 10px 20px;
-      background: #007bff;
-      color: white;
-      text-decoration: none;
-      border-radius: 4px;
-      margin: 20px 0;
-    }
-    a.bookmarklet-link:hover {
-      background: #0056b3;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Error Proof Validator</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    max-width:600px;
+    margin:50px auto;
+    padding:20px;
+    line-height:1.6;
+}
+
+.bookmarklet-link{
+    display:inline-block;
+    padding:12px 22px;
+    background:#007bff;
+    color:#fff;
+    text-decoration:none;
+    border-radius:6px;
+    margin:20px 0;
+    font-weight:bold;
+}
+
+.bookmarklet-link:hover{
+    background:#0056b3;
+}
+</style>
 </head>
+
 <body>
-  <h1>Error Proof Validator</h1>
-  <p>This tool helps validate store data entries in OGRDS with real-time error detection, tooltips, and suggestions.</p>
-  <p><strong>To install:</strong></p>
-  <ol>
-    <li>Drag the button below into your browser's bookmarks bar.</li>
-    <li>Then go to <code>https://ogrds-locations.nielseniq.com/OGRDS/</code> and click your bookmark to run it.</li>
-  </ol>
-  
-  <!-- Drag-and-drop button -->
-  <a class="bookmarklet-link" id="installBtn">🛠️Error Proof Validator</a>
 
-  <script>
-    // JavaScript to set bookmarklet URL dynamically
-    const installBtn = document.getElementById('installBtn');
-    installBtn.href = "javascript:(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://cdn.jsdelivr.net/gh/Arunraja2202/Error-Proof@main/style.css?t='+Date.now();document.head.appendChild(l);var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/gh/Arunraja2202/Error-Proof@main/content.js?t='+Date.now();s.onload=function(){console.log('Error Proof Validator loaded ✅');};s.onerror=function(){alert('Failed to load content.js');};document.body.appendChild(s);})();";
-  </script>
+<h1>🛠️ Error Proof Validator</h1>
 
-  <p><em>Just drag the button above to your bookmarks bar and click it on the target site.</em></p>
+<p>
+This tool validates store data entries in OGRDS with real-time error detection,
+tooltips, and suggestions.
+</p>
+
+<p><strong>Installation:</strong></p>
+
+<ol>
+    <li>Drag the button below into your browser bookmarks bar.</li>
+    <li>Open <code>https://gsrs-prod.azure-gsrs-p.nielsencsp.net/#/</code></li>
+    <li>Click the bookmark whenever you want to run the validator.</li>
+</ol>
+
+<a class="bookmarklet-link" id="installBtn">
+    🛠️ Error Proof Validator
+</a>
+
+<script>
+
+const installBtn = document.getElementById("installBtn");
+
+installBtn.href =
+`javascript:(function(){
+
+try{
+
+var ts=Date.now();
+
+console.log("Loading Error Proof Validator...");
+
+/* Remove old CSS if already loaded */
+var oldCss=document.getElementById("EPValidatorCSS");
+if(oldCss){
+oldCss.remove();
+}
+
+/* Remove old JS if already loaded */
+var oldScript=document.getElementById("EPValidatorScript");
+if(oldScript){
+oldScript.remove();
+}
+
+/* Load fresh CSS */
+var css=document.createElement("link");
+css.id="EPValidatorCSS";
+css.rel="stylesheet";
+css.href="https://cdn.jsdelivr.net/gh/Arunraja2202/Error-Proof@main/style.css?v="+ts;
+
+document.head.appendChild(css);
+
+/* Load fresh JS */
+var script=document.createElement("script");
+script.id="EPValidatorScript";
+script.src="https://cdn.jsdelivr.net/gh/Arunraja2202/Error-Proof@main/error.js?v="+ts;
+
+script.onload=function(){
+console.log("✅ Error Proof Validator loaded");
+};
+
+script.onerror=function(){
+alert("❌ Failed to load error.js");
+};
+
+document.body.appendChild(script);
+
+}catch(e){
+console.error(e);
+alert("Error: "+e.message);
+}
+
+})();`;
+
+</script>
+
+<p>
+<em>
+Drag the button above into your bookmarks bar and run it on OGRDS.
+Latest files are always loaded — cached versions will not be reused.
+</em>
+</p>
+
 </body>
 </html>
